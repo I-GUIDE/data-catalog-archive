@@ -14,8 +14,7 @@ represent a single Shapefile object.
 |name| Text | 1 | Name of the item |
 |description| Text | 0,1 | Description of the item|
 |url| URL | 1 | URL of the item |
-|subjectOf| CreativeWork \| Event | 0,1 | A CreativeWork or Event about this
-Thing. |
+|subjectOf| CreativeWork \| Event | 0,1 | A CreativeWork or Event about this Thing. |
 
 **Properties inherited from SchemaOrg.Thing.CreativeWork**
 
