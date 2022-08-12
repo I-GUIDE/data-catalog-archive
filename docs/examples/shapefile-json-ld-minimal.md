@@ -45,8 +45,8 @@ The `json+ld` below is derived from the content located in this
   },
   "distribution": {
     "@type": "DataDownload",
-    "contentUrl": "https://www.hydroshare.org/resource/9d413b9d57824a79b8239a5f7c4fdf51/data/resourcemetadata.xml",
-    "encodingFormat": "application/xml",
+    "contentUrl": "https://www.hydroshare.org/hsapi/resource/9d413b9d57824a79b8239a5f7c4fdf51/",
+    "encodingFormat": "application/zip",
     "contentSize": "7.7 MB"
   },
   "hasPart": [
