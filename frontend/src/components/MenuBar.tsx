@@ -1,17 +1,16 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
+import Code from '@mui/icons-material/Code';
+import ExploreIcon from '@mui/icons-material/Explore';
+import SearchIcon from '@mui/icons-material/Search';
+import TableChart from '@mui/icons-material/TableChart';
 import Divider from '@mui/material/Divider';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import ExploreIcon from '@mui/icons-material/Explore';
-import SearchIcon from '@mui/icons-material/Search';
 import SvgIcon from '@mui/material/SvgIcon';
+import Toolbar from '@mui/material/Toolbar';
 
 interface ToolbarItem {
     text: string
@@ -20,7 +19,9 @@ interface ToolbarItem {
 
 const ToolbarItems: ToolbarItem[] = [
     { text: 'Home', icon: ExploreIcon },
-    { text: 'Search', icon: SearchIcon }
+    { text: 'Search', icon: SearchIcon },
+    { text: 'Datasets', icon: TableChart },
+    { text: 'Notebooks', icon: Code }
 ]
 
 const drawerWidth = 240;
