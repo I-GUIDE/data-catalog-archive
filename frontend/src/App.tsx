@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
-import AppBar from './components/AppBar';
+import AppBar, { TOOLBAR_HEIGHT } from './components/AppBar';
 import Datasets from "./pages/Datasets";
 import Discover from "./pages/Discover";
 import Search from "./pages/Search";
@@ -19,19 +19,18 @@ const theme = createTheme({
 });
 
 const Main = styled(Box)(({ theme }) => ({
-  display: "flew",
+  display: "flex",
   flexGrow: 1,
   background: theme.palette.background.default,
-  justifyContent: " center",
-  flexDirection: "row",
-  padding: 3,
+  padding: "0em 1em",
+  marginTop: TOOLBAR_HEIGHT
 }));
 
 
 function App() {
   return (
     <BrowserRouter>
-      <ThemeProvider theme={theme}>Them
+      <ThemeProvider theme={theme}>
         <Box sx={{ display: 'flex' }}>
           <CssBaseline />
 
@@ -39,7 +38,6 @@ function App() {
 
           <Main component="main">
             <Box sx={{ maxWidth: '1200px' }}>
-              <br />
               <Routes>
                 <Route index element={<Home />} />
                 <Route path="search" element={<Search />} />
