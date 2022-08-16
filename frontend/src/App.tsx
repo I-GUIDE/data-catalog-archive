@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import AppBar, { TOOLBAR_HEIGHT } from './components/AppBar';
@@ -37,7 +38,7 @@ function App() {
           <AppBar />
 
           <Main component="main">
-            <Box sx={{ maxWidth: '1200px' }}>
+            <Container>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route index element={<Home />} />
@@ -45,7 +46,7 @@ function App() {
                 <Route path="datasets" element={<Discover />} />
                 <Route path="notebooks" element={<Datasets />} />
               </Routes>
-            </Box>
+            </Container>
           </Main>
         </Box>
       </ThemeProvider>
