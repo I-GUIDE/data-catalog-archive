@@ -1,29 +1,25 @@
 import React, { useLayoutEffect, useState } from 'react';
-import MuiPaper from '@mui/material/Paper';
-import Container from '@mui/material/Container';
+import MuiContainer from '@mui/material/Container';
 import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 import { TOOLBAR_HEIGHT } from '../components/AppBar';
 import InputAdornment from '@mui/material/InputAdornment';
+import Button from '@mui/material/Button';
 
-const Paper = styled(Container)(() => ({
+const Container = styled(MuiContainer)(() => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "flex-start",
     paddingTop: "3em",
     height: `calc(100vh - ${TOOLBAR_HEIGHT})`,
-    // maxWidth: "inherit",
-    // width: "100%"
 }));
 
 export const Search = () => {
     const [query, setQuery] = useState<string>("")
-    // const [height, setHeight] = 
 
-    console.log(query)
 
-    return <Paper>
+    return <Container>
         <TextField
             id="search-input"
             placeholder="aging dams"
@@ -45,6 +41,7 @@ export const Search = () => {
             }}
         >
         </TextField>
-    </Paper>;
+        <Button variant="outlined">Search</Button>
+    </Container>;
 }
 export default Search
