@@ -62,8 +62,10 @@ share.
 |hasPart|CreativeWork|CreativeWork|0+|Indicates an item or CreativeWork that is part of this item|
 |isPartOf|CreativeWork|CreativeWork OR URL |0+|Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of.|
 |associatedMedia|CreativeWork|MediaObject|0+| A media object that encodes this CreativeWork. This property is a synonym for encoding.|
-|distribution|Dataset|DataDownload|0,1|A downloadable form of this dataset, at a
-specific location, in a specific format.|
+|creativeWorkStatus | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a creative work in terms of its stage in a lifecycle. Example terms include Incomplete, Draft, Published, Obsolete. Some organizations define a set of terms for the stages of their publication lifecycle.|
+|dateModified |	CreativeWork |Date \| DateTime | 0,1| The date on which the CreativeWork was most recently modified or updated. | 
+|keywords | CreativeWork | DefinedTerm  \| Text \| URL	| 0+ |Keywords or tags used to describe the dataset, delimited by commas.|
+|funding| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the dataset.|
 
 
 <pre>
@@ -73,7 +75,7 @@ specific location, in a specific format.|
   "name": "IGUIDE Shapefile Testing Resource",
   "description": "This resource contains medium-resolution (1:100k) National Hydrography Dataset (NHDPlus) [1] map data for a region of 39 Hydrologic Unit Code (HUC) 6-digit (HUC6) basins around the Hurricane Harvey impact zone across Texas, Louisiana, Mississippi and Arkansas. This includes 5978 subwatersheds, 190,192 catchments, and 192,267 flowlines. USGS active stream gages (924) were downloaded from the USGS National Water Information System (NWIS) [2] and augmented with each gage's HUC2, HUC4, HUC6, HUC8, HUC10 & HUC12 basin identifiers, and COMID of the NHD stream reach for the containing catchment. This allows the user to easily aggregate gages by various watershed boundaries. NOAA Advanced Hydrologic Prediction System (AHPS) [3] has 362 river forecast points in the Harvey study area. Many of these are co-located with USGS NWIS gages to leverage authoritative observation data. A shapefile of Texas dams (7290) was directly received from the Texas Commission for Environmental Quality (TCEQ) [4]. They suggest if you have any questions about data, to make an Open Records Request [5].",
   "url": "https://www.hydroshare.org/resource/9d413b9d57824a79b8239a5f7c4fdf51/",
-  "dateCreated": "2022-08-16T17:35:21+00:00",
+  "dateCreated": "2022-01-01T00:00:00+00:00",
   "creator": {
     "@list":[
       {
@@ -102,7 +104,22 @@ specific location, in a specific format.|
       }
     ]
   },
-  <strong>"distribution": {
+  <strong>
+  "creativeWorkStatus": "published",
+  "dateModified": "2022-08-16T17:35:21+00:00",
+  "keywords": ["Hurricane", "Flood", "Texas"]
+  "funding": [
+  {
+    "@type": "MonetaryGrant",
+    "name": "RAPID: Archiving and Enabling Community Access to Data from Recent US Hurricanes",
+     "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=1761673",
+     "funder": {
+        "@type": "Organization",
+        "name": "National Science Foundation"
+      }
+    }
+  ],
+  "distribution": {
     "@type": "DataDownload",
     "contentUrl": "https://www.hydroshare.org/hsapi/resource/9d413b9d57824a79b8239a5f7c4fdf51/",
     "encodingFormat": "application/zip",
