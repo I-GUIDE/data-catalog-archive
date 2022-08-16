@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import AppBar from './components/AppBar';
 import Datasets from "./pages/Datasets";
 import Discover from "./pages/Discover";
@@ -18,6 +18,15 @@ const theme = createTheme({
   }
 });
 
+const Main = styled(Box)(({ theme }) => ({
+  display: "flew",
+  flexGrow: 1,
+  background: theme.palette.background.default,
+  justifyContent: " center",
+  flexDirection: "row",
+  padding: 3,
+}));
+
 
 function App() {
   return (
@@ -28,10 +37,7 @@ function App() {
 
           <AppBar />
 
-          <Box
-            component="main"
-            sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3, display: 'flex', justifyContent: 'center', flexDirection: 'row' }}
-          >
+          <Main component="main">
             <Box sx={{ maxWidth: '1200px' }}>
               <br />
               <Routes>
@@ -41,10 +47,10 @@ function App() {
                 <Route path="notebooks" element={<Datasets />} />
               </Routes>
             </Box>
-          </Box>
-        </Box >
+          </Main>
+        </Box>
       </ThemeProvider>
-    </BrowserRouter>
+    </BrowserRouter >
   );
 }
 
