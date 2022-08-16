@@ -10,7 +10,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import SvgIcon from '@mui/material/SvgIcon';
-import Toolbar from '@mui/material/Toolbar';
+import Toolbar from "@mui/material/Toolbar";
 
 interface ToolbarItem {
     text: string
@@ -25,8 +25,11 @@ const ToolbarItems: ToolbarItem[] = [
 ]
 
 const drawerWidth = 240;
+interface Props {
+    height: string
+}
 
-export default function PermanentDrawerLeft() {
+export default function PermanentDrawerLeft({ height }: Props) {
     return (
         <Drawer
             sx={{
@@ -40,7 +43,7 @@ export default function PermanentDrawerLeft() {
             variant="permanent"
             anchor="left"
         >
-            <Toolbar />
+            <Toolbar sx={{ height: height }} />
             <Divider />
             <List>
                 {ToolbarItems.map(({ text, icon: Icon }, index) => (
