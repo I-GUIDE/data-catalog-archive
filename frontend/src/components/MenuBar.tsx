@@ -3,7 +3,7 @@ import ExploreIcon from '@mui/icons-material/Explore';
 import SearchIcon from '@mui/icons-material/Search';
 import TableChart from '@mui/icons-material/TableChart';
 import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
+import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
@@ -11,6 +11,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import SvgIcon from '@mui/material/SvgIcon';
 import Toolbar from "@mui/material/Toolbar";
+import { styled } from '@mui/material/styles';
 
 interface ToolbarItem {
     text: string
@@ -29,20 +30,19 @@ interface Props {
     height: string
 }
 
+const Drawer = styled(MuiDrawer)(() => ({
+    width: drawerWidth,
+    flexShrink: 0,
+    '& .MuiDrawer-paper': {
+        width: drawerWidth,
+        boxSizing: 'border-box',
+    },
+}));
+
+
 export default function PermanentDrawerLeft({ height }: Props) {
     return (
-        <Drawer
-            sx={{
-                width: drawerWidth,
-                flexShrink: 0,
-                '& .MuiDrawer-paper': {
-                    width: drawerWidth,
-                    boxSizing: 'border-box',
-                },
-            }}
-            variant="permanent"
-            anchor="left"
-        >
+        <Drawer variant="permanent" anchor="left">
             <Toolbar sx={{ height: height }} />
             <Divider />
             <List>
