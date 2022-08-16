@@ -1,3 +1,4 @@
+import React from 'react'
 import Code from '@mui/icons-material/Code';
 import ExploreIcon from '@mui/icons-material/Explore';
 import SearchIcon from '@mui/icons-material/Search';
@@ -12,17 +13,19 @@ import ListItemText from '@mui/material/ListItemText';
 import SvgIcon from '@mui/material/SvgIcon';
 import Toolbar from "@mui/material/Toolbar";
 import { styled } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 
 interface ToolbarItem {
     text: string
     icon: typeof SvgIcon
+    link: string
 }
 
 const ToolbarItems: ToolbarItem[] = [
-    { text: 'Home', icon: ExploreIcon },
-    { text: 'Search', icon: SearchIcon },
-    { text: 'Datasets', icon: TableChart },
-    { text: 'Notebooks', icon: Code }
+    { text: 'Home', icon: ExploreIcon, link: "/" },
+    { text: 'Search', icon: SearchIcon, link: "/search" },
+    { text: 'Datasets', icon: TableChart, link: "/datasets" },
+    { text: 'Notebooks', icon: Code, link: "/notebooks" }
 ]
 
 const drawerWidth = 240;
@@ -46,9 +49,10 @@ export default function PermanentDrawerLeft({ height }: Props) {
             <Toolbar sx={{ height: height }} />
             <Divider />
             <List>
-                {ToolbarItems.map(({ text, icon: Icon }, index) => (
+                {/* {ToolbarItems.map((props) => ( */}
+                {ToolbarItems.map(({ text, link, icon: Icon }) => (
                     <ListItem key={text} disablePadding>
-                        <ListItemButton>
+                        <ListItemButton LinkComponent={Link} href={link}>
                             <ListItemIcon>
                                 <Icon />
                             </ListItemIcon>
@@ -57,6 +61,16 @@ export default function PermanentDrawerLeft({ height }: Props) {
                     </ListItem>
                 ))}
             </List>
-        </Drawer>
+        </Drawer >
     );
 }
+
+const MenuItem = ({ text, icon: Icon }: ToolbarItem) => {
+    return <ListItemButton>
+        <ListItemIcon>
+            <Icon />
+        </ListItemIcon>
+        <ListItemText primary={text} />
+    </ListItemButton>;
+}
+
