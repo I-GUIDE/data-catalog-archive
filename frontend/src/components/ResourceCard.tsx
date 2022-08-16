@@ -9,13 +9,13 @@ export interface Props {
     cardProps?: CardProps
 }
 
-export default function SearchItem({ props, cardProps }: Props) {
+export function ResourceCard({ props, cardProps }: Props) {
     const { title, creators, created, nFiles, size } = props
 
     return (
         <Card {...cardProps}>
             <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h6" component="div">
                     {title}
                 </Typography>
                 <Typography gutterBottom variant="body1" component="div">
@@ -28,3 +28,5 @@ export default function SearchItem({ props, cardProps }: Props) {
         </Card>
     )
 }
+
+export default ResourceCard;
