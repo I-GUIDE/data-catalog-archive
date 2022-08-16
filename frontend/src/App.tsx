@@ -39,6 +39,7 @@ function App() {
           <Main component="main">
             <Box sx={{ maxWidth: '1200px' }}>
               <Routes>
+                <Route path="/" element={<Home />} />
                 <Route index element={<Home />} />
                 <Route path="search" element={<Search />} />
                 <Route path="datasets" element={<Discover />} />
