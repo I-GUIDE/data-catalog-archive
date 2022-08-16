@@ -69,7 +69,7 @@ described on this page.
 |distribution|Dataset|DataDownload|0,1|A downloadable form of this dataset, at a specific location, in a specific format.|
 |variableMeasured| Dataset | PropertiesValue | 0+ | The variables contained in the Shapefile's attribute table.
 
-<pre>
+<pre lang="json">
 {
  ...
  

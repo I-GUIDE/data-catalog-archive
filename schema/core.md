@@ -68,7 +68,7 @@ share.
 |funding| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the dataset.|
 
 
-<pre>
+<pre lang="json">
 {
   "@context": "https://schema.org/",
   "@type": "Dataset",
