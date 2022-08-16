@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, { useState } from 'react';
 import MuiContainer from '@mui/material/Container';
 import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
@@ -9,10 +9,11 @@ import Button from '@mui/material/Button';
 
 const Container = styled(MuiContainer)(() => ({
     display: "flex",
-    justifyContent: "center",
-    alignItems: "flex-start",
+    alignItems: "center",
     paddingTop: "3em",
     height: `calc(100vh - ${TOOLBAR_HEIGHT})`,
+    flexDirection: "column",
+    gap: "10px",
 }));
 
 export const Search = () => {
