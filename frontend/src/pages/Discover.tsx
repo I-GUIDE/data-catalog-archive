@@ -101,8 +101,8 @@ export const Discover = () => {
             {
                 results?.map((props, idx) => {
                     {/* id will change once we switch to new db collection */ }
-                    return <Link to={`../holdings/${props.id?.slice(props.id.length - 32)}`} state={props} style={{ textDecoration: 'none', height: "100%" }}>
-                        <ResourceCard props={{ ...props }} cardProps={{ style: { height: "100%" } }} key={props.id} />
+                    return <Link to={`../holdings/${props.id?.slice(props.id.length - 32)}`} state={props} style={{ textDecoration: 'none', height: "100%" }} key={props.id}>
+                        <ResourceCard props={{ ...props }} cardProps={{ style: { height: "100%" } }} />
                     </Link>
                 })
             }
