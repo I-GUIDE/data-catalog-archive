@@ -1,32 +1,52 @@
+import styled from '@emotion/styled';
 import SearchIcon from '@mui/icons-material/Search';
 import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { TOOLBAR_HEIGHT } from "../components/AppBar";
 import Container from "../components/Container";
 import ResourceCard from "../components/ResourceCard";
-import { useGetResources } from '../graphql/queries';
+import { useGetResources, useSearch } from '../graphql/queries';
 import "./Discover.css";
 
 interface SearchProps {
-    query: string
-    setQuery: React.Dispatch<React.SetStateAction<string>>
+    // query: string
+    // setQuery: React.Dispatch<React.SetStateAction<string>>
+    // doQuery: () => void
+    queryFn: (term: string, limit?: number) => void
 }
 
 // TODO: abstract and generalize in the future
-const Search = ({ query, setQuery }: SearchProps) => {
+const Search = React.memo(({ queryFn }: SearchProps) => {
+    const [query, setQuery] = useState<string>("")
 
-    return <Container>
+    const handleQuery = () => {
+        // empty string dont query
+        if (!query.length) return
+        queryFn(query)
+    }
+
+    function handleTextFieldEnterKeydown(event: React.KeyboardEvent<HTMLDivElement>) {
+        if (event.code === "Enter") {
+            handleQuery()
+        }
+    }
+
+    return <Container sx={{
+        flexDirection: "row", alignItems: "center", justifyContent: "center",
+        marginBottom: "1em",
+        height: "auto"
+    }}>
         <TextField
             id="search-input"
             placeholder="aging dams"
             onChange={q => setQuery(q.target.value)
             }
+            onKeyDown={handleTextFieldEnterKeydown}
             sx={{
-                marginTop: `calc(5vh - ${TOOLBAR_HEIGHT})`,
                 minWidth: "100px",
                 width: "100%",
                 maxWidth: "584px"
@@ -41,28 +61,49 @@ const Search = ({ query, setQuery }: SearchProps) => {
             }}
         >
         </TextField>
-        <Button variant="outlined">Search</Button>
+        <Button variant="outlined" onClick={handleQuery}>Search</Button>
     </Container>;
-}
+})
 
+const NoTopMarginContainer = styled(Container)(() => ({
+    paddingTop: "0em",
+    height: "auto"
+}))
+
+
+// css defined in Discover.css. Media queries required
 export const Discover = () => {
     const { results, loading } = useGetResources(24)
-    const [query, setQuery] = useState("")
 
-    if (loading) return <Container>
-        <Search query={query} setQuery={setQuery} />
+    // number of search results returned should be a power of 4 for layout purposes
+    const { results: searchResults, loading: searchLoading, useQuery } = useSearch(48)
+
+    if (loading || searchLoading) return <NoTopMarginContainer>
+        <Search queryFn={useQuery} />
         <CircularProgress />
-    </Container>
+    </NoTopMarginContainer>
 
-    // css defined in Discover.css. Media queries required
-    return <Container id="discover-container">
-        <Search query={query} setQuery={setQuery} />
-        {
-            results?.map((props, idx) => {
-                return <ResourceCard props={{ ...props }} cardProps={{ style: { height: "100%" }, key: props.id }} />
-            })
-        }
-    </Container >
+    if (searchResults) return <NoTopMarginContainer>
+        <Search queryFn={useQuery} />
+        <NoTopMarginContainer id="discover-container">
+            {
+                searchResults?.map((props, idx) => {
+                    return <ResourceCard props={{ ...props }} cardProps={{ style: { height: "100%" }, key: props.id }} />
+                })
+            }
+        </NoTopMarginContainer >
+    </NoTopMarginContainer>
+
+    return <NoTopMarginContainer>
+        <Search queryFn={useQuery} />
+        <NoTopMarginContainer id="discover-container">
+            {
+                results?.map((props, idx) => {
+                    return <ResourceCard props={{ ...props }} cardProps={{ style: { height: "100%" }, key: props.id }} />
+                })
+            }
+        </NoTopMarginContainer >
+    </NoTopMarginContainer>
 
 }
 
