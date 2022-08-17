@@ -3,7 +3,7 @@ import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import AppBar, { TOOLBAR_HEIGHT } from './components/AppBar';
-import Datasets from "./pages/Datasets";
+import Datasets from "./pages/Notebooks";
 import Discover from "./pages/Discover";
 import Search from "./pages/Search";
 import Home from "./pages/Home";
