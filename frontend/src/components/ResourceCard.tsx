@@ -3,6 +3,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { SearchResourceResult } from "../graphql/queries";
 import { formatBytes } from "../utilities/humanReadableByteSize"
+import { timeSince } from "../utilities/timeSince"
 
 export interface Props {
     props: SearchResourceResult
@@ -12,17 +13,20 @@ export interface Props {
 export function ResourceCard({ props, cardProps }: Props) {
     const { title, creators, created, nFiles, size } = props
 
+    const creationDate = created ? new Date(created.slice(0, 10)) : undefined
+    const timeSinceCreated = creationDate ? timeSince(creationDate) : undefined
+
     return (
         <Card {...cardProps}>
             <CardContent>
-                <Typography gutterBottom variant="h6" component="div">
+                <Typography gutterBottom variant="body1" component="div">
                     {title}
                 </Typography>
-                <Typography gutterBottom variant="body1" component="div">
+                <Typography gutterBottom variant="body2" component="div">
                     {creators?.map(value => value?.name).join(", ")}
                 </Typography>
-                <Typography variant="body2">
-                    Uploaded: {created?.slice(0, 10)} | {nFiles} files(size: {formatBytes(size, 2)})
+                <Typography variant="caption">
+                    Uploaded: {`${timeSinceCreated} ago`} | {nFiles} files(size: {formatBytes(size, 2)})
                 </Typography>
             </CardContent>
         </Card>
