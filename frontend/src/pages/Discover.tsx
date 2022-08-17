@@ -5,6 +5,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 
 import { TOOLBAR_HEIGHT } from "../components/AppBar";
 import Container from "../components/Container";
@@ -99,11 +100,14 @@ export const Discover = () => {
         <NoTopMarginContainer id="discover-container">
             {
                 results?.map((props, idx) => {
-                    return <ResourceCard props={{ ...props }} cardProps={{ style: { height: "100%" } }} key={props.id} />
+                    {/* id will change once we switch to new db collection */ }
+                    return <Link to={`../holdings/${props.id?.slice(props.id.length - 32)}`} state={props} style={{ textDecoration: 'none', height: "100%" }}>
+                        <ResourceCard props={{ ...props }} cardProps={{ style: { height: "100%" } }} key={props.id} />
+                    </Link>
                 })
             }
         </NoTopMarginContainer >
-    </NoTopMarginContainer>
+    </NoTopMarginContainer >
 
 }
 
