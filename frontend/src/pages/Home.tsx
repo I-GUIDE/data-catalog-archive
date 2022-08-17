@@ -6,7 +6,8 @@ const Box = styled(MuiBox)(({ theme }) => ({
     display: "flex",
     width: "100%",
     gap: "20px",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    justifyContent: "center"
 }));
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -30,7 +31,7 @@ const H1 = styled("h1")(({ theme }) => ({
 const IFrame = styled("iframe")(() => ({
     width: "640px",
     height: "360px",
-    flexBasis: "578px"
+    flexBasis: "500px"
 }));
 
 export function Home() {
