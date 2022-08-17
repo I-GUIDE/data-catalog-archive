@@ -2,6 +2,9 @@ import Card, { CardProps } from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { SearchResourceResult } from "../graphql/queries";
+import formatCreators from "../utilities/formatCreator";
+import formatBytes from "../utilities/humanReadableByteSize";
+import timeSince from "../utilities/timeSince";
 
 export interface Props {
     props: SearchResourceResult
@@ -19,8 +22,13 @@ function truncateString(s: string, maxLength: number) {
 const maxDescriptionLength = 250
 
 export default function SearchItem({ props, cardProps }: Props) {
-    // const { title, description, authors, nFiles, uploadDate, size } = props
     const { title, creators, abstract, created, nFiles, size } = props
+    const creationDate = created ? new Date(created.slice(0, 10)) : undefined
+    const timeSinceCreated = creationDate ? timeSince(creationDate) : undefined
+
+    // @ts-ignore
+    const formattedCreators = creators ? formatCreators(creators) : ""
+    const formattedSize = formatBytes(size, 2)
 
     return (
         <Card {...cardProps}>
@@ -29,13 +37,13 @@ export default function SearchItem({ props, cardProps }: Props) {
                     {title}
                 </Typography>
                 <Typography gutterBottom variant="body1" component="div">
-                    {creators?.map(value => value?.name).join(", ")}
+                    {formattedCreators}
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
                     {truncateString(abstract ?? "", maxDescriptionLength)}
                 </Typography>
                 <Typography variant="body2">
-                    Uploaded: {created?.slice(0, 10)} | {nFiles} files(size: {size})
+                    Uploaded: {`${timeSinceCreated} ago`} | {nFiles} files(size: {formattedSize})
                 </Typography>
             </CardContent>
         </Card>
