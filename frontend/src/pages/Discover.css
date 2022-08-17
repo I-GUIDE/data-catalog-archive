@@ -1,0 +1,21 @@
+#discover-container{
+    grid-template-columns: repeat(4, 1fr);
+    height: auto; 
+    display: grid;
+    gap: 1rem;
+}
+
+@media (max-width: 1000px) {
+    #discover-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 700px) {
+    #discover-container{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+
+}
