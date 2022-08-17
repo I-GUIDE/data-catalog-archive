@@ -99,7 +99,7 @@ export const Discover = () => {
         <NoTopMarginContainer id="discover-container">
             {
                 results?.map((props, idx) => {
-                    return <ResourceCard props={{ ...props }} cardProps={{ style: { height: "100%" }, key: props.id }} />
+                    return <ResourceCard props={{ ...props }} cardProps={{ style: { height: "100%" } }} key={props.id} />
                 })
             }
         </NoTopMarginContainer >
