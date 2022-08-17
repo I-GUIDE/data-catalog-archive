@@ -3,16 +3,6 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import { SearchResourceResult } from "../graphql/queries";
 
-// export interface Props {
-//     title: string
-//     description: string
-//     authors: string[]
-//     nFiles: number
-//     uploadDate: string
-//     size: string
-//     cardProps?: CardProps
-// }
-
 export interface Props {
     props: SearchResourceResult
     cardProps?: CardProps
