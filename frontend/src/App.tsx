@@ -1,13 +1,14 @@
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
-import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppBar, { TOOLBAR_HEIGHT } from './components/AppBar';
-import Datasets from "./pages/Notebooks";
 import Discover from "./pages/Discover";
-import Search from "./pages/Search";
+import Holding from "./pages/Holding";
 import Home from "./pages/Home";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Datasets from "./pages/Notebooks";
+import Search from "./pages/Search";
 
 
 
@@ -43,6 +44,9 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route index element={<Home />} />
                 <Route path="search" element={<Search />} />
+                <Route path="holdings">
+                  <Route path=":id" element={<Holding />} />
+                </Route>
                 <Route path="datasets" element={<Discover />} />
                 <Route path="notebooks" element={<Datasets />} />
               </Routes>
