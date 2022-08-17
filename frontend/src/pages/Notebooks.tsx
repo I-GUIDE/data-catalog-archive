@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { ListItem, List, CircularProgress } from '@mui/material'
-import SearchItem, { Props as SearchProps } from '../components/SearchItem'
+import SearchIcon from '@mui/icons-material/Search'
+import { CircularProgress } from '@mui/material'
+import Button from '@mui/material/Button'
+import MuiContainer from '@mui/material/Container'
+import InputAdornment from '@mui/material/InputAdornment'
+import { styled } from '@mui/material/styles'
+import TextField from '@mui/material/TextField'
+import { useState } from 'react'
+import { TOOLBAR_HEIGHT } from '../components/AppBar'
+import WideSearchListing from '../components/WideSearchListing'
 import { useGetResources } from '../graphql/queries'
-import { useQuery } from '@apollo/client'
-import MuiContainer from '@mui/material/Container';
-import { styled } from '@mui/material/styles';
-import TextField from '@mui/material/TextField';
-import SearchIcon from '@mui/icons-material/Search';
-import { TOOLBAR_HEIGHT } from '../components/AppBar';
-import InputAdornment from '@mui/material/InputAdornment';
-import Button from '@mui/material/Button';
 
 const Container = styled(MuiContainer)(() => ({
     display: "flex",
@@ -50,21 +49,13 @@ const Search = () => {
     </Container>;
 }
 
-
-
 export default function Datasets() {
     const { results, loading, error } = useGetResources()
-    console.log(error)
+    error ?? console.error(error)
 
     if (loading) return <CircularProgress />
 
-    return <List>
-        {
-            results?.map((value, idx) => {
-                return <ListItem key={idx.toString()}>
-                    <SearchItem cardProps={{ sx: { width: "100%" } }} props={{ ...value }} />
-                </ListItem>
-            })
-        }
-    </List>
+    return <WideSearchListing results={results} />
 }
+
+
