@@ -29,6 +29,7 @@ export default function SearchItem({ props, cardProps }: Props) {
     // @ts-ignore
     const formattedCreators = creators ? formatCreators(creators) : ""
     const formattedSize = formatBytes(size, 2)
+    const formattedAbstract = truncateString(abstract ?? "", maxDescriptionLength)
 
     return (
         <Card {...cardProps}>
@@ -40,7 +41,7 @@ export default function SearchItem({ props, cardProps }: Props) {
                     {formattedCreators}
                 </Typography>
                 <Typography variant="body1" color="text.secondary">
-                    {truncateString(abstract ?? "", maxDescriptionLength)}
+                    {formattedAbstract}
                 </Typography>
                 <Typography variant="body2">
                     Uploaded: {`${timeSinceCreated} ago`} | {nFiles} files(size: {formattedSize})
