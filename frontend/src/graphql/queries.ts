@@ -1,5 +1,5 @@
-import { gql, useQuery } from "@apollo/client"
-import { useEffect, useState } from "react"
+import { gql, useLazyQuery, useQuery } from "@apollo/client"
+import { useEffect, useState, useCallback } from "react"
 import { Geojson_Checksum_Normalized, Maybe, ObjectId } from "./types"
 
 // this is not exactly correct, but it is close enough for now. Note the creators and files
@@ -7,6 +7,10 @@ export type SearchResource = Pick<Geojson_Checksum_Normalized, "_id" | "id" | "t
 
 export type SearchResources = {
     geojson_checksum_normalizeds: Array<Maybe<SearchResource>>
+}
+
+export type TitleSearchResources = {
+    title_abstract_search: Array<Maybe<SearchResource>>
 }
 
 export type SearchResourcesVars = {
@@ -102,20 +106,42 @@ export const SEARCH_RESOURCES = gql`
 
 
 // export function useSearch({ term, limit }: SearchResourcesVars): QueryResult<SearchResources, SearchResourcesVars> | SearchResourcesResults {
-export function useSearch({ term, limit }: SearchResourcesVars) {
-    const [results, setResults] = useState<SearchResourcesResults | undefined>()
+// export function useSearch({ term, limit }: SearchResourcesVars) {
+//     const [results, setResults] = useState<SearchResourcesResults | undefined>()
 
-    const { data, ...rest } = useQuery<SearchResources, SearchResourcesVars>(SEARCH_RESOURCES, { variables: { term: term, limit: limit } })
+//     const { data, ...rest } = useQuery<SearchResources, SearchResourcesVars>(SEARCH_RESOURCES, { variables: { term: term, limit: limit } })
+
+//     useEffect(() => {
+//         setResults(
+//             data?.geojson_checksum_normalizeds.map(value => ({
+//                 ...value, nFiles: value?.files?.length ?? 0, size: value?.files?.reduce<number>((acc, curr) => acc + (curr?.size ?? 0), 0) ?? 0
+//             })
+//             )
+//         )
+//     }, [data])
+
+//     return { ...rest, data, results }
+// }
+
+
+export function useSearch(limit?: number) {
+    const searchLimit = limit
+    const [results, setResults] = useState<SearchResourcesResults | undefined>()
+    const [query, { data, ...rest }] = useLazyQuery<TitleSearchResources, SearchResourcesVars>(SEARCH_RESOURCES)
+
+    const useQuery = useCallback((term: string, limit?: number) => {
+        query({ variables: { term: term, limit: limit ?? searchLimit } })
+    }, [query, searchLimit])
 
     useEffect(() => {
         setResults(
-            data?.geojson_checksum_normalizeds.map(value => ({
+            data?.title_abstract_search.map(value => ({
                 ...value, nFiles: value?.files?.length ?? 0, size: value?.files?.reduce<number>((acc, curr) => acc + (curr?.size ?? 0), 0) ?? 0
             })
             )
         )
     }, [data])
 
-    return { ...rest, data, results }
+    return { ...rest, data, results, useQuery }
 }
 
