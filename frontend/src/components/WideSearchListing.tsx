@@ -15,7 +15,7 @@ export function WideSearchListing({ results }: Props) {
             results?.map((value, idx) => {
                 return <ListItem key={idx.toString()}>
                     {/* id will change once we switch to new db collection */}
-                    <Link to={`../holdings/${value.id?.slice(value.id.length - 32)}`} state={value}>
+                    <Link to={`../holdings/${value.id?.slice(value.id.length - 32)}`} state={value} style={{ textDecoration: 'none' }}>
                         <SearchItem cardProps={{ sx: { width: "100%" } }} props={{ ...value }} />
                     </Link>
                 </ListItem>
