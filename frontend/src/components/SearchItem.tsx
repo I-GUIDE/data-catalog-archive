@@ -5,18 +5,11 @@ import { SearchResourceResult } from "../graphql/queries";
 import formatCreators from "../utilities/formatCreator";
 import formatBytes from "../utilities/humanReadableByteSize";
 import timeSince from "../utilities/timeSince";
+import truncateString from "../utilities/truncateString";
 
 export interface Props {
     props: SearchResourceResult
     cardProps?: CardProps
-}
-
-function truncateString(s: string, maxLength: number) {
-    if (s.length > maxLength) {
-        return s.slice(0, maxLength - 3) + "..."
-    }
-    return s
-
 }
 
 const maxDescriptionLength = 250
