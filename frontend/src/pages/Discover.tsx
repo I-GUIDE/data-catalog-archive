@@ -1,17 +1,24 @@
-import { useQuery } from '@apollo/client';
-import React, { useEffect } from 'react';
-import { GET_RESOURCES } from '../graphql/queries'
+import ResourceCard from "../components/ResourceCard";
+import { useGetResources } from '../graphql/queries';
+
+import Container from "../components/Container";
+
+
+
 
 export const Discover = () => {
-    // const { data } = useQuery(GET_RESOURCES, {
-    //     variables: {
-    //         limit: 5
-    //     }
-    // })
+    const { results } = useGetResources(24)
 
-    // useEffect(() => { console.log(data) }, [data])
+    if (results === undefined) return null
 
-    return null
+    return <Container sx={{ height: "auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)" }}>
+        {
+            results.map((props, idx) => {
+                return <ResourceCard props={{ ...props }} cardProps={{ style: { height: "100%" }, key: props.id }} />
+            })
+        }
+    </Container >
+
 }
 
 export default Discover
