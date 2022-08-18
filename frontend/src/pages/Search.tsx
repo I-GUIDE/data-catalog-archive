@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import MuiContainer from '@mui/material/Container';
 import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
@@ -23,8 +23,8 @@ const Container = styled(MuiContainer)(() => ({
 export const Search = () => {
     const [query, setQuery] = useState<string>("")
     // number of search results returned should be a power of 4 for layout purposes
-    const { results, loading, useQuery: queryFn } = useSearch(48)
-    const [searchParams, setSearchParams] = useSearchParams()
+    const { results, useQuery: queryFn } = useSearch(48)
+    const [_, setSearchParams] = useSearchParams()
 
     const handleQuery = () => {
         // empty string dont query
