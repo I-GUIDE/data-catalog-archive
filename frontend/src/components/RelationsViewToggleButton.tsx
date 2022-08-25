@@ -14,7 +14,9 @@ export interface Props {
 
 export const RelationsViewToggleButton = ({ selected, setSelected }: Props) => {
 
-    const handleChange = (event: React.MouseEvent<HTMLElement, MouseEvent>, value: View) => {
+    const handleChange = (event: React.MouseEvent<HTMLElement, MouseEvent>, value: View | null) => {
+        // an option must be selected at all times. case for value === null
+        if (!value) return
         setSelected(value)
     }
 
