@@ -15,9 +15,12 @@ The following are references to required and recommended SchemaOrg properties
 for common data formats.
 
 - [Generic/Core Properties](core.md)
-- Geospatial Datasets
+- Geospatial 
   - [Shapefile](shapefile.md)
   - [Geopackage](geopackage.md)
   - [GeoTiff](geotiff.md)
+- Software
+  - [Source Code](sourcecode.md)
+  - [Software Application](softwareapp.md)
 
 
