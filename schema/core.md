@@ -15,6 +15,8 @@ core metadata and includes example implementations for each.
 |author|Creative Work|Person OR Organization|1+| person or organization that authored the work|
 | dateCreated | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
 
+The following is an example implementation of the required metadata properties
+for a SchemaOrg Dataset item:
 
 ``` json
 {
@@ -69,6 +71,9 @@ core metadata and includes example implementations for each.
 |keywords | CreativeWork | DefinedTerm  \| Text \| URL	| 0+ |Keywords or tags used to describe the dataset, delimited by commas.|
 |funding| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the dataset.|
 
+
+The following is an example implementation of recommended metadata
+properties for a SchemaOrg Dataset item:
 
 <pre lang="json">
 {
