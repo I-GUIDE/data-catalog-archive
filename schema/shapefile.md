@@ -1,6 +1,6 @@
 # Shapefile
 
-This document outlines the Schema.org properties used to describe a single ESRI
+This document outlines the *required* and *recommended* properties for describing an ESRI
 Shapefile. A Shapefile is a geospatial vector file format that is developed and
 regulated by ESRI. It consists of several mandatory files (`.shp`, `.shx`,
 `.dbf`) as well as numerous optional files (`.prj`, `.sbn`, `.sbx`, `.fbn`,
@@ -10,8 +10,8 @@ While all SchemaOrg properties are valid, below is a suggested subset to
 represent a single Shapefile object using the
 *[Dataset](https://schema.org/Dataset)* class.
 
-**Note**: A valid Shapefile entry should include the required (and recommended)
-metadata outline in the [Core Metadata](core.md) document, which are not
+**Note**: A valid Shapefile entry must include the required metadata outlined
+in the [Core Metadata](core.md) document, which are not
 described on this page.
 
 #### Required Properties
@@ -20,6 +20,9 @@ described on this page.
 |spatialCoverage | CreativeWork | Place | 1 | The spatial extent of the Shapefile as a bounding box. |
 |associatedMedia | CreativeWork	| MediaObject | 3+ | One media object for each of the files that comprise the Shapefile. At minimum this includes `.shp`, `.shx`, and `.dbf`.|
 
+
+The following is an example implementation of the required metadata
+properties.
 
 ```
 {
@@ -68,6 +71,8 @@ described on this page.
 |---|---|---|---|---|
 |distribution|Dataset|DataDownload|0,1|A downloadable form of this dataset, at a specific location, in a specific format.|
 |variableMeasured| Dataset | PropertiesValue | 0+ | The variables contained in the Shapefile's attribute table.
+
+The following is an example implementation of the recommended metadata properties.
 
 <pre lang="json">
 {
@@ -176,7 +181,7 @@ described on this page.
   "description": "This resource contains medium-resolution (1:100k) National Hydrography Dataset (NHDPlus) [1] map data for a region of 39 Hydrologic Unit Code (HUC) 6-digit (HUC6) basins around the Hurricane Harvey impact zone across Texas, Louisiana, Mississippi and Arkansas. This includes 5978 subwatersheds, 190,192 catchments, and 192,267 flowlines. USGS active stream gages (924) were downloaded from the USGS National Water Information System (NWIS) [2] and augmented with each gage's HUC2, HUC4, HUC6, HUC8, HUC10 & HUC12 basin identifiers, and COMID of the NHD stream reach for the containing catchment. This allows the user to easily aggregate gages by various watershed boundaries. NOAA Advanced Hydrologic Prediction System (AHPS) [3] has 362 river forecast points in the Harvey study area. Many of these are co-located with USGS NWIS gages to leverage authoritative observation data. A shapefile of Texas dams (7290) was directly received from the Texas Commission for Environmental Quality (TCEQ) [4]. They suggest if you have any questions about data, to make an Open Records Request [5].",
   "url": "https://www.hydroshare.org/resource/9d413b9d57824a79b8239a5f7c4fdf51/",
   "dateCreated": "2022-01-01T00:00:00+00:00",
-  "creator": {
+  "author": {
     "@list":[
       {
         "@type": "Organization",
