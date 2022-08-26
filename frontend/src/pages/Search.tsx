@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import MuiContainer from '@mui/material/Container';
 import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
@@ -22,8 +22,9 @@ const Container = styled(MuiContainer)(() => ({
 export const Search = () => {
     const [query, setQuery] = useState<string>("")
     // number of search results returned should be a multiple of 4 for layout purposes
-    const { results, useQuery: queryFn, loading } = useSearch(48)
+    const { results, useQuery: queryFn, loading, data } = useSearch(48)
     const [_, setSearchParams] = useSearchParams()
+    const ref = useRef<HTMLDivElement | null>(null)
 
     const handleQuery = () => {
         // empty string dont query
@@ -32,6 +33,15 @@ export const Search = () => {
         setSearchParams({ q: query })
         queryFn(query)
     }
+
+    // this should only happen when data starts loading or data is already available
+    useEffect(() => {
+        if (loading === false && !data) {
+            return
+        }
+        ref.current?.style.setProperty("margin-top", "0px")
+    }, [loading, data])
+
 
     function handleTextFieldEnterKeydown(event: React.KeyboardEvent<HTMLDivElement>) {
         if (event.code === "Enter") {
@@ -43,6 +53,7 @@ export const Search = () => {
         <TextField
             id="search-input"
             placeholder="aging dams"
+            ref={ref}
             onChange={q => setQuery(q.target.value)
             }
             onKeyDown={handleTextFieldEnterKeydown}
@@ -50,7 +61,9 @@ export const Search = () => {
                 marginTop: `calc(20vh - ${TOOLBAR_HEIGHT})`,
                 minWidth: "100px",
                 width: "100%",
-                maxWidth: "584px"
+                maxWidth: "584px",
+                // transition top margin to 0px. see above useEffect
+                transition: "margin-top 250ms"
             }}
             InputProps={{
                 sx: { borderRadius: "50px", height: "44px" },
