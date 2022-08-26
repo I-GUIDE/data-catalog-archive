@@ -4,7 +4,7 @@ import Skeleton, { SkeletonProps } from "@mui/material/Skeleton";
 import Typography from "@mui/material/Typography";
 
 export interface Props {
-    animation: SkeletonProps["animation"]
+    animation?: SkeletonProps["animation"]
     cardProps?: CardProps
 }
 
