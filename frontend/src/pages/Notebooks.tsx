@@ -49,7 +49,7 @@ const Search = () => {
     </Container>;
 }
 
-export default function Datasets() {
+export default function Notebooks() {
     const { results, loading, error } = useGetResources()
     error ?? console.error(error)
 
