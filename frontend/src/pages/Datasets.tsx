@@ -11,7 +11,7 @@ import { TOOLBAR_HEIGHT } from "../components/AppBar";
 import Container from "../components/Container";
 import ResourceCard from "../components/ResourceCard";
 import { useGetResources, useSearch } from '../graphql/queries';
-import "./Discover.css";
+import "./Datasets.css";
 
 interface SearchProps {
     // query: string
@@ -73,7 +73,7 @@ const NoTopMarginContainer = styled(Container)(() => ({
 
 
 // css defined in Discover.css. Media queries required
-export const Discover = () => {
+export const Datasets = () => {
     const { results, loading } = useGetResources(24)
 
     // number of search results returned should be a power of 4 for layout purposes
@@ -111,4 +111,4 @@ export const Discover = () => {
 
 }
 
-export default Discover
+export default Datasets
