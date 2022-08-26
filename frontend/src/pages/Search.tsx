@@ -9,7 +9,6 @@ import Button from '@mui/material/Button';
 import { useSearch } from '../graphql/queries';
 import WideSearchListing from '../components/WideSearchListing';
 import { useSearchParams, } from "react-router-dom"
-import createSlug from '../utilities/createSlug';
 
 const Container = styled(MuiContainer)(() => ({
     display: "flex",
@@ -22,15 +21,15 @@ const Container = styled(MuiContainer)(() => ({
 
 export const Search = () => {
     const [query, setQuery] = useState<string>("")
-    // number of search results returned should be a power of 4 for layout purposes
-    const { results, useQuery: queryFn } = useSearch(48)
+    // number of search results returned should be a multiple of 4 for layout purposes
+    const { results, useQuery: queryFn, loading } = useSearch(48)
     const [_, setSearchParams] = useSearchParams()
 
     const handleQuery = () => {
         // empty string dont query
         if (!query.length) return
-        const slug = createSlug(query)
-        setSearchParams({ q: slug })
+        // spaces are quoted with a +
+        setSearchParams({ q: query })
         queryFn(query)
     }
 
@@ -64,7 +63,7 @@ export const Search = () => {
         >
         </TextField>
         <Button variant="outlined" onClick={handleQuery}>Search</Button>
-        {results && <WideSearchListing results={results} />}
+        {(results || loading) && <WideSearchListing results={results} />}
     </Container>;
 }
 export default Search
