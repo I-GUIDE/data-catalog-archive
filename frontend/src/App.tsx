@@ -4,10 +4,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, styled, ThemeProvider } from '@mui/material/styles';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppBar, { TOOLBAR_HEIGHT } from './components/AppBar';
-import Discover from "./pages/Discover";
+import Datasets from "./pages/Datasets";
 import Holding from "./pages/Holding";
 import Home from "./pages/Home";
-import Datasets from "./pages/Notebooks";
+import Notebooks from './pages/Notebooks';
 import Search from "./pages/Search";
 
 
@@ -47,8 +47,8 @@ function App() {
                 <Route path="holdings">
                   <Route path=":id" element={<Holding />} />
                 </Route>
-                <Route path="datasets" element={<Discover />} />
-                <Route path="notebooks" element={<Datasets />} />
+                <Route path="datasets" element={<Datasets />} />
+                <Route path="notebooks" element={<Notebooks />} />
               </Routes>
             </Container>
           </Main>
