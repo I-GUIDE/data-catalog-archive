@@ -20,24 +20,49 @@ described on this page.
 | targetProduct | SoftwareSourceCode | SoftwareApplication | 1+ | Target Operating System or Product to which the code applies |
 
 The following is an example implementation of the required metadata
-properties for a single source code file.
+properties for a software source code object.
 
 ```json
 {
-  ...
-  "programmingLanguage": {
-    "@type": "ComputerLanguage",
-    "name": "Python",
-    "url": "https://www.python.org/",
-    "description": "Python is an interpreted, object-oriented, high-level programming language with dynamic semantics. Its high-level built in data structures, combined with dynamic typing and dynamic binding, make it very attractive for Rapid Application Development, as well as for use as a scripting or glue language to connect existing components together. Python's simple, easy to learn syntax emphasizes readability and therefore reduces the cost of program maintenance. Python supports modules and packages, which encourages program modularity and code reuse. The Python interpreter and the extensive standard library are available in source or binary form without charge for all major platforms, and can be freely distributed."
+  "@type": "Dataset",
+  "@context": "https://schema.org/",
+  "name": "Comparing Daily Residential Water Use at Richards Hall",
+  "description": "This resource contains a dataset and code to analyze average day to day water use at a residential hall at Utah State University (USU). Included in this resource is a .csv file that contains high resolution time series of water flow from a residential building on the USU campus. The data was recorded every one second for approximately three weeks in 2017. The Jupyter Notebook in this resource demonstrates how to subset the Richards Hall dataset to analyze daily water use from March 18-24, 2017. It resamples the data to daily total volume and finds the daily average, then plots the average daily volume in gallons for each day of the week.",
+  "url": "https://www.hydroshare.org/resource/2f2838b4964747c4acb2ce28d5f300b3/",
+  "dateCreated": "2022-04-14T18:27:00+00:00",
+ "author": {
+    "@type": "Person",
+    "name": "Emily Jainarain",
+    "email": "emily.jainarain@usu.edu"
   },
-  "runtimePlatform": "Python 3.9",
-  "targetProduct": {
-    "@type": "SoftwareApplication",
-    "name": "Jupyter Notebook",
-    "applicationSuite": "JupyterLab",
-    "operatingSystem": "MacOS, Linux",
+  "hasPart": {
+    "@type": "SoftwareSourceCode",
+    "name": "DailyResidentialWaterUse.ipynb",
+    "url":
+    "https://www.hydroshare.org/resource/2f2838b4964747c4acb2ce28d5f300b3/data/contents/DailyResidentialWaterUse.ipynb",
+    "programmingLanguage": {
+      "@type": "ComputerLanguage",
+      "name": "Python",
+      "url": "https://www.python.org/",
+      "description": "Python is an interpreted, object-oriented, high-level programming language with dynamic semantics. Its high-level built in data structures, combined with dynamic typing and dynamic binding, make it very attractive for Rapid Application Development, as well as for use as a scripting or glue language to connect existing components together. Python's simple, easy to learn syntax emphasizes readability and therefore reduces the cost of program maintenance. Python supports modules and packages, which encourages program modularity and code reuse. The Python interpreter and the extensive standard library are available in source or binary form without charge for all major platforms, and can be freely distributed."
+    },
+    "runtimePlatform": "Python 3.9",
+    "targetProduct": {
+      "@type": "SoftwareApplication",
+      "name": "Jupyter Notebook",
+      "applicationSuite": "JupyterLab",
+      "operatingSystem": "MacOS, Linux"
+    },
+    "associatedMedia": [{
+        "@type": "MediaObject",
+        "contentUrl":
+        "https://www.hydroshare.org/resource/2f2838b4964747c4acb2ce28d5f300b3/data/contents/DailyResidentialWaterUse.ipynb",
+        "encodingFormat": "application/x-ipynb+json",
+        "contentSize": "33.9 KB"
+      }
+    ]
   }
+
 }
 ```
 
@@ -53,6 +78,7 @@ properties for a single source code file.
 | codeRepository | SoftwareSourceCode| URL | 1 | Link to the repository where the un-compiled, human readable code and related code is located |
 | codeSampleType | SoftwareApplication | Text | 1 | 	What type of code sample: full (compile ready) solution, code snippet, inline code, scripts, template |
 
+## TODO
 ```
 {
   ...
