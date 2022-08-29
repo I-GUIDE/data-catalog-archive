@@ -114,7 +114,7 @@ properties for a SchemaOrg Dataset item:
   <strong>
   "creativeWorkStatus": "published",
   "dateModified": "2022-08-16T17:35:21+00:00",
-  "keywords": ["Hurricane", "Flood", "Texas"]
+  "keywords": ["Hurricane", "Flood", "Texas"],
   "funding": [
   {
     "@type": "MonetaryGrant",

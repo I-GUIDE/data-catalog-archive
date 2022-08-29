@@ -137,7 +137,7 @@ are not described on this page.
     "contentUrl": "https://www.hydroshare.org/hsapi/resource/3295a17b4cc24d34bd6a5c5aaf753c50/",
     "encodingFormat": "application/zip",
     "contentSize": "4.9 MB"
-  },
+  }
   </strong>
 }
 </pre>
