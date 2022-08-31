@@ -1,3 +1,3 @@
-import { Geojson_Checksum_NormalizedCreator } from "../graphql/types";
+import { Geojson_Checksum_RelationCreator } from "../graphql/types";
 
-export type CreatorName = Pick<Geojson_Checksum_NormalizedCreator, "name">
+export type CreatorName = Pick<Geojson_Checksum_RelationCreator, "name">
