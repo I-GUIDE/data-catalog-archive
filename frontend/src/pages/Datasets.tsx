@@ -12,6 +12,7 @@ import Container from "../components/Container";
 import ResourceCard from "../components/ResourceCard";
 import { useGetResources, useSearch } from '../graphql/queries';
 import "./Datasets.css";
+import ResourceCardSkeleton from "../components/ResourceCardSkeleton"
 
 interface SearchProps {
     // query: string
@@ -81,7 +82,14 @@ export const Datasets = () => {
 
     if (loading || searchLoading) return <NoTopMarginContainer>
         <Search queryFn={useQuery} />
-        <CircularProgress />
+        <NoTopMarginContainer id="discover-container">
+            {
+                // should be a multiple of 4 to respect the grid layout
+                [...Array(4 * 6)].map((idx) => {
+                    return <ResourceCardSkeleton key={idx} />
+                })
+            }
+        </NoTopMarginContainer>
     </NoTopMarginContainer>
 
     if (searchResults) return <NoTopMarginContainer>
@@ -89,7 +97,9 @@ export const Datasets = () => {
         <NoTopMarginContainer id="discover-container">
             {
                 searchResults?.map((props, idx) => {
-                    return <ResourceCard props={{ ...props }} cardProps={{ style: { height: "100%" }, key: props.id }} />
+                    return <Link to={`../holdings/${props.id?.slice(props.id.length - 32)}`} state={props} style={{ textDecoration: 'none', height: "100%" }} key={props.id}>
+                        <ResourceCard props={{ ...props }} cardProps={{ style: { height: "100%" }, key: props.id }} />
+                    </Link>
                 })
             }
         </NoTopMarginContainer >
