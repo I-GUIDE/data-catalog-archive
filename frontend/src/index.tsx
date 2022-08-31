@@ -4,9 +4,11 @@ import App from './App';
 import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink } from '@apollo/client';
 import * as Realm from "realm-web";
 
-const APP_ID = "i-guide-catalog-mvp-zkwwp"
+// const APP_ID = "i-guide-catalog-mvp-zkwwp"
+const APP_ID = "aging_dams-opsue"
 const GRAPHQL_URL = `https://realm.mongodb.com/api/client/v2.0/app/${APP_ID}/graphql`
-const API_KEY = "fTIsiVOEzh5BFYlcz5BvnnIrfO8xrQEraEhvEXg0YEa0tZP5Hp75NfXN0fsTdFB0"
+// const API_KEY = "fTIsiVOEzh5BFYlcz5BvnnIrfO8xrQEraEhvEXg0YEa0tZP5Hp75NfXN0fsTdFB0"
+const API_KEY = "ZDihDcopXERzZ5Nf7kDaEmZS5LyXtpdq4hPGXrCy7YhPglIINn90bSlBVGMEtbe6"
 
 // Connect to your MongoDB Realm app
 const app = new Realm.App(APP_ID);
