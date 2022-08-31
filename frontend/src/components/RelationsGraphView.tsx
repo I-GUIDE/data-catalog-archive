@@ -33,7 +33,7 @@ function colorNode(node: NodeObject): string {
             return "red"
 
         case "root":
-            return "brown"
+            return "black"
     }
     return "blue"
 }
@@ -44,7 +44,6 @@ export const RelationsGraphView = ({ graphData, graphSize, resourceId }: Props) 
     function handleClick(node: FGNodeObject) {
         if (node.id === resourceId) return
         navigate(`../${node.id}`)
-
     }
 
     return <ForceGraph graphData={graphData} width={graphSize.width} height={graphSize.height}
@@ -52,12 +51,11 @@ export const RelationsGraphView = ({ graphData, graphSize, resourceId }: Props) 
         nodeColor={colorNode}
         // @ts-ignore
         nodeLabel={labelNode}
+        dagMode="lr"
+        dagLevelDistance={100}
+        linkDirectionalParticles={1}
+        linkDirectionalParticleSpeed={0.05}
         onNodeClick={handleClick}
-    // nodeCanvasObject={(obj: FGNodeObject, canvasContext: CanvasRenderingContext2D, globalScale: number) => {
-
-
-    // }}
-
     />
 }
 export default RelationsGraphView
