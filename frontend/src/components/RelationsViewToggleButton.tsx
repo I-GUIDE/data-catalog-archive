@@ -27,8 +27,8 @@ export const RelationsViewToggleButton = ({ selected, setSelected }: Props) => {
         onChange={handleChange}
         aria-label="relations view style"
     >
-        <ToggleButton value={View.Graph}>{View.Graph}</ToggleButton>
         <ToggleButton value={View.Accordion}>{View.Accordion}</ToggleButton>
+        <ToggleButton value={View.Graph}>{View.Graph}</ToggleButton>
     </ToggleButtonGroup>
 }
 
