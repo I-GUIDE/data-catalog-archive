@@ -9,7 +9,6 @@ import Holding from "./pages/Holding";
 import Home from "./pages/Home";
 import Notebooks from "./pages/Notebooks";
 import Search from "./pages/Search";
-import getUrl from "./utilities/getUrl";
 
 const theme = createTheme({
   palette: {
@@ -29,7 +28,7 @@ const Main = styled(Box)(({ theme }) => ({
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <ThemeProvider theme={theme}>
         <Box sx={{ display: "flex" }}>
           <CssBaseline />
@@ -39,14 +38,14 @@ function App() {
           <Main component="main">
             <Container>
               <Routes>
-                <Route path={getUrl("/")} element={<Home />} />
+                <Route path={"/"} element={<Home />} />
                 <Route index element={<Home />} />
-                <Route path={getUrl("search")} element={<Search />} />
-                <Route path={getUrl("holdings")}>
+                <Route path={"search"} element={<Search />} />
+                <Route path={"holdings"}>
                   <Route path=":id" element={<Holding />} />
                 </Route>
-                <Route path={getUrl("datasets")} element={<Datasets />} />
-                <Route path={getUrl("notebooks")} element={<Notebooks />} />
+                <Route path={"datasets"} element={<Datasets />} />
+                <Route path={"notebooks"} element={<Notebooks />} />
               </Routes>
             </Container>
           </Main>

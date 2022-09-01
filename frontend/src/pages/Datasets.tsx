@@ -115,7 +115,7 @@ export const Datasets = () => {
           {searchResults?.map((props, idx) => {
             return (
               <Link
-                to={getUrl(`holdings/${props.id?.slice(props.id.length - 32)}`)}
+                to={`../holdings/${props.id?.slice(props.id.length - 32)}`}
                 state={props}
                 style={{ textDecoration: "none", height: "100%" }}
                 key={props.id}
@@ -141,7 +141,7 @@ export const Datasets = () => {
           }
           return (
             <Link
-              to={getUrl(`holdings/${props.id?.slice(props.id.length - 32)}`)}
+              to={`../holdings/${props.id?.slice(props.id.length - 32)}`}
               state={props}
               style={{ textDecoration: "none", height: "100%" }}
               key={props.id}
