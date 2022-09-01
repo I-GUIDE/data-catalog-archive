@@ -9,6 +9,7 @@ import Holding from "./pages/Holding";
 import Home from "./pages/Home";
 import Notebooks from "./pages/Notebooks";
 import Search from "./pages/Search";
+import getUrl from "./utilities/getUrl";
 
 const theme = createTheme({
   palette: {
@@ -25,12 +26,6 @@ const Main = styled(Box)(({ theme }) => ({
   padding: "0em 1em",
   marginTop: TOOLBAR_HEIGHT,
 }));
-
-const PUBLIC_URL = process.env.PUBLIC_URL;
-
-function getUrl(path: string): string {
-  return `${PUBLIC_URL}/${path}`;
-}
 
 function App() {
   return (
