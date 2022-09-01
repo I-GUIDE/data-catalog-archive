@@ -1329,7 +1329,7 @@ export type Geojson_Checksum_Relation_MpmetadatumUpdateInput = {
 };
 
 export enum Geojson_Checksum_RelationSortByInput {
-    IdDesc = '_ID_DESC',
+    _IdDesc = '_ID_DESC',
     AbstractDesc = 'ABSTRACT_DESC',
     ModifiedAsc = 'MODIFIED_ASC',
     ModifiedDesc = 'MODIFIED_DESC',
@@ -1339,7 +1339,7 @@ export enum Geojson_Checksum_RelationSortByInput {
     LanguageAsc = 'LANGUAGE_ASC',
     PublishedDesc = 'PUBLISHED_DESC',
     TitleAsc = 'TITLE_ASC',
-    IdAsc = '_ID_ASC',
+    _IdAsc = '_ID_ASC',
     IdAsc = 'ID_ASC',
     IdDesc = 'ID_DESC',
     LanguageDesc = 'LANGUAGE_DESC',
