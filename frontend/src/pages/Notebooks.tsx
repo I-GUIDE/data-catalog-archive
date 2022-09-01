@@ -17,6 +17,7 @@ import {
   useSearchNotebookResources,
 } from "../graphql/useGetNotebookResources";
 import "./Datasets.css";
+import getUrl from "../utilities/getUrl";
 
 interface SearchProps {
   // query: string
@@ -88,13 +89,6 @@ const NoTopMarginContainer = styled(Container)(() => ({
 export const Notebooks = () => {
   const { results, loading } = useGetNotebookResources(24);
 
-  // number of search results returned should be a power of 4 for layout purposes
-  //   const {
-  //     results: searchResults,
-  //     loading: searchLoading,
-  //     useQuery,
-  //   } = useSearch(48);
-
   const {
     results: searchResults,
     loading: searchLoading,
@@ -124,7 +118,7 @@ export const Notebooks = () => {
           {searchResults?.map((props, idx) => {
             return (
               <Link
-                to={`../holdings/${props.id?.slice(props.id.length - 32)}`}
+                to={getUrl(`holdings/${props.id?.slice(props.id.length - 32)}`)}
                 state={props}
                 style={{ textDecoration: "none", height: "100%" }}
                 key={props.id}
@@ -150,7 +144,7 @@ export const Notebooks = () => {
           }
           return (
             <Link
-              to={`../holdings/${props.id?.slice(props.id.length - 32)}`}
+              to={getUrl(`holdings/${props.id?.slice(props.id.length - 32)}`)}
               state={props}
               style={{ textDecoration: "none", height: "100%" }}
               key={props.id}
