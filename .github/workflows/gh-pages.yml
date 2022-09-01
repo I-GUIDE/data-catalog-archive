@@ -16,9 +16,6 @@ jobs:
       with:
         node-version: 18
 
-    - name: install yarn
-      run: npm i yarn
-
     - name: install frontend dependencies
       run: |
         cd frontend
