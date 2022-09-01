@@ -29,6 +29,7 @@ jobs:
         CI: false
       run: |
         cd frontend
+        export PUBLIC_URL="/data-catalog"
         yarn build
 
     - name: deploy
