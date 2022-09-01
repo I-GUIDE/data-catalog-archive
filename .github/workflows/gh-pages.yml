@@ -1,0 +1,44 @@
+name: deploy frontend to gh-pages
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: install yarn
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+      run: npm i yarn
+
+    - name: install frontend dependencies
+      run: |
+        cd frontend
+        yarn
+
+    - name: build
+      run: |
+        yarn build
+
+    - name: deploy
+      run: |
+        git checkout --track origin/gh-pages
+        rsync -ac build/ ../
+        cd ..
+        rm -rf frontend
+        ls
+        # if [[ $(git status --porcelain | wc -l) -gt 0 ]]; then
+        #   git config user.name "github-actions"
+        #   git config user.email "github-actions@github.com"
+        #   git add -A
+        #   git commit -m "deploy gh-pages"
+        #   git push origin gh-pages
+        # fi
