@@ -25,6 +25,8 @@ jobs:
         yarn
 
     - name: build
+      env:
+        CI: false
       run: |
         cd frontend
         yarn build
