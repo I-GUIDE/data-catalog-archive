@@ -35,7 +35,10 @@ jobs:
     - name: deploy
       run: |
         cd frontend
-        git checkout --track origin/gh-pages
+        git checkout gh-pages
+        git rm -rf ../
+        touch ../.nojekyll
+        git add ../.nojekyll
         rsync -ac build/ ../
         cd ..
         rm -rf frontend
