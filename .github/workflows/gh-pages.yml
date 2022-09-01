@@ -2,7 +2,7 @@ name: deploy frontend to gh-pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ '*' ]
 
 jobs:
   build-and-deploy:
