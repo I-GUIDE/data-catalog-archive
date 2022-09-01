@@ -26,12 +26,12 @@ jobs:
 
     - name: build
       run: |
-        pwd
         cd frontend
         yarn build
 
     - name: deploy
       run: |
+        cd frontend
         git checkout --track origin/gh-pages
         rsync -ac build/ ../
         cd ..
