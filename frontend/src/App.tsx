@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import { createTheme, styled, ThemeProvider } from "@mui/material/styles";
-import { HashRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppBar, { TOOLBAR_HEIGHT } from "./components/AppBar";
 import Datasets from "./pages/Datasets";
 import Holding from "./pages/Holding";
@@ -28,7 +28,7 @@ const Main = styled(Box)(({ theme }) => ({
 
 function App() {
   return (
-    <HashRouter basename={process.env.PUBLIC_URL}>
+    <BrowserRouter>
       <ThemeProvider theme={theme}>
         <Box sx={{ display: "flex" }}>
           <CssBaseline />
@@ -51,7 +51,7 @@ function App() {
           </Main>
         </Box>
       </ThemeProvider>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
 
