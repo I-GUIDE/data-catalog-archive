@@ -38,11 +38,10 @@ jobs:
         rsync -ac build/ ../
         cd ..
         rm -rf frontend
-        ls
-        # if [[ $(git status --porcelain | wc -l) -gt 0 ]]; then
-        #   git config user.name "github-actions"
-        #   git config user.email "github-actions@github.com"
-        #   git add -A
-        #   git commit -m "deploy gh-pages"
-        #   git push origin gh-pages
-        # fi
+        if [[ $(git status --porcelain | wc -l) -gt 0 ]]; then
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add -A
+          git commit -m "deploy gh-pages"
+          git push origin gh-pages
+        fi
