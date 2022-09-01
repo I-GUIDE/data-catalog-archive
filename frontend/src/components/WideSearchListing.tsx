@@ -29,9 +29,7 @@ export function WideSearchListing({ results }: Props) {
               <ListItem key={idx.toString()}>
                 {/* id will change once we switch to new db collection */}
                 <Link
-                  to={getUrl(
-                    `holdings/${value.id?.slice(value.id.length - 32)}`
-                  )}
+                  to={`../holdings/${value.id?.slice(value.id.length - 32)}`}
                   state={value}
                   style={{ textDecoration: "none", width: "100%" }}
                 >
