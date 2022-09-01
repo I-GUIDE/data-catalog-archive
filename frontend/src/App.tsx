@@ -26,6 +26,12 @@ const Main = styled(Box)(({ theme }) => ({
   marginTop: TOOLBAR_HEIGHT,
 }));
 
+const PUBLIC_URL = process.env.PUBLIC_URL;
+
+function getUrl(path: string): string {
+  return `${PUBLIC_URL}/${path}`;
+}
+
 function App() {
   return (
     <BrowserRouter>
@@ -38,14 +44,14 @@ function App() {
           <Main component="main">
             <Container>
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path={getUrl("/")} element={<Home />} />
                 <Route index element={<Home />} />
-                <Route path="search" element={<Search />} />
-                <Route path="holdings">
+                <Route path={getUrl("search")} element={<Search />} />
+                <Route path={getUrl("holdings")}>
                   <Route path=":id" element={<Holding />} />
                 </Route>
-                <Route path="datasets" element={<Datasets />} />
-                <Route path="notebooks" element={<Notebooks />} />
+                <Route path={getUrl("datasets")} element={<Datasets />} />
+                <Route path={getUrl("notebooks")} element={<Notebooks />} />
               </Routes>
             </Container>
           </Main>
