@@ -38,6 +38,7 @@ interface Props {
 const Drawer = styled(MuiDrawer)(({ theme }) => ({
   flexShrink: 0,
   [theme.breakpoints.up("sm")]: {
+    width: drawerWidth,
     "& .MuiDrawer-paper": {
       width: drawerWidth,
       boxSizing: "border-box",
@@ -45,6 +46,7 @@ const Drawer = styled(MuiDrawer)(({ theme }) => ({
   },
   // mobile view
   [theme.breakpoints.down("sm")]: {
+    width: mobileDrawerWidth,
     "& .MuiDrawer-paper": {
       width: mobileDrawerWidth,
       boxSizing: "border-box",
