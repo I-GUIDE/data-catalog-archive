@@ -36,7 +36,6 @@ interface Props {
 }
 
 const Drawer = styled(MuiDrawer)(({ theme }) => ({
-  width: drawerWidth,
   flexShrink: 0,
   [theme.breakpoints.up("sm")]: {
     "& .MuiDrawer-paper": {
