@@ -30,16 +30,26 @@ const ToolbarItems: ToolbarItem[] = [
 ];
 
 const drawerWidth = 240;
+const mobileDrawerWidth = 52;
 interface Props {
   height: string;
 }
 
-const Drawer = styled(MuiDrawer)(() => ({
+const Drawer = styled(MuiDrawer)(({ theme }) => ({
   width: drawerWidth,
   flexShrink: 0,
-  "& .MuiDrawer-paper": {
-    width: drawerWidth,
-    boxSizing: "border-box",
+  [theme.breakpoints.up("sm")]: {
+    "& .MuiDrawer-paper": {
+      width: drawerWidth,
+      boxSizing: "border-box",
+    },
+  },
+  // mobile view
+  [theme.breakpoints.down("sm")]: {
+    "& .MuiDrawer-paper": {
+      width: mobileDrawerWidth,
+      boxSizing: "border-box",
+    },
   },
 }));
 
