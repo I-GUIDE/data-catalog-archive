@@ -9,6 +9,7 @@ import Holding from "./pages/Holding";
 import Home from "./pages/Home";
 import Notebooks from "./pages/Notebooks";
 import Search from "./pages/Search";
+import { drawerWidth, mobileDrawerWidth } from "./components/MenuBar";
 
 const theme = createTheme({
   palette: {
@@ -22,7 +23,14 @@ const Main = styled(Box)(({ theme }) => ({
   display: "flex",
   flexGrow: 1,
   background: theme.palette.background.default,
-  padding: "0em 1em",
+  [theme.breakpoints.up("sm")]: {
+    padding: "0em 1em",
+    maxWidth: `calc(100% - ${drawerWidth}px)`,
+  },
+  // mobile view
+  [theme.breakpoints.down("sm")]: {
+    maxWidth: `calc(100% - ${mobileDrawerWidth}px)`,
+  },
   marginTop: TOOLBAR_HEIGHT,
 }));
 

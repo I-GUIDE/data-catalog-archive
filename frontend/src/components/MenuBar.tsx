@@ -29,8 +29,8 @@ const ToolbarItems: ToolbarItem[] = [
   { text: "Notebooks", icon: Code, link: getUrl("notebooks") },
 ];
 
-const drawerWidth = 240;
-const mobileDrawerWidth = 52;
+export const drawerWidth = 240;
+export const mobileDrawerWidth = 52;
 interface Props {
   height: string;
 }
