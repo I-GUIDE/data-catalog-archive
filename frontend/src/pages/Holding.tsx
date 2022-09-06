@@ -121,8 +121,8 @@ export function Resource(props?: Props) {
         <Container sx={{margin: "2rem 0"}}>
             <Typography variant="h4">{title}</Typography>
 
-            {type && <a href={`https://hydroshare.org/resource/${id}`} >
-            <img src={getUrl("hydroshare.png")} alt="HydroShare logo" style={{width: "auto", height: "2rem"}}/>
+            {type && <a target="_blank" rel="noreferrer" href={`https://hydroshare.org/resource/${id}`} >
+            <img src={getUrl("hydroshare.png")}  alt="HydroShare logo" style={{width: "auto", height: "2rem"}}/>
             </a>
             }
             <Typography variant="h6">{formattedCreators}</Typography>
