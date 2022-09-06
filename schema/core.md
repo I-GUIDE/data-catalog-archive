@@ -3,15 +3,15 @@
 Core metadata is a set of common metadata fields that all catalog
 holdings share and consists largely of high-level dataset attributes
 and properties. This document outlines the **required** and **recommended**
-core metadata and includes example implementations for each.
+high-level properties that are required.
 
 **Required Metadata**
 
 |Property|Schema.org Class|Expected Type|Cardinality|Description| 
 |---|---|---|---|---|
 |url|Thing|URL|1|the url of the item|
-|name|Thing|Text|1|the name of the item| 
-|description|Thing|Text|1|the description of the item|
+|name|Thing|Text|1|the name or title of the item| 
+|description|Thing|Text|1|the description or abstract of the item|
 |author|Creative Work|Person OR Organization|1+| person or organization that authored the work|
 | dateCreated | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
 
