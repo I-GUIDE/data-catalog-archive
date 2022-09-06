@@ -4,7 +4,7 @@
 This document outlines the *required* and *recommended* properties for
 describing source code.
 
-While all SchemaOrg properties are valid, below is a suggested subset to
+While all Schema.org properties are valid, below is a suggested subset to
 represent a single source code object using the 
 *[SoftwareSourceCode](https://schema.org/SoftwareSourceCode)* class.
 

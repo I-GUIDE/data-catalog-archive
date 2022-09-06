@@ -10,7 +10,7 @@ derived from the Schema.org *Thing* and *CreativeWork* classes. Metadata for
 cataloged items may then be customized to include additional properties
 specific to the type of resource being described.
 
-The following are references to required and recommended SchemaOrg properties
+The following are references to required and recommended Schema.org properties
 for common data formats.
 
 - [Generic/Core Properties](core.md)

@@ -7,7 +7,7 @@ core metadata and includes example implementations for each.
 
 **Required Metadata**
 
-|Property|SchemaOrg Class|Expected Type|Cardinality|Description| 
+|Property|Schema.org Class|Expected Type|Cardinality|Description| 
 |---|---|---|---|---|
 |url|Thing|URL|1|the url of the item|
 |name|Thing|Text|1|the name of the item| 
@@ -16,7 +16,7 @@ core metadata and includes example implementations for each.
 | dateCreated | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
 
 The following is an example implementation of the required metadata properties
-for a SchemaOrg Dataset item:
+for a Schema.org Dataset item:
 
 ``` json
 {
@@ -73,7 +73,7 @@ for a SchemaOrg Dataset item:
 
 
 The following is an example implementation of recommended metadata
-properties for a SchemaOrg Dataset item:
+properties for a Schema.org Dataset item:
 
 <pre lang="json">
 {

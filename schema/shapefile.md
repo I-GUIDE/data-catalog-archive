@@ -6,7 +6,7 @@ regulated by ESRI. It consists of several mandatory files (`.shp`, `.shx`,
 `.dbf`) as well as numerous optional files (`.prj`, `.sbn`, `.sbx`, `.fbn`,
 `.fbx`,`.ain` `.aih`, `.ixs`, `.mxs`, `.atx`, `.shp.xml`, `.cpg`, `.qix`).
 
-While all SchemaOrg properties are valid, below is a suggested subset to
+While all Schema.org properties are valid, below is a suggested subset to
 represent a single Shapefile object using the
 *[Dataset](https://schema.org/Dataset)* class.
 

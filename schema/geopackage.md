@@ -4,7 +4,7 @@ This document outlines the *required* and *recommended*  properties for describi
 A [GeoPackage](https://www.geopackage.org/) is an open, standards-based, format for describing geographic
 information using SQLite. 
 
-While all SchemaOrg properties are valid, below is a suggested subset for
+While all Schema.org properties are valid, below is a suggested subset for
 describing a single GeoPackage using using the
 *[Dataset](https://schema.org/Dataset)* class.
 
