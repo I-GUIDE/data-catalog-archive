@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback } from "react"
 import { Geojson_Checksum_Relation, Maybe, ObjectId } from "./types"
 
 // this is not exactly correct, but it is close enough for now. Note the creators and files
-export type SearchResource = Pick<Geojson_Checksum_Relation, "_id" | "id" | "title" | "abstract" | "creators" | "files" | "created">
+export type SearchResource = Pick<Geojson_Checksum_Relation, "_id" | "id" | "title" | "abstract" | "creators" | "files" | "created" | "type">
 export type RelationsSearch = Pick<Geojson_Checksum_Relation, "filter_relations">
 
 export type SearchSingleResource = {
@@ -48,6 +48,7 @@ export const GET_RESOURCES = gql`
                 id
                 title
                 abstract
+                type
                 creators {
                     name
                 }
@@ -105,6 +106,7 @@ export const SEARCH_RESOURCES = gql`
         title_abstract_search(input: {term: $term, limit: $limit}){
             id,
             title,
+            type,
             abstract,
             creators {
                 hydroshare_user_id
@@ -226,6 +228,7 @@ export const GET_RESOURCE = gql`
                 id
                 title
                 abstract
+                type
                 creators {
                     name
                 }
