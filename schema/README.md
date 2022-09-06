@@ -1,15 +1,14 @@
 # I-GUIDE Catalog Schema Definition
 
-The I-GUIDE catalog consists of one or more of the elements listed below. These
-examples are expressed as `json+ld` for its readability and leverage Schema.Org
-classes and properties whenever possible.
+The I-GUIDE catalog must be capable of storing metadata about diverse resource
+types, including the examples listed below. These examples are expressed as
+`json+ld` as a standardized and readable way to capture metadata, leveraging
+Schema.org classes and properties whenever possible.
 
-All catalog items must consist of a standard set of metadata. These metadata
-are referred to as `core` metadata and derive from the SchemaOrg *Thing* and
-*CreativeWork* classes. All other metadata should be expressed using one of the
-*CreativeWork* subclasses, the most common of which being *DataSet*. However,
-each item registered in the catalog should use the *CreativeWork* subclass that
-matches the data type and use most closely.
+All cataloged items must be described using a standard, core set of metadata
+derived from the Schema.org *Thing* and *CreativeWork* classes. Metadata for
+cataloged items may then be customized to include additional properties
+specific to the type of resource being described.
 
 The following are references to required and recommended SchemaOrg properties
 for common data formats.
