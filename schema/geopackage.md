@@ -16,7 +16,7 @@ are not described on this page.
 
 |Property|Class|Type|Cardinality|Description|
 |---|---|---|---|---|
-|spatialCoverage | CreativeWork | Place | 1 | The spatial extent of the Shapefile as a bounding box. |
+|spatialCoverage | CreativeWork | Place | 1 | The spatial extent of the GeoPackage as a bounding box. |
 |associatedMedia | CreativeWork	| MediaObject | 1 | One media object for the GeoPackage.|
 
 ``` json
@@ -52,7 +52,7 @@ are not described on this page.
 |Property|Class|Type|Cardinality|Description|
 |---|---|---|---|---|
 |distribution|Dataset|DataDownload|0,1|A downloadable form of this dataset, at a specific location, in a specific format.|
-|variableMeasured| Dataset | PropertiesValue | 0+ | The variables contained in the Shapefile's attribute table.
+|variableMeasured| Dataset | PropertiesValue | 0+ | The variables contained in the GeoPackage.
 
 <pre lang="json">
 {
