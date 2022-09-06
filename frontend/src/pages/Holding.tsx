@@ -14,6 +14,7 @@ import { RelationsSearchResult } from "../graphql/queries";
 import RelationsViewToggleButton, { View } from "../components/RelationsViewToggleButton";
 import RelationsAccordionView from "../components/RelationsAccordionView";
 import RelationsGraphView from "../components/RelationsGraphView";
+import getUrl from "../utilities/getUrl";
 
 export interface Props {
     props?: SearchResourceResult
@@ -94,7 +95,7 @@ export function Resource(props?: Props) {
 
 
     // const { title, creators, abstract, created, nFiles, size } = props.props
-    const { id, title, creators, abstract, created, nFiles, size } = result ? result as SearchResourceResult : state as SearchResourceResult
+    const { id, type, title, creators, abstract, created, nFiles, size } = result ? result as SearchResourceResult : state as SearchResourceResult
 
     const creationDate = created ? new Date(created.slice(0, 10)) : undefined
     const timeSinceCreated = creationDate ? timeSince(creationDate) : undefined
@@ -117,18 +118,24 @@ export function Resource(props?: Props) {
     // add last updated
     return (
         // <Container {...props.containerProps}>
-        <Container >
-            <h1>{title}</h1>
-            <h4>{formattedCreators}</h4>
-            <Typography variant="body2">
+        <Container sx={{margin: "2rem 0"}}>
+            <Typography variant="h4">{title}</Typography>
+
+            {type && <a href={`https://hydroshare.org/resource/${id}`} >
+            <img src={getUrl("hydroshare.png")} alt="HydroShare logo" style={{width: "auto", height: "2rem"}}/>
+            </a>
+            }
+            <Typography variant="h6">{formattedCreators}</Typography>
+            <Typography variant="subtitle1">
                 Uploaded: {`${timeSinceCreated} ago`} | {formatNFiles(nFiles)}(size: {formattedSize})
             </Typography>
-            <h2>Abstract</h2>
+            <br />
+            <Typography variant="h5" sx={{marginBottom: "0.5rem"}}>Abstract</Typography>
             <section style={{ whiteSpace: "pre-line" }} ref={ref}>{abstract}</section>
             <br />
             {/* if there are results, then we know we can derive graph data */}
             <div style={{ display: (results?.length ?? 0) > 0 ? "block" : "none" }}>
-                <h2>Relations</h2>
+            <Typography variant="h5" sx={{marginBottom: "0.5rem"}}>Relations</Typography>
                 <RelationsViewToggleButton selected={view} setSelected={setView} />
 
                 <div style={{ display: view === "Graph" ? "block" : "none" }}>
