@@ -43,7 +43,7 @@ export type SearchResourcesResults = Array<SearchResourceResult> | undefined
 
 export const GET_RESOURCES = gql`
     query Resources($limit: Int, $after: ObjectId){
-        geojson_checksum_relations(limit: $limit, query: { title_exists: true, _id_gt: $after}, sortBy: _ID_ASC){
+        geojson_checksum_relations(limit: $limit, query: { title_exists: true, _id_gt: $after}, sortBy: MODIFIED_DESC){
               _id
                 id
                 title
