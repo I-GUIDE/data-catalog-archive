@@ -5,7 +5,7 @@ import { Geojson_Checksum_Relation, Maybe, ObjectId } from "./types";
 
 export const GET_NOTEBOOK_RESOURCES = gql`
     query GetNotebookResources($limit: Int, $after: ObjectId){
-        geojson_checksum_relations(limit: $limit, query: {files: {mime_type_in: ["application/ipynb"]}, _id_gt: $after, }, sortBy: _ID_ASC){
+        geojson_checksum_relations(limit: $limit, query: {files: {mime_type_in: ["application/ipynb"]}, _id_gt: $after, }, sortBy: MODIFIED_DESC){
               _id
                 id
                 title
