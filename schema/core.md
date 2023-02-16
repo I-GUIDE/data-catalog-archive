@@ -236,6 +236,7 @@ repository in which the data resides.
     "@id": "https://hydroshare.org",
   }
 }
+```
 
 ``` json
 {
@@ -260,7 +261,7 @@ section of this document.
 |creativeWorkStatus | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a creative work in terms of its stage in a lifecycle. Example terms include Incomplete, Draft, Published, Obsolete. Some organizations define a set of terms for the stages of their publication lifecycle.|
 |dateModified |	CreativeWork |Date \| DateTime | 0,1| The date on which the CreativeWork was most recently modified or updated. | 
 |funding| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the dataset.|
-|temporalCoverage|CreativeWork|DateTime \| Text \| URL | 1 | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in ISO 8601 time interval format. |
+|temporalCoverage|CreativeWork|DateTime| 1 | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in ISO 8601 time interval format. |
 |spatialCoverage|CreativeWork|Place| 1 | The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content. It is a subproperty of contentLocation intended primarily for more technical and detailed materials. For example with a Dataset, it indicates areas that the dataset describes: a dataset of New York weather would have spatialCoverage which was the place: the state of New York.|
 |hasPart|CreativeWork|CreativeWork|0+|Indicates an item or CreativeWork that is part of this item|
 |isPartOf|CreativeWork|CreativeWork OR URL |0+|Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of.|
@@ -274,6 +275,344 @@ CreativeWork (this is similar to a HydroShare collection). In contrast,
 CreativeWork. As such, these are not demonstrated in the example below.
 
 
+### Creative Work Status
+
+**CreativeWorkStatus** is a property of `CreativeWork` used to capture the
+stage of a work's lifecycle; incomplete, draft, published, obsolete, etc. This
+can be expressed as text or using the `DefinedTerm` class.
+
+``` json
+{
+  ...
+  
+  "creativeWorkStatus": "published",
+```
+
+A more expressive status can be provided using the `DefinedTerm` subtype.
+``` json
+{
+  ...
+  
+  "creativeWorkStatus": {
+    "@type": "DefinedTerm",
+    "name": "public",
+    "description": "a publicly accessible dataset on HydroShare.org"
+  }
+}
+```
+
+### Date Modified
+
+**DateModified** is a property of `CreativeWork` that can be expressed using
+either the `Date` or `DateTime` classes. **DateModified** represents the
+date at which the dataset was most recently modified. The `Date` class expects a
+value in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601). Whereas
+the `DateTime` class requires a combination of date and time of day. An
+example if each is provided below.
+
+``` json
+{
+  ...
+  "dateModified": "2023-01-01",
+}
+
+```
+
+``` json
+{
+  ...
+  "dateModified": "2023-01-01T00:00:00+00:00",
+}
+
+```
+
+### Funding
+
+**Funding** is a property of the `CreativeWork` class used to describe the
+grant(s) that directly or indirectly funded or sponsored the work. **Funding**
+is expressed using the `Grant` subtype.
+
+``` json
+{
+  ...
+  "funding":
+  {
+    "@type": "MonetaryGrant",
+    "name": "My research project",
+     "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=000001",
+     "funder": {
+        "@type": "Organization",
+        "name": "National Science Foundation"
+      }
+    }
+```
+
+Multiple funding sources can be expressed as a list:
+
+``` json
+{
+  ...
+  "funding": [
+  {
+    "@type": "MonetaryGrant",
+    "name": "My first research project",
+     "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=000001",
+     "funder": {
+        "@type": "Organization",
+        "name": "National Science Foundation"
+      }
+    },
+  {
+    "@type": "MonetaryGrant",
+    "name": "My second research project",
+     "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=000002",
+     "funder": {
+        "@type": "Organization",
+        "name": "National Science Foundation"
+      }
+    }
+  ]
+}
+```
+
+### Temporal Coverage
+
+**TemporalCoverage** is a property of the `CreativeWork` class that is used to
+define a period of time in which the catalog record applies to. This should be
+expressed using the `DateTime` subtype.
+
+``` json
+{
+  ...
+  "temporalCoverage": "2007-03-01T13:00:00Z/2008-05-11T15:30:00Z",
+}
+```
+
+### Spatial Coverage
+
+**SpatialCoverage** is a property of the `CreativeWork` class that is used to
+indicate the location for which the content is valid. This can also be used to
+indicate the focus area of the content. This should be expressed using the
+`Place` subtype. There are numerous ways to describe the location of content,
+below are several common ones.
+
+A generic location may look like this:
+
+``` json 
+{
+  ...
+  "spatialCoverage": {
+    "@type": "Place",
+    "name": "CUAHSI Office",
+    "address": "1167 Massachusetts Ave Suites 418 & 419, Arlington, MA 02476",
+  }
+
+}
+```
+
+A geographic point may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
+
+``` json 
+{
+  ...
+  "spatialCoverage": {
+    "@type": "Place",
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 39.3280
+      "longitude": 120.1633
+    }
+  }
+}
+```
+
+A geographic vector may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
+
+``` json 
+{
+  ...
+    "spatialCoverage": {
+    "@type": "Place",
+    "geo": {
+      "@type": "GeoShape",
+      "line": "39.3280 120.1633 40.445 123.7878"
+    }
+  }
+}
+}
+```
+
+A geographic point may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
+
+``` json 
+{
+  ...
+    "spatialCoverage": {
+    "@type": "Place",
+    "geo": {
+      "@type": "GeoShape",
+      "polygon": "39.3280 120.1633 40.445 123.7878 41 121 39.77 122.42 39.3280 120.1633"
+    }
+  }
+}
+```
+
+A geographic bounding box may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
+
+``` json
+{
+  ...
+    "spatialCoverage": {
+    "@type": "Place",
+    "geo": {
+      "@type": "GeoShape",
+      "box": "39.3280 120.1633 40.445 123.7878"
+    }
+  }
+}
+```
+
+Multiple locations can be specific using a list: (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
+
+``` json
+{
+  ...
+  "spatialCoverage": {
+    "@type": "Place",
+    "geo": [
+      {
+        "@type": "GeoCoordinates",
+        "latitude": -17.65,
+        "longitude": 50
+      },
+      {
+        "@type": "GeoCoordinates",
+        "latitude": -19,
+        "longitude": 51
+      }
+    ]
+  }
+}
+```
+
+### Associated Media
+
+**AssocatedMedia** is a property of `CreativeWork` for describing media objects
+that encode the work. For example, this may be a text file that represents the
+data that is being cataloged. 
+
+A single file can be expressed as:
+
+``` json
+{
+ ...
+ "associatedMedia":
+   {
+     "@type": "MediaObject",
+     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file1.csv",
+     "encodingFormat": "text/csv",
+     "contentSize": "50 MB",
+     "name": "Data File 1"
+   }
+}
+```
+
+Multiple files can be expressed as:
+
+``` json
+{
+  ...
+  "associatedMedia": [
+   {
+     "@type": "MediaObject",
+     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file1.csv",
+     "encodingFormat": "text/csv",
+     "contentSize": "50 MB",
+     "name": "Data File 1"
+   },
+   {
+     "@type": "MediaObject",
+     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file2.csv",
+     "encodingFormat": "text/csv",
+     "contentSize": "25 MB",
+     "name": "Data File 2"
+   },
+   {
+     "@type": "MediaObject",
+     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file3.csv",
+     "encodingFormat": "text/csv",
+     "contentSize": "25 MB",
+     "name": "Data File 3"
+   }
+  ]
+}
+```
+
+### Data Collections
+
+Collections of records can be expressed using the **hasPart** (and inverse
+**isPartOf**) properties of `CreativeWork`.
+
+**Has Part** is used to describe an item or work that is part of the current
+item. For example, a body of work may consist of multiple related datasets that
+are used for a particular study.
+
+
+``` json
+{
+  ...
+  "hasPart": {
+    "@type": "Dataset",
+    "name": "IGUIDE Shapefile Testing Resource",
+    "description": "Test HydroShare resource for I-GUIDE",
+    "url": "https://www.hydroshare.org/resource/9d413b9d57824a79b8239a5f7c4fdf51/data/contents/HUC6_Harvey_TxLaMsAr.shp?zipped=true&aggregation=true"
+  }
+
+}
+
+```
+
+Multiple relations can be defined using a list.
+
+``` json
+{
+  ...
+  "hasPart": [
+    {
+      "@type": "CreativeWork",
+      "name": "IGUIDE Shapefile Testing Resource",
+      "description": "Test HydroShare resource for I-GUIDE - Shapefile",
+      "url": "https://my-unique-url.com/shapefile",
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "IGUIDE GeoTiff Testing Resource",
+      "description": "Test HydroShare resource for I-GUIDE - GeoTiff",
+      "url": "https://my-unique-url.com/geotiff",
+    }
+  ]
+}
+
+```
+
+
+**isPartOf** is the inverse property of **hasPart** and may be used to indicate
+that a work is part of another collection of works.
+
+``` json
+{
+  ...
+  "name": "IGUIDE Sample Dataset",
+  "description": "This is a sample datasets used in the I-GUIDE Catalog documentation",
+  "url": "https://my-unique-url.com/9d413b9d1",
+  "isPartOf": {
+    "@type": "CreativeWork",
+    "name": "Collection of Sample Datasets",
+    "description": "A collection of sample datasets used by the I-GUIDE team",
+    "url": "https://my-unique-url.com/data-collection"
+  }
+}
+```
 
 
 ## Complete Example
