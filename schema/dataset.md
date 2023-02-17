@@ -1,8 +1,8 @@
 # Dataset Schema
 
-The Dataset schema consists of properties structured to describe a specific
-topic of interest. This makes it ideal for much of the scientific datasets
-relevant to the iGUIDE project.
+The **Dataset** class consists of properties designed to provide more specificity
+to `CreativeWorks`. This **Dataset** class is ideal for much of the scientific datasets
+relevant to the I-GUIDE project.
 
 This document outlines the *required* and *recommended* properties for a
 generic Dataset record. Note, that the specific implementation of this schema
@@ -11,79 +11,28 @@ Geotiff, Geopackage, etc. Examples for these common data types are provided at
 the end of the document.
 
 While all Schema.org properties of the *Thing*, *CreativeWork*, and *Dataset* class
-are, this document outlines the specific properties that are required and 
-recommended for the iGUIDE catalog. A complete list of valid properties can be
+are acceptable to include, this document outlines the specific properties that are required and 
+recommended for I-GUIDE catalog records. A complete list of valid properties can be
 found on the Schema.org *[Dataset definition](https://schema.org/Dataset)* page.
 
 
-#### Required Properties
+## Required Metadata
 |Property|Class|Type|Cardinality|Description|
 |---|---|---|---|---|
 |distribution | Dataset | DataDownload |  1 | A downloadable form of this dataset, at a specific location, in a specific format. This property can be repeated if different variations are available. There is no expectation that different downloadable distributions must contain exactly equivalent information (see also DCAT on this point). Different distributions might include or exclude different subsets of the entire dataset, for example. |
 
-<pre lang="json">
+### Distribution
+
+**Distribution** is a property of the `Dataset` class must be expressed using
+the `DataDownload` subtype. Distribution describes how the content related to
+the catalog record may be obtained. The `DataDownload` type contains a number
+of [optional properties](https://schema.org/DataDownload) that can be used to describe the downloadable content of
+the dataset. 
+
+
+``` json
 {
-  "@context": "https://schema.org/",
-  "@type": "Dataset",
-  "name": "IGUIDE Shapefile Testing Resource",
-  "description": "This is a sample dataset used in the I-GUIDE Catalog documentation",
-  "url": "https://my-unique-url.com/9d413b9d1",
-  "dateCreated": "2023-01-01T00:00:00+00:00",
-  "author": {
-    "@list":[
-      {
-        "@type": "Person",
-        "name": "John Doe",
-        "email": "john.doe@email.com",
-        "identifier": {
-          "@id": "https://orcid.org/0000-0000-0000-0001",
-          "@type": "PropertyValue",
-          "propertyID": "https://registry.identifiers.org/registry/orcid",
-          "url": "https://orcid.org/0000-0000-0000-0001",
-          "value": "0000-0000-0000-0001"
-        }
-      },
-      {
-        "@type": "Person",
-        "name": "Jane Doe",
-        "email": "jane.doe@email.com",
-        "identifier": {
-          "@id": "https://orcid.org/0000-0000-0000-0002",
-          "@type": "PropertyValue",
-          "propertyID": "https://registry.identifiers.org/registry/orcid",
-          "url": "https://orcid.org/0000-0000-0000-0002",
-          "value": "0000-0000-0000-0002"
-        }
-      }
-    ]
-  },
-  "keywords": ["iGUIDE", "Sample"],
-  "license": "http://spdx.org/licenses/CC0-1.0",
-  "provider": {
-    "@id": "https://www.my-unique-url.com"
-  },
-  
-  "creativeWorkStatus": "published",
-  "dateModified": "2023-01-16T17:35:21+00:00",
-  "funding": [
-  {
-    "@type": "MonetaryGrant",
-    "name": "My research project",
-     "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=000001",
-     "funder": {
-        "@type": "Organization",
-        "name": "National Science Foundation"
-      }
-    }
-  ],
-  "spatialCoverage": {
-    "@type": "Place",
-    "geo": {
-      "@type": "GeoShape",
-      "polygon": "39.3280 120.1633 40.445 123.7878 41 121 39.77 122.42 39.3280 120.1633"
-    }
-  },
-  "temporalCoverage": "2018-01-22T14:51:12+00:00",
+  ...
   "distribution": {
     "@type": "DataDownload",
     "contentUrl": "https://www.my-unique-url.com/get_zip/9d413b9d1/",
@@ -91,128 +40,62 @@ found on the Schema.org *[Dataset definition](https://schema.org/Dataset)* page.
     "contentSize": "102.1 MB"
   }
 }
-</pre>
+```
 
-#### Recommended Properties
+#### Recommended Metadata
 
 |Property|Class|Type|Cardinality|Description|
 |---|---|---|---|---|
 |variableMeasured| Dataset | PropertiesValue | 0+ | The variableMeasured property can indicate (repeated as necessary) the variables that are measured in some dataset, either described as text or as pairs of identifier and description using PropertyValue. |
-|associatedMedia | CreativeWork	| MediaObject | 0+ | A description of individual files associated with the dataset|
 
-The following is an example implementation of the recommended metadata properties.
+## Variable Measured
 
-<pre lang="json">
+**VariableMeasured** is a property of the `Dataset` class and can be expressed
+as either `Text` or a `PropertyValue`, the latter being preferred. The
+`variableMeasured` represents the scientific variables that are measured or
+present within the dataset. Note, the `PropertyValue` type contains a number of
+useful properties that may be implements including units, min/max values, etc.
+For a complete list of properties see the [PropertyValue
+definition](http://his.cuahsi.org/mastercvreg/edit_cv11.aspx?tbl=VariableNameCV&id=1157579162)
+
+
+A single variable may be expressed as:
+
+``` json
 {
-  "@context": "https://schema.org/",
-  "@type": "Dataset",
-  "name": "IGUIDE Shapefile Testing Resource",
-  "description": "This is a sample dataset used in the I-GUIDE Catalog documentation",
-  "url": "https://my-unique-url.com/9d413b9d1",
-  "dateCreated": "2023-01-01T00:00:00+00:00",
-  "author": {
-    "@list":[
-      {
-        "@type": "Person",
-        "name": "John Doe",
-        "email": "john.doe@email.com",
-        "identifier": {
-          "@id": "https://orcid.org/0000-0000-0000-0001",
-          "@type": "PropertyValue",
-          "propertyID": "https://registry.identifiers.org/registry/orcid",
-          "url": "https://orcid.org/0000-0000-0000-0001",
-          "value": "0000-0000-0000-0001"
-        }
-      },
-      {
-        "@type": "Person",
-        "name": "Jane Doe",
-        "email": "jane.doe@email.com",
-        "identifier": {
-          "@id": "https://orcid.org/0000-0000-0000-0002",
-          "@type": "PropertyValue",
-          "propertyID": "https://registry.identifiers.org/registry/orcid",
-          "url": "https://orcid.org/0000-0000-0000-0002",
-          "value": "0000-0000-0000-0002"
-        }
-      }
-    ]
-  },
-  "keywords": ["iGUIDE", "Sample"],
-  "license": "http://spdx.org/licenses/CC0-1.0",
-  "provider": {
-    "@id": "https://www.my-unique-url.com"
-  },
-  
-  "creativeWorkStatus": "published",
-  "dateModified": "2023-01-16T17:35:21+00:00",
-  "funding": [
-  {
-    "@type": "MonetaryGrant",
-    "name": "My research project",
-     "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=000001",
-     "funder": {
-        "@type": "Organization",
-        "name": "National Science Foundation"
-      }
-    }
-  ],
-  "spatialCoverage": {
-    "@type": "Place",
-    "geo": {
-      "@type": "GeoShape",
-      "polygon": "39.3280 120.1633 40.445 123.7878 41 121 39.77 122.42 39.3280 120.1633"
-    }
-  },
-  "temporalCoverage": "2018-01-22T14:51:12+00:00",
-  "distribution": {
-    "@type": "DataDownload",
-    "contentUrl": "https://www.my-unique-url.com/get_zip/9d413b9d1/",
-    "encodingFormat": "text/csv",
-    "contentSize": "100 MB"
-  },
-  <strong>
-  "associatedMedia": [
-   {
-     "@type": "MediaObject",
-     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file1.csv",
-     "encodingFormat": "text/csv",
-     "contentSize": "50 MB",
-     "name": "Data File 1"
-   },
-   {
-     "@type": "MediaObject",
-     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file2.csv",
-     "encodingFormat": "text/csv",
-     "contentSize": "25 MB",
-     "name": "Data File 2"
-   },
-   {
-     "@type": "MediaObject",
-     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file3.csv",
-     "encodingFormat": "text/csv",
-     "contentSize": "25 MB",
-     "name": "Data File 3"
-   }
-   ],
+  ...
+  "variableMeasured": 
+    {
+      "@type": "PropertyValue",
+      "name": "Streamflow",
+      "description": "The volume of water flowing past a fixed point.  Equivalent to discharge",
+      "propertyID":
+      "http://his.cuahsi.org/mastercvreg/edit_cv11.aspx?tbl=VariableNameCV&id=1157579162",
+    },
+}
+```
+
+Multiple variables may be expressed as:
+
+``` json
+{
+  ...
   "variableMeasured": [
     {
       "@type": "PropertyValue",
-      "propertyID": "HUC_6",
-      "value": "String"
+      "name": "Streamflow",
+      "description": "The volume of water flowing past a fixed point.  Equivalent to discharge",
+      "propertyID":
+      "http://his.cuahsi.org/mastercvreg/edit_cv11.aspx?tbl=VariableNameCV&id=1157579162",
     },
     {
       "@type": "PropertyValue",
-      "propertyID": "Shape_Leng",
-      "value": "Real"
-    },
-    {
-      "@type": "PropertyValue",
-      "propertyID": "Shape_Area",
-      "value": "Real"
+      "name": "Water level",
+      "description": "Water level relative to datum. The datum may be local or global such as NGVD 1929 and should be specified in the method description for associated data values.
+",
+      "propertyID":
+      "http://his.cuahsi.org/mastercvreg/edit_cv11.aspx?tbl=VariableNameCV&id=1157579162",
     }
   ]
-  </strong>
 }
-</pre>
-
+```
