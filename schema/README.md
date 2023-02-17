@@ -15,11 +15,11 @@ Schema.org classes (also often called Types), Schema.org DataTypes, and Schema.o
 - schema - a conceptual representation of the structured metadata necessary to describe
   catalog records. Schemas are composed of a set of Types, each associated with a set of Properties and DataTypes that altogether represent the metadata of a record. 
 
-- Schema.org <span style="color:salmon">Type</span> (also called class) - a specific vocabulary that applies to a specific piece of data.
+- Schema.org ${\color{salmon}Type}$ (also called class) - a specific vocabulary that applies to a specific piece of data.
 
-- Schema.org <span style="color:peru">Property</span> - the subject matter of the content.
+- Schema.org ${\color{peru}Property}$ - the subject matter of the content.
 
-- Schema.org <span style="color:darkgray">DataType</span> - the basic data types such as Integers, Strings, etc.
+- Schema.org ${\color{darkgray}DataType}$ - the basic data types such as Integers, Strings, etc.
 
 
 ## Catalog Record Structure
