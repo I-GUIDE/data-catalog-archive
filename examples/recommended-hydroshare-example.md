@@ -25,7 +25,7 @@ This is an example a recommended I-GUIDE metadata record for a HydroShare resour
       "propertyID": "https://registry.identifiers.org/registry/orcid",
       "url": "https://orcid.org/0000-0003-0979-8090",
       "value": "0000-0003-0979-8090"
-    },
+    }
   },
   "provider": {
     "@type": "Organization",
@@ -87,11 +87,11 @@ This is an example a recommended I-GUIDE metadata record for a HydroShare resour
       "name": "Water Level",
       "description": "Water level with regard to an arbitrary gage datum"
     },
-  "isPartOf" {
+  "isPartOf": {
     "@type": "Dataset",
     "name": "UAV Orthomosaics and Elevation Data: Red Canyon Creek, Wyoming, USA",
     "description": "A series of beaver dam analogues (BDAs) were installed in Red Canyon Creek near Lander, WY, in 2018. Channel form was measured immediately after BDA installation and after one year of restoration efforts (July 2019), using data collected with a total station and with UAV surveys. The files in this collection include visible light orthomosaics and digital elevation models created from UAV data, water levels measured with pressure transducers, and topographic data collected with the totalstation. The orthomosaics can be found in the linked Zenodo repository (under Related Resources). These data are used in Davis et al. (2021) Evaluating the geomorphic channel response to beaver dam analog installation using unoccupied aerial vehicles.",
-    "url": "https://www.hydroshare.org/resource/7c4ae80863174acfb571ccf8bdac8968/",
+    "url": "https://www.hydroshare.org/resource/7c4ae80863174acfb571ccf8bdac8968/"
   }
 }
 ```
