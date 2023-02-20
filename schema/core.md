@@ -442,7 +442,7 @@ A geographic vector may look like this (from [SOSO](https://github.com/ESIPFed/s
 }
 ```
 
-A geographic point may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
+A geographic polygon may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
 
 ``` json 
 {
