@@ -33,7 +33,7 @@ This is an example a recommended I-GUIDE metadata record for a HydroShare resour
     "url": "https://hydroshare.org",
     "parentOrganization": {
       "@type": "Organization",
-      "name": CUAHSI,
+      "name": "CUAHSI",
       "url": "www.cuahsi.org",
       "address": "1167 Massachusetts Ave Suites 418 & 419, Arlington, MA 02476"
     }
