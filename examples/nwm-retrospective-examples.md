@@ -8,7 +8,7 @@ This is several examples of a recommended I-GUIDE metadata record for the Nation
 {
     "@context": "https://schema.org/",
     "@type": "Dataset",
-    "name": "NOAA National Water Model CONUS Retrospective Dataset",
+    "name": "NOAA National Water Model CONUS Retrospective Dataset, Version 2.1 in NetCDF Format",
     "description": "The complete archive of NWM input forcing and model output data version 2.1 in NetCDF format.",
     "url": "https://noaa-nwm-retrospective-2-1-pds.s3.amazonaws.com/index.html",
     "identifier":"Version 2.1",
@@ -54,7 +54,7 @@ This is several examples of a recommended I-GUIDE metadata record for the Nation
 {
     "@context": "https://schema.org/",
     "@type": "Dataset",
-    "name": "NOAA National Water Model CONUS Retrospective Dataset",
+    "name": "NOAA National Water Model CONUS Retrospective Dataset, Version 1.2 in Zarr Format",
     "description": "The complete archive of NWM model output data version 2.1 in Zarr format. The NWM precipitation input forcing in Zarr format.",
     "url": "https://noaa-nwm-retro-v2-zarr-pds.s3.amazonaws.com/index.html",
     "identifier":"Version 2.1",
@@ -100,7 +100,7 @@ This is several examples of a recommended I-GUIDE metadata record for the Nation
 {
     "@context": "https://schema.org/",
     "@type": "Dataset",
-    "name": "NOAA National Water Model CONUS Retrospective Dataset",
+    "name": "NOAA National Water Model CONUS Retrospective Dataset, Version 2.0 in Zarr Format",
     "description": "The streamflow from the NWM version 2.0 in Zarr format.",
     "url": "https://noaa-nwm-retro-v2-zarr-pds.s3.amazonaws.com/index.html",
     "identifier":"Version 2.0",
@@ -146,8 +146,8 @@ This is several examples of a recommended I-GUIDE metadata record for the Nation
 {
     "@context": "https://schema.org/",
     "@type": "Dataset",
-    "name": "NOAA National Water Model CONUS Retrospective Dataset",
-    "description": "The streamflow from the NWM version 2.0 in Zarr format.",
+    "name": "NOAA National Water Model CONUS Retrospective Dataset, Version 1.2 in NetCDF Format",
+    "description": "The streamflow from the NWM version 1.2 in NetCDF format.",
     "url": "https://nwm-archive.s3.amazonaws.com/index.html",
     "identifier":"Version 1.2",
     "creator": {
@@ -181,7 +181,7 @@ This is several examples of a recommended I-GUIDE metadata record for the Nation
         "box": "-133.5175717314508006,20.0709752267444230 -60.4811251300069870,57.7775469472718655"        
     }
   },
-  "encodingFormat": ["Zarr"],
+  "encodingFormat": ["NetCDF"],
   "citation":"NOAA National Water Model CONUS Retrospective Dataset was accessed on DATE from https://registry.opendata.aws/nwm-archive"
 }
 ``` 
