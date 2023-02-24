@@ -314,6 +314,31 @@ Note: for a more complete example of `Person`, see the [Creator](#creator)
 section of this document.
 
 
+### Date Published
+
+**DatePublished** is a property of `CreativeWork` that can be expressed using
+either the `Date` or `DateTime` data types. The **datePublished** represents the
+date at which the dataset was permanently published. The `Date` data type expects a
+value in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601). Whereas
+the `DateTime` data type requires a combination of date and time of day. An
+example if each is provided below.
+
+``` json
+{
+  ...
+  "datePublished": "2023-01-01",
+}
+```
+
+``` json
+{
+  ...
+  "datePublished": "2023-01-01T00:00:00+00:00",
+}
+```
+
+
+
 ### Creative Work Status
 
 **CreativeWorkStatus** is a property of `CreativeWork` used to capture the
