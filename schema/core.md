@@ -7,14 +7,20 @@ high-level properties that are required.
 
 |Property|Class|Expected Type|Cardinality|Description| 
 |---|---|---|---|---|
-|url|Thing|URL|1|the url of the item|
-|name|Thing|Text|1|the name or title of the item| 
-|description|Thing|Text|1|the description or abstract of the item|
-|creator|Creative Work|Person OR Organization|1+| person or organization that created the work|
+|url|Thing|URL|1|The url of the item|
+|name|Thing|Text|1|The name or title of the item| 
+|identifier|Thing|PropertyValue \| Text \| URL|1+|Any kind of identifier for the item|
+|description|Thing|Text|1|The description or abstract of the item|
+|creator|Creative Work|Person OR Organization|1+|Person or organization that created the work|
 |dateCreated | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
 |keywords | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the dataset, delimited by commas. |
 |license | CreativeWork | CreativeWork \| URL | 1 | A license document that applies to the content, typically indicated by a URL |
 |provider | Creative Work | Organization \| Person | 1 | The service provider, service operator, or service performer |
+|publisher| Creative Work | Organization \| Person | 0,1 | The publisher of the item |
+|datePublished| CreativeWork | Date \| DateTime | 0,1 | Date of first publication for the item |
+|subjectOf| Thing | CreativeWork | 0+ | A CreativeWork about the item - e.g., a related metadata document describing the item |
+|version| CreativeWork | Number \| Text | 0,1 | The version of the item |
+|inLanguage|CreativeWork|Language \| Text|0,1| The language of the content of the item|
 |creativeWorkStatus | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a creative work in terms of its stage in a lifecycle. Example terms include Incomplete, Draft, Published, Obsolete. Some organizations define a set of terms for the stages of their publication lifecycle.|
 |dateModified |	CreativeWork |Date \| DateTime | 0,1| The date on which the CreativeWork was most recently modified or updated. | 
 |funding| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the dataset.|
