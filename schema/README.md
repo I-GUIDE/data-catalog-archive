@@ -21,6 +21,13 @@ Schema.org classes (also often called Types), Schema.org DataTypes, and Schema.o
 
 - Schema.org ${\color{darkgray}DataType}$ - the basic data types such as Integers, Strings, etc.
 
+## What is a Record?
+
+todo
+
+## What is NOT a Record?
+
+todo
 
 ## Catalog Record Structure
 
@@ -45,15 +52,6 @@ The following are references to common Schema.org Types and their associated req
 
 - [Core](core.md)
   - [Dataset](dataset.md)
-  - [SoftwareSourceCode](sourcecode.md)
-  - [SoftwareApplication](softwareapp.md)
-  - [WebPage]
-    
-The following are examples of several common records within the I-GUIDE catalog:
-- Geospatial   
-  - [Shapefile](shapefile.md)  
-  - [Geopackage](geopackage.md)  
-  - [GeoTiff](geotiff.md)  
-- Software
-  - [Jupyter Notebook](jupyter.md)
+  - in progress - [SoftwareSourceCode](sourcecode.md)
+  - in progress - [SoftwareApplication](softwareapp.md)
 
