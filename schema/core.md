@@ -48,6 +48,45 @@ contain. A simple example is shown below:
 }
 ```
 
+### Identifier
+
+**Identifier** is a property of the `Thing` class. It is used to encode the record's identifier(s). For permanantly published records, this will likely be a digital object identifier (DOI). For unpublished records, this may be an identifier assigned by the system in which the content of the record resides. This element can be repeated if a record has multiple identifiers.
+
+An identifier as text can be encoded as:
+
+``` json
+{
+  ...
+  "identifier": "6625bdbde41c45c2b906f32be7ea70f0/"
+}
+```
+
+However, it is preferred for an identifier to be expressed as a URL if possible. An identifier that can be expressed as a URL can be encoded as:
+
+``` json
+{
+  ...
+  "identifier": "https://www.hydroshare.org/resource/6625bdbde41c45c2b906f32be7ea70f0/"
+}
+```
+
+SOSO recommends that if the identifier is a persistent identifier such as a DOI, the best way to represent the identifer is to use [schema:ProperatyValue](https://schema.org/PropertyValue). The identifier for a published record with a DOI can be encoded as:
+
+``` json
+{
+  ...
+  "identifier": {
+    "@id": "https://doi.org/10.4211/hs.6625bdbde41c45c2b906f32be7ea70f0",
+    "@type": "PropertyValue",
+    "name": "DOI: 10.4211/hs.6625bdbde41c45c2b906f32be7ea70f0",
+    "propertyID": "https://registry.identifiers.org/registry/doi",
+    "value": "doi:10.4211/hs.6625bdbde41c45c2b906f32be7ea70f0",
+    "url": "https://doi.org/10.4211/hs.6625bdbde41c45c2b906f32be7ea70f0"
+  }
+}
+```
+
+
 ### Creator
 
 **Creator** is a property of the `CreativeWork` class. The purpose of this
