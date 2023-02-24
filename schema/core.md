@@ -376,6 +376,19 @@ Example encoding as string:
 ```
 
 
+### Language
+
+The **inLanguage** property can be used to encode the language in which the content of 
+the record is expressed. Language codes from the [IETF BCP 47 standard]() should be 
+used for this encoding. For most records, it is anticipated that this will be "en-US".
+
+``` json
+{
+  ...
+  "inLanguage": "en-US"
+```
+
+
 ### Creative Work Status
 
 **CreativeWorkStatus** is a property of `CreativeWork` used to capture the
