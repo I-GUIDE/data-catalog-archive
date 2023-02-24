@@ -256,12 +256,18 @@ the content of the catalog record, for example a software license.
 }
 ```
 
-### Provider
+### Provider and Publisher
 
-**Provider** is a property of the `CreativeWork` class that can be expressed as
-either an `Organization` or a `Person`. This represents the service operator,
+**Provider** and **Publisher** are properties of the `CreativeWork` class that can be expressed as
+either an `Organization` or a `Person`. **Provider** represents the service operator,
 service performer, or goods producer. In many cases this is the operator of the
-repository in which the data resides.
+repository in which the data resides, but that may not always be the case. In the case that a record is 
+permanently published, **Publisher** indicates the organization or person that published the record.
+
+**Provider** and **Publisher** are semantically similar and can be encoded similarly. The following 
+examples are for **Provider** but can also be used for **Publisher**.
+
+Encoding for a formal repository with a parent organization:
 
 ``` json
 {
@@ -280,6 +286,8 @@ repository in which the data resides.
 }
 ```
 
+Simple encoding for the URL of a provider:
+
 ``` json
 {
   ...
@@ -288,6 +296,8 @@ repository in which the data resides.
   }
 }
 ```
+
+Example encoding where a person is the provider:
 
 ``` json
 {
