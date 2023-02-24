@@ -2,10 +2,8 @@
 
 Core metadata is a set of common metadata fields that all catalog
 holdings share and consists largely of high-level dataset attributes
-and properties. This document outlines the **required** and **recommended**
+and properties. This document outlines the **required** and **optional**
 high-level properties that are required.
-
-## Required Metadata
 
 |Property|Class|Expected Type|Cardinality|Description| 
 |---|---|---|---|---|
@@ -17,6 +15,14 @@ high-level properties that are required.
 |keywords | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the dataset, delimited by commas. |
 |license | CreativeWork | CreativeWork \| URL | 1 | A license document that applies to the content, typically indicated by a URL |
 |provider | Creative Work | Organization \| Person | 1 | The service provider, service operator, or service performer |
+|creativeWorkStatus | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a creative work in terms of its stage in a lifecycle. Example terms include Incomplete, Draft, Published, Obsolete. Some organizations define a set of terms for the stages of their publication lifecycle.|
+|dateModified |	CreativeWork |Date \| DateTime | 0,1| The date on which the CreativeWork was most recently modified or updated. | 
+|funding| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the dataset.|
+|temporalCoverage|CreativeWork|DateTime| 1 | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in ISO 8601 time interval format. |
+|spatialCoverage|CreativeWork|Place| 1 | The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content. It is a subproperty of contentLocation intended primarily for more technical and detailed materials. For example with a Dataset, it indicates areas that the dataset describes: a dataset of New York weather would have spatialCoverage which was the place: the state of New York.|
+|hasPart|CreativeWork|CreativeWork|0+|Indicates an item or CreativeWork that is part of this item|
+|isPartOf|CreativeWork|CreativeWork OR URL |0+|Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of.|
+|associatedMedia|CreativeWork|MediaObject|0+| A media object that encodes this CreativeWork. This property is a synonym for encoding.|
 
 The following examples demonstrate how each of these required properties may
 be implemented in JSON+LD. Note, there are several properties omitted from each
@@ -251,28 +257,6 @@ repository in which the data resides.
 
 Note: for a more complete example of `Person`, see the [Creator](#creator)
 section of this document.
-
----
-
-## Recommended Metadata
-
-|Property|Class|Type|Cardinality|Description| 
-|---|---|---|---|---|
-|creativeWorkStatus | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a creative work in terms of its stage in a lifecycle. Example terms include Incomplete, Draft, Published, Obsolete. Some organizations define a set of terms for the stages of their publication lifecycle.|
-|dateModified |	CreativeWork |Date \| DateTime | 0,1| The date on which the CreativeWork was most recently modified or updated. | 
-|funding| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the dataset.|
-|temporalCoverage|CreativeWork|DateTime| 1 | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in ISO 8601 time interval format. |
-|spatialCoverage|CreativeWork|Place| 1 | The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content. It is a subproperty of contentLocation intended primarily for more technical and detailed materials. For example with a Dataset, it indicates areas that the dataset describes: a dataset of New York weather would have spatialCoverage which was the place: the state of New York.|
-|hasPart|CreativeWork|CreativeWork|0+|Indicates an item or CreativeWork that is part of this item|
-|isPartOf|CreativeWork|CreativeWork OR URL |0+|Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of.|
-|associatedMedia|CreativeWork|MediaObject|0+| A media object that encodes this CreativeWork. This property is a synonym for encoding.|
-
-Note: `hasPart` and `isPartOf` are generally used for records that are grouped
-together or records that belong to other groupings. For example, `hasPart` may
-be used to indicate a record that consists of one or more additional
-CreativeWork (this is similar to a HydroShare collection). In contrast,
-`isPartOf` is used to indicate catalog records that reference a designated
-CreativeWork. As such, these are not demonstrated in the example below.
 
 
 ### Creative Work Status
@@ -556,6 +540,13 @@ Collections of records can be expressed using the **hasPart** (and inverse
 **Has Part** is used to describe an item or work that is part of the current
 item. For example, a body of work may consist of multiple related datasets that
 are used for a particular study.
+
+Note: `hasPart` and `isPartOf` are generally used for records that are grouped
+together or records that belong to other groupings. For example, `hasPart` may
+be used to indicate a record that consists of one or more additional
+CreativeWork (this is similar to a HydroShare collection). In contrast,
+`isPartOf` is used to indicate catalog records that reference a designated
+CreativeWork. As such, these are not demonstrated in the example below.
 
 
 ``` json
