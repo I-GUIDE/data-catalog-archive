@@ -5,6 +5,9 @@ types, including the examples listed below. These examples are expressed as
 `json+ld` format as a standardized and readable way to capture metadata, leveraging
 Schema.org classes (also often called Types), Schema.org DataTypes, and Schema.org properties whenever possible.
 
+## Purpose of the Catalog
+
+Provide efficient discoverablity and access.
 
 ## Terminology
 
