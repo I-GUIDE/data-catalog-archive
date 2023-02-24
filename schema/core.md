@@ -360,6 +360,21 @@ This linkage can be encoded as:
   "creativeWorkStatus": "published",
 ```
 
+### Version
+
+The **version** is a propoerty of `CreativeWork` that can be used to encode a formal 
+version number or name for a record. **version** can be encoded as either a number or
+a string; however, since many people use semantic versioning, a string is preferred as
+it will work regardless. 
+
+Example encoding as string:
+
+``` json
+{
+  ...
+  "version": "v1.0.2"
+```
+
 
 ### Creative Work Status
 
