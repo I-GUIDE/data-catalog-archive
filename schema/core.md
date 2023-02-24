@@ -337,6 +337,28 @@ example if each is provided below.
 }
 ```
 
+### Subject Of
+
+**subjectOf** is a property of `CreativeWork` and can be used to encode a linkage
+to a separate `CreativeWork` that describes or is about the record. An example would 
+be a formal metadata document encoded using some metadata standard that fully describes
+the record. More specifically, this could be a metadata document accompanying a
+geospatial dataset, or a formal metadata document accompanying a HydroShare resource. 
+The document describing the record can be available anywhere on the Internet.
+The encodingFormat property should indicate the format of the related `CreativeWork`. 
+This linkage can be encoded as:
+
+``` json
+{
+  ...
+  "subjectOf": {
+    "@type": "CreativeWork",
+    "name": "Dublin Core Metadata Document Describing the Dataset",
+    "url": "https://www.hydroshare.org/hsapi/resource/c1be74eeea614d65a29a185a66a7552f/scimeta/",
+    "encodingFormat": "application/rdf+xml"
+  }
+  "creativeWorkStatus": "published",
+```
 
 
 ### Creative Work Status
