@@ -41,7 +41,6 @@ contain. A simple example is shown below:
 
 ``` json
 {
-  ...
   "name": "IGUIDE Sample Dataset",
   "description": "This is a sample datasets used in the I-GUIDE Catalog documentation",
   "url": "https://my-unique-url.com/9d413b9d1"
@@ -56,7 +55,6 @@ An identifier as text can be encoded as:
 
 ``` json
 {
-  ...
   "identifier": "6625bdbde41c45c2b906f32be7ea70f0/"
 }
 ```
@@ -65,7 +63,6 @@ However, it is preferred for an identifier to be expressed as a URL if possible.
 
 ``` json
 {
-  ...
   "identifier": "https://www.hydroshare.org/resource/6625bdbde41c45c2b906f32be7ea70f0/"
 }
 ```
@@ -74,7 +71,6 @@ However, it is preferred for an identifier to be expressed as a URL if possible.
 
 ``` json
 {
-  ...
   "identifier": {
     "@id": "https://doi.org/10.4211/hs.6625bdbde41c45c2b906f32be7ea70f0",
     "@type": "PropertyValue",
@@ -97,19 +93,20 @@ this approach was adopted from ESIP Science on Schema Org.
 A single author can be expressed as:
 
 ``` json
-  ...
+{
   "creator": {
     "@type": "Person",
     "name": "John Doe",
     "email": "john.doe@email.com",
   }
+}
 ```
 
 A more complete example of an author will include additional fields from the
 `Person` class such as an identifier.
 
 ``` json
-  ...
+{
   "creator": {
     "@type": "Person",
     "name": "John Doe",
@@ -122,13 +119,14 @@ A more complete example of an author will include additional fields from the
       "value": "0000-0000-0000-0001"
     }
   }
+}
 ```
 
 For multiple authors, the `@list` keyword is used such that the order of
 creators is preserved.
 
 ``` json
-  ...
+ {
   "creator": {
     "@list":[
       {
@@ -157,7 +155,7 @@ creators is preserved.
       }
     ]
   }
-
+ }
 ```
 
 ### Date Created
@@ -171,18 +169,14 @@ example if each is provided below.
 
 ``` json
 {
-  ...
   "dateCreated": "2023-01-01",
 }
-
 ```
 
 ``` json
 {
-  ...
   "dateCreated": "2023-01-01T00:00:00+00:00",
 }
-
 ```
 
 ### Keywords
@@ -195,14 +189,12 @@ repeating the **Keyword** property. Several examples are listed below.
 
 ``` json
 {
-  ...
   "keywords": ["keyword 1", "keyword 2", "keyword 3"],
 }
 ```
 
 ``` json
 {
-  ...
   "keywords": {
     "@type": "DefinedTerm",
     "name": "Leaf wetness",
@@ -214,7 +206,6 @@ repeating the **Keyword** property. Several examples are listed below.
 
 ``` json
 {
-  ...
   "keywords": [
     {
       "@type": "DefinedTerm",
@@ -240,14 +231,12 @@ the content of the catalog record, for example a software license.
 
 ``` json
 {
-  ...
   "license": "https://creativecommons.org/licenses/by/4.0/",
 }
 ```
 
 ``` json
 {
-  ...
   "license": {
     "@type": "CreativeWork",
     "name": "My custom license",
@@ -271,7 +260,6 @@ Simple encoding for the URL of a provider:
 
 ``` json
 {
-  ...
   "provider": {
     "@id": "https://hydroshare.org",
   }
@@ -282,7 +270,6 @@ Example encoding where a person is the provider:
 
 ``` json
 {
-  ...
   "provider": {
     "@type": "Person",
     "name": "John Doe",
@@ -298,7 +285,6 @@ Encoding for a formal repository with a parent organization:
 
 ``` json
 {
-  ...
   "provider": {
     "@type": "Organization",
     "name": "HydroShare",
@@ -324,14 +310,12 @@ example if each is provided below.
 
 ``` json
 {
-  ...
   "datePublished": "2023-01-01",
 }
 ```
 
 ``` json
 {
-  ...
   "datePublished": "2023-01-01T00:00:00+00:00",
 }
 ```
@@ -349,14 +333,14 @@ This linkage can be encoded as:
 
 ``` json
 {
-  ...
   "subjectOf": {
     "@type": "CreativeWork",
     "name": "Dublin Core Metadata Document Describing the Dataset",
     "url": "https://www.hydroshare.org/hsapi/resource/c1be74eeea614d65a29a185a66a7552f/scimeta/",
     "encodingFormat": "application/rdf+xml"
-  }
+  },
   "creativeWorkStatus": "published",
+}
 ```
 
 ### Version
@@ -370,8 +354,8 @@ Example encoding as string:
 
 ``` json
 {
-  ...
   "version": "v1.0.2"
+}
 ```
 
 
@@ -383,8 +367,8 @@ used for this encoding. For most records, it is anticipated that this will be "e
 
 ``` json
 {
-  ...
   "inLanguage": "en-US"
+}
 ```
 
 
@@ -396,16 +380,13 @@ can be expressed as text or using the `DefinedTerm` class.
 
 ``` json
 {
-  ...
-  
   "creativeWorkStatus": "published",
+}
 ```
 
 A more expressive status can be provided using the `DefinedTerm` subtype.
 ``` json
 {
-  ...
-  
   "creativeWorkStatus": {
     "@type": "DefinedTerm",
     "name": "public",
@@ -425,18 +406,14 @@ example if each is provided below.
 
 ``` json
 {
-  ...
   "dateModified": "2023-01-01",
 }
-
 ```
 
 ``` json
 {
-  ...
   "dateModified": "2023-01-01T00:00:00+00:00",
 }
-
 ```
 
 ### Funding
@@ -447,9 +424,7 @@ is expressed using the `Grant` subtype.
 
 ``` json
 {
-  ...
-  "funding":
-  {
+  "funding": {
     "@type": "MonetaryGrant",
     "name": "My research project",
      "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=000001",
@@ -457,14 +432,14 @@ is expressed using the `Grant` subtype.
         "@type": "Organization",
         "name": "National Science Foundation"
       }
-    }
+  }
+}
 ```
 
 Multiple funding sources can be expressed as a list:
 
 ``` json
 {
-  ...
   "funding": [
   {
     "@type": "MonetaryGrant",
@@ -474,7 +449,7 @@ Multiple funding sources can be expressed as a list:
         "@type": "Organization",
         "name": "National Science Foundation"
       }
-    },
+  },
   {
     "@type": "MonetaryGrant",
     "name": "My second research project",
@@ -483,7 +458,7 @@ Multiple funding sources can be expressed as a list:
         "@type": "Organization",
         "name": "National Science Foundation"
       }
-    }
+  }
   ]
 }
 ```
@@ -496,7 +471,6 @@ expressed using the `DateTime` subtype.
 
 ``` json
 {
-  ...
   "temporalCoverage": "2007-03-01T13:00:00Z/2008-05-11T15:30:00Z",
 }
 ```
@@ -513,13 +487,11 @@ A generic location may look like this:
 
 ``` json 
 {
-  ...
   "spatialCoverage": {
     "@type": "Place",
     "name": "CUAHSI Office",
     "address": "1167 Massachusetts Ave Suites 418 & 419, Arlington, MA 02476",
   }
-
 }
 ```
 
@@ -527,7 +499,6 @@ A geographic point may look like this (from [SOSO](https://github.com/ESIPFed/sc
 
 ``` json 
 {
-  ...
   "spatialCoverage": {
     "@type": "Place",
     "geo": {
@@ -543,8 +514,7 @@ A geographic vector may look like this (from [SOSO](https://github.com/ESIPFed/s
 
 ``` json 
 {
-  ...
-    "spatialCoverage": {
+  "spatialCoverage": {
     "@type": "Place",
     "geo": {
       "@type": "GeoShape",
@@ -552,15 +522,13 @@ A geographic vector may look like this (from [SOSO](https://github.com/ESIPFed/s
     }
   }
 }
-}
 ```
 
 A geographic polygon may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
 
 ``` json 
 {
-  ...
-    "spatialCoverage": {
+  "spatialCoverage": {
     "@type": "Place",
     "geo": {
       "@type": "GeoShape",
@@ -574,8 +542,7 @@ A geographic bounding box may look like this (from [SOSO](https://github.com/ESI
 
 ``` json
 {
-  ...
-    "spatialCoverage": {
+  "spatialCoverage": {
     "@type": "Place",
     "geo": {
       "@type": "GeoShape",
@@ -589,7 +556,6 @@ Multiple locations can be specific using a list: (from [SOSO](https://github.com
 
 ``` json
 {
-  ...
   "spatialCoverage": {
     "@type": "Place",
     "geo": [
@@ -618,15 +584,13 @@ A single file can be expressed as:
 
 ``` json
 {
- ...
- "associatedMedia":
-   {
-     "@type": "MediaObject",
-     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file1.csv",
-     "encodingFormat": "text/csv",
-     "contentSize": "50 MB",
-     "name": "Data File 1"
-   }
+ "associatedMedia": {
+    "@type": "MediaObject",
+    "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file1.csv",
+    "encodingFormat": "text/csv",
+    "contentSize": "50 MB",
+    "name": "Data File 1"
+  }
 }
 ```
 
@@ -634,7 +598,6 @@ Multiple files can be expressed as:
 
 ``` json
 {
-  ...
   "associatedMedia": [
    {
      "@type": "MediaObject",
@@ -680,23 +643,19 @@ CreativeWork. As such, these are not demonstrated in the example below.
 
 ``` json
 {
-  ...
   "hasPart": {
     "@type": "Dataset",
     "name": "IGUIDE Shapefile Testing Resource",
     "description": "Test HydroShare resource for I-GUIDE",
     "url": "https://www.hydroshare.org/resource/9d413b9d57824a79b8239a5f7c4fdf51/data/contents/HUC6_Harvey_TxLaMsAr.shp?zipped=true&aggregation=true"
   }
-
 }
-
 ```
 
 Multiple relations can be defined using a list.
 
 ``` json
 {
-  ...
   "hasPart": [
     {
       "@type": "CreativeWork",
@@ -712,7 +671,6 @@ Multiple relations can be defined using a list.
     }
   ]
 }
-
 ```
 
 
@@ -721,7 +679,6 @@ that a work is part of another collection of works.
 
 ``` json
 {
-  ...
   "name": "IGUIDE Sample Dataset",
   "description": "This is a sample datasets used in the I-GUIDE Catalog documentation",
   "url": "https://my-unique-url.com/9d413b9d1",
