@@ -7,10 +7,10 @@ high-level properties that are required.
 
 |Property|Class|Expected Type|Cardinality|Description| 
 |---|---|---|---|---|
-|url|Thing|URL|1|The url of the item|
-|name|Thing|Text|1|The name or title of the item| 
-|identifier|Thing|PropertyValue \| Text \| URL|1+|Any kind of identifier for the item|
+|name|Thing|Text|1|The name or title of the item|
 |description|Thing|Text|1|The description or abstract of the item|
+|url|Thing|URL|1|The url of the item|
+|identifier|Thing|PropertyValue \| Text \| URL|1+|Any kind of identifier for the item|
 |creator|Creative Work|Person OR Organization|1+|Person or organization that created the work|
 |dateCreated | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
 |keywords | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the dataset, delimited by commas. |
