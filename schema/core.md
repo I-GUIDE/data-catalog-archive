@@ -3,7 +3,7 @@
 Core metadata is a set of common metadata fields that all catalog
 holdings share and consists largely of high-level dataset attributes
 and properties. This document outlines the **required** and **optional**
-high-level properties that are required.
+high-level properties encoded as `1` or `1+` and `1,0` or `0+`, respectively, in the Cardinality column of the table below.
 
 |Property|Class|Expected Type|Cardinality|Description| 
 |---|---|---|---|---|
