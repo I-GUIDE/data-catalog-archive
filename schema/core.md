@@ -7,27 +7,27 @@ high-level properties encoded as `1` or `1+` and `1,0` or `0+`, respectively, in
 
 |Property|Class|Expected Type|Cardinality|Description| 
 |---|---|---|---|---|
-|name|Thing|Text|1|The name or title of the item|
-|description|Thing|Text|1|The description or abstract of the item|
-|url|Thing|URL|1|The url of the item|
-|identifier|Thing|PropertyValue \| Text \| URL|1+|Any kind of identifier for the item|
+|name|Thing|Text|1|The name or title of the record|
+|description|Thing|Text|1|The description or abstract of the record|
+|url|Thing|URL|1|The url of the record|
+|identifier|Thing|PropertyValue \| Text \| URL|1+|Any kind of identifier for the record|
 |creator|Creative Work|Person OR Organization|1+|Person or organization that created the work|
 |dateCreated | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
 |keywords | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the dataset, delimited by commas. |
 |license | CreativeWork | CreativeWork \| URL | 1 | A license document that applies to the content, typically indicated by a URL |
 |provider | Creative Work | Organization \| Person | 1 | The service provider, service operator, or service performer |
-|publisher| Creative Work | Organization \| Person | 0,1 | The publisher of the item |
-|datePublished| CreativeWork | Date \| DateTime | 0,1 | Date of first publication for the item |
-|subjectOf| Thing | CreativeWork | 0+ | A CreativeWork about the item - e.g., a related metadata document describing the item |
-|version| CreativeWork | Number \| Text | 0,1 | The version of the item |
-|inLanguage|CreativeWork|Language \| Text|0,1| The language of the content of the item|
+|publisher| Creative Work | Organization \| Person | 0,1 | The publisher of the record |
+|datePublished| CreativeWork | Date \| DateTime | 0,1 | Date of first publication for the record |
+|subjectOf| Thing | CreativeWork | 0+ | A CreativeWork about the record - e.g., a related metadata document describing the record |
+|version| CreativeWork | Number \| Text | 0,1 | The version of the record |
+|inLanguage|CreativeWork|Language \| Text|0,1| The language of the content of the record|
 |creativeWorkStatus | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a creative work in terms of its stage in a lifecycle. Example terms include Incomplete, Draft, Published, Obsolete. Some organizations define a set of terms for the stages of their publication lifecycle.|
 |dateModified |	CreativeWork |Date \| DateTime | 0,1| The date on which the CreativeWork was most recently modified or updated. | 
 |funding| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the dataset.|
 |temporalCoverage|CreativeWork|DateTime| 0,1 | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in ISO 8601 time interval format. |
 |spatialCoverage|CreativeWork|Place| 0,1 | The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content. It is a subproperty of contentLocation intended primarily for more technical and detailed materials. For example with a Dataset, it indicates areas that the dataset describes: a dataset of New York weather would have spatialCoverage which was the place: the state of New York.|
-|hasPart|CreativeWork|CreativeWork|0+|Indicates an item or CreativeWork that is part of this item|
-|isPartOf|CreativeWork|CreativeWork OR URL |0+|Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of.|
+|hasPart|CreativeWork|CreativeWork|0+|Indicates an record or CreativeWork that is part of this record|
+|isPartOf|CreativeWork|CreativeWork OR URL |0+|Indicates an record or CreativeWork that this record, or CreativeWork (in some sense), is part of.|
 |associatedMedia|CreativeWork|MediaObject|0+| A media object that encodes this CreativeWork. This property is a synonym for encoding.|
 
 The following examples demonstrate how each of these required properties may
@@ -666,8 +666,8 @@ Multiple files can be expressed as:
 Collections of records can be expressed using the **hasPart** (and inverse
 **isPartOf**) properties of `CreativeWork`.
 
-**Has Part** is used to describe an item or work that is part of the current
-item. For example, a body of work may consist of multiple related datasets that
+**Has Part** is used to describe a record or work that is part of the current
+record. For example, a body of work may consist of multiple related datasets that
 are used for a particular study.
 
 Note: `hasPart` and `isPartOf` are generally used for records that are grouped
