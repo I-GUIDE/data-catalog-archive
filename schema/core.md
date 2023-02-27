@@ -3,25 +3,31 @@
 Core metadata is a set of common metadata fields that all catalog
 holdings share and consists largely of high-level dataset attributes
 and properties. This document outlines the **required** and **optional**
-high-level properties that are required.
+high-level properties selected from Schema.Org vocabulary to design the I-GUIDE metadata schema. These properties are encoded as `1` or `1+` for **required** and `1,0` or `0+` for **optional** in the Cardinality column of the table below.
 
 |Property|Class|Expected Type|Cardinality|Description| 
 |---|---|---|---|---|
-|url|Thing|URL|1|the url of the item|
-|name|Thing|Text|1|the name or title of the item| 
-|description|Thing|Text|1|the description or abstract of the item|
-|creator|Creative Work|Person OR Organization|1+| person or organization that created the work|
+|name|Thing|Text|1|The name or title of the record|
+|description|Thing|Text|1|The description or abstract of the record|
+|url|Thing|URL|1|The url of the record|
+|identifier|Thing|PropertyValue \| Text \| URL|1+|Any kind of identifier for the record|
+|creator|CreativeWork|Person OR Organization|1+|Person or organization that created the work|
 |dateCreated | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
 |keywords | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the dataset, delimited by commas. |
 |license | CreativeWork | CreativeWork \| URL | 1 | A license document that applies to the content, typically indicated by a URL |
-|provider | Creative Work | Organization \| Person | 1 | The service provider, service operator, or service performer |
+|provider | CreativeWork | Organization \| Person | 1 | The service provider, service operator, or service performer |
+|publisher| CreativeWork | Organization \| Person | 0,1 | The publisher of the record |
+|datePublished| CreativeWork | Date \| DateTime | 0,1 | Date of first publication for the record |
+|subjectOf| Thing | CreativeWork | 0+ | A CreativeWork about the record - e.g., a related metadata document describing the record |
+|version| CreativeWork | Number \| Text | 0,1 | The version of the record |
+|inLanguage|CreativeWork|Language \| Text|0,1| The language of the content of the record|
 |creativeWorkStatus | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a creative work in terms of its stage in a lifecycle. Example terms include Incomplete, Draft, Published, Obsolete. Some organizations define a set of terms for the stages of their publication lifecycle.|
 |dateModified |	CreativeWork |Date \| DateTime | 0,1| The date on which the CreativeWork was most recently modified or updated. | 
 |funding| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the dataset.|
 |temporalCoverage|CreativeWork|DateTime| 0,1 | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in ISO 8601 time interval format. |
 |spatialCoverage|CreativeWork|Place| 0,1 | The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content. It is a subproperty of contentLocation intended primarily for more technical and detailed materials. For example with a Dataset, it indicates areas that the dataset describes: a dataset of New York weather would have spatialCoverage which was the place: the state of New York.|
-|hasPart|CreativeWork|CreativeWork|0+|Indicates an item or CreativeWork that is part of this item|
-|isPartOf|CreativeWork|CreativeWork OR URL |0+|Indicates an item or CreativeWork that this item, or CreativeWork (in some sense), is part of.|
+|hasPart|CreativeWork|CreativeWork|0+|Indicates an record or CreativeWork that is part of this record|
+|isPartOf|CreativeWork|CreativeWork OR URL |0+|Indicates an record or CreativeWork that this record, or CreativeWork (in some sense), is part of.|
 |associatedMedia|CreativeWork|MediaObject|0+| A media object that encodes this CreativeWork. This property is a synonym for encoding.|
 
 The following examples demonstrate how each of these required properties may
@@ -41,6 +47,45 @@ contain. A simple example is shown below:
   "url": "https://my-unique-url.com/9d413b9d1"
 }
 ```
+
+### Identifier
+
+**Identifier** is a property of the `Thing` class. It is used to encode the record's identifier(s). For permanantly published records, this will likely be a digital object identifier (DOI). For unpublished records, this may be an identifier assigned by the system in which the content of the record resides. This element can be repeated if a record has multiple identifiers.
+
+An identifier as text can be encoded as:
+
+``` json
+{
+  ...
+  "identifier": "6625bdbde41c45c2b906f32be7ea70f0/"
+}
+```
+
+However, it is preferred for an identifier to be expressed as a URL if possible. An identifier that can be expressed as a URL can be encoded as:
+
+``` json
+{
+  ...
+  "identifier": "https://www.hydroshare.org/resource/6625bdbde41c45c2b906f32be7ea70f0/"
+}
+```
+
+[Science On Schema.Org (SOSO)](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#identifier) recommends that if the identifier is a persistent identifier such as a DOI, the best way to represent the identifer is to use [schema:ProperatyValue](https://schema.org/PropertyValue). The identifier for a published record with a DOI can be encoded as:
+
+``` json
+{
+  ...
+  "identifier": {
+    "@id": "https://doi.org/10.4211/hs.6625bdbde41c45c2b906f32be7ea70f0",
+    "@type": "PropertyValue",
+    "name": "DOI: 10.4211/hs.6625bdbde41c45c2b906f32be7ea70f0",
+    "propertyID": "https://registry.identifiers.org/registry/doi",
+    "value": "doi:10.4211/hs.6625bdbde41c45c2b906f32be7ea70f0",
+    "url": "https://doi.org/10.4211/hs.6625bdbde41c45c2b906f32be7ea70f0"
+  }
+}
+```
+
 
 ### Creator
 
@@ -211,12 +256,45 @@ the content of the catalog record, for example a software license.
 }
 ```
 
-### Provider
+### Provider and Publisher
 
-**Provider** is a property of the `CreativeWork` class that can be expressed as
-either an `Organization` or a `Person`. This represents the service operator,
+**Provider** and **Publisher** are properties of the `CreativeWork` class that can be expressed as
+either an `Organization` or a `Person`. **Provider** represents the service operator,
 service performer, or goods producer. In many cases this is the operator of the
-repository in which the data resides.
+repository in which the data resides, but that may not always be the case. In the case that a record is 
+permanently published, **Publisher** indicates the organization or person that published the record.
+
+**Provider** and **Publisher** are semantically similar and can be encoded similarly. The following 
+examples are for **Provider** but can also be used for **Publisher**.
+
+Simple encoding for the URL of a provider:
+
+``` json
+{
+  ...
+  "provider": {
+    "@id": "https://hydroshare.org",
+  }
+}
+```
+
+Example encoding where a person is the provider:
+
+``` json
+{
+  ...
+  "provider": {
+    "@type": "Person",
+    "name": "John Doe",
+    "email": "jdoe@email.com",
+  }
+}
+```
+
+Note: for a more complete example of `Person`, see the [Creator](#creator)
+section of this document.
+
+Encoding for a formal repository with a parent organization:
 
 ``` json
 {
@@ -235,28 +313,79 @@ repository in which the data resides.
 }
 ```
 
+### Date Published
+
+**DatePublished** is a property of `CreativeWork` that can be expressed using
+either the `Date` or `DateTime` data types. The **datePublished** represents the
+date at which the dataset was permanently published. The `Date` data type expects a
+value in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601). Whereas
+the `DateTime` data type requires a combination of date and time of day. An
+example if each is provided below.
+
 ``` json
 {
   ...
-  "provider": {
-    "@id": "https://hydroshare.org",
-  }
+  "datePublished": "2023-01-01",
 }
 ```
 
 ``` json
 {
   ...
-  "provider": {
-    "@type": "Person",
-    "name": "John Doe",
-    "email": "jdoe@email.com",
-  }
+  "datePublished": "2023-01-01T00:00:00+00:00",
 }
 ```
 
-Note: for a more complete example of `Person`, see the [Creator](#creator)
-section of this document.
+### Subject Of
+
+**subjectOf** is a property of `CreativeWork` and can be used to encode a linkage
+to a separate `CreativeWork` that describes or is about the record. An example would 
+be a formal metadata document encoded using some metadata standard that fully describes
+the record. More specifically, this could be a metadata document accompanying a
+geospatial dataset, or a formal metadata document accompanying a HydroShare resource. 
+The document describing the record can be available anywhere on the Internet.
+The encodingFormat property should indicate the format of the related `CreativeWork`. 
+This linkage can be encoded as:
+
+``` json
+{
+  ...
+  "subjectOf": {
+    "@type": "CreativeWork",
+    "name": "Dublin Core Metadata Document Describing the Dataset",
+    "url": "https://www.hydroshare.org/hsapi/resource/c1be74eeea614d65a29a185a66a7552f/scimeta/",
+    "encodingFormat": "application/rdf+xml"
+  }
+  "creativeWorkStatus": "published",
+```
+
+### Version
+
+The **version** is a propoerty of `CreativeWork` that can be used to encode a formal 
+version number or name for a record. **version** can be encoded as either a number or
+a string; however, since many people use semantic versioning, a string is preferred as
+it will work regardless. 
+
+Example encoding as string:
+
+``` json
+{
+  ...
+  "version": "v1.0.2"
+```
+
+
+### Language
+
+The **inLanguage** property can be used to encode the language in which the content of 
+the record is expressed. Language codes from the [IETF BCP 47 standard]() should be 
+used for this encoding. For most records, it is anticipated that this will be "en-US".
+
+``` json
+{
+  ...
+  "inLanguage": "en-US"
+```
 
 
 ### Creative Work Status
@@ -537,8 +666,8 @@ Multiple files can be expressed as:
 Collections of records can be expressed using the **hasPart** (and inverse
 **isPartOf**) properties of `CreativeWork`.
 
-**Has Part** is used to describe an item or work that is part of the current
-item. For example, a body of work may consist of multiple related datasets that
+**Has Part** is used to describe a record or work that is part of the current
+record. For example, a body of work may consist of multiple related datasets that
 are used for a particular study.
 
 Note: `hasPart` and `isPartOf` are generally used for records that are grouped
