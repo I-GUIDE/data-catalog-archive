@@ -70,7 +70,7 @@ However, it is preferred for an identifier to be expressed as a URL if possible.
 }
 ```
 
-SOSO recommends that if the identifier is a persistent identifier such as a DOI, the best way to represent the identifer is to use [schema:ProperatyValue](https://schema.org/PropertyValue). The identifier for a published record with a DOI can be encoded as:
+[Science On Schema.Org (SOSO)](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#identifier) recommends that if the identifier is a persistent identifier such as a DOI, the best way to represent the identifer is to use [schema:ProperatyValue](https://schema.org/PropertyValue). The identifier for a published record with a DOI can be encoded as:
 
 ``` json
 {
