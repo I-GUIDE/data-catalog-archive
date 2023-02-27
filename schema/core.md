@@ -319,8 +319,7 @@ This linkage can be encoded as:
     "name": "Dublin Core Metadata Document Describing the Dataset",
     "url": "https://www.hydroshare.org/hsapi/resource/c1be74eeea614d65a29a185a66a7552f/scimeta/",
     "encodingFormat": "application/rdf+xml"
-  },
-  "creativeWorkStatus": "published",
+  }
 }
 ```
 
