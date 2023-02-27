@@ -267,25 +267,6 @@ permanently published, **Publisher** indicates the organization or person that p
 **Provider** and **Publisher** are semantically similar and can be encoded similarly. The following 
 examples are for **Provider** but can also be used for **Publisher**.
 
-Encoding for a formal repository with a parent organization:
-
-``` json
-{
-  ...
-  "provider": {
-    "@type": "Organization",
-    "name": "HydroShare",
-    "url": "https://hydroshare.org",
-    "parentOrganization": {
-      "@type": "Organization",
-      "name": CUAHSI,
-      "url": "www.cuahsi.org",
-      "address": "1167 Massachusetts Ave Suites 418 & 419, Arlington, MA 02476"
-    }
-  }
-}
-```
-
 Simple encoding for the URL of a provider:
 
 ``` json
@@ -313,6 +294,24 @@ Example encoding where a person is the provider:
 Note: for a more complete example of `Person`, see the [Creator](#creator)
 section of this document.
 
+Encoding for a formal repository with a parent organization:
+
+``` json
+{
+  ...
+  "provider": {
+    "@type": "Organization",
+    "name": "HydroShare",
+    "url": "https://hydroshare.org",
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": CUAHSI,
+      "url": "www.cuahsi.org",
+      "address": "1167 Massachusetts Ave Suites 418 & 419, Arlington, MA 02476"
+    }
+  }
+}
+```
 
 ### Date Published
 
