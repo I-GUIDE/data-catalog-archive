@@ -11,12 +11,12 @@ high-level properties encoded as `1` or `1+` and `1,0` or `0+`, respectively, in
 |description|Thing|Text|1|The description or abstract of the record|
 |url|Thing|URL|1|The url of the record|
 |identifier|Thing|PropertyValue \| Text \| URL|1+|Any kind of identifier for the record|
-|creator|Creative Work|Person OR Organization|1+|Person or organization that created the work|
+|creator|CreativeWork|Person OR Organization|1+|Person or organization that created the work|
 |dateCreated | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
 |keywords | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the dataset, delimited by commas. |
 |license | CreativeWork | CreativeWork \| URL | 1 | A license document that applies to the content, typically indicated by a URL |
-|provider | Creative Work | Organization \| Person | 1 | The service provider, service operator, or service performer |
-|publisher| Creative Work | Organization \| Person | 0,1 | The publisher of the record |
+|provider | CreativeWork | Organization \| Person | 1 | The service provider, service operator, or service performer |
+|publisher| CreativeWork | Organization \| Person | 0,1 | The publisher of the record |
 |datePublished| CreativeWork | Date \| DateTime | 0,1 | Date of first publication for the record |
 |subjectOf| Thing | CreativeWork | 0+ | A CreativeWork about the record - e.g., a related metadata document describing the record |
 |version| CreativeWork | Number \| Text | 0,1 | The version of the record |
