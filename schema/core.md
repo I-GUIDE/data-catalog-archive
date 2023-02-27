@@ -11,7 +11,7 @@ high-level properties selected from Schema.Org vocabulary to design the I-GUIDE 
 |description|Thing|Text|1|The description or abstract of the record|
 |url|Thing|URL|1|The url of the record|
 |identifier|Thing|PropertyValue \| Text \| URL|1+|Any kind of identifier for the record|
-|creator|CreativeWork|Person OR Organization|1+|Person or organization that created the work|
+|creator|CreativeWork|Organization \| Person|1+|Organization or person that created the work|
 |dateCreated | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
 |keywords | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the dataset, delimited by commas. |
 |license | CreativeWork | CreativeWork \| URL | 1 | A license document that applies to the content, typically indicated by a URL |
@@ -158,11 +158,13 @@ creators is preserved.
  }
 ```
 
-### Date Created
+### Date Created, Date Modifie, and Date Published
 
-**DateCreated** is a property of `CreativeWork` that can be expressed using
-either the `Date` or `DateTime` classes. The **dateCreated** represents the
-date at which the dataset was initially generated. The `Date` class expects a
+**dateCreated** are properties of `CreativeWork` that can be expressed using
+either the `Date` or `DateTime` data types. The **dateCreated** represents the
+date at which the dataset was initially generated. The **dateModified** represents the
+date at which the dataset was most recently modified. The **datePublished** represents the
+date at which the dataset was permanently published. The `Date` class expects a
 value in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601). Whereas
 the `DateTime` class requires a combination of date and time of day. An
 example if each is provided below.
@@ -299,27 +301,6 @@ Encoding for a formal repository with a parent organization:
 }
 ```
 
-### Date Published
-
-**DatePublished** is a property of `CreativeWork` that can be expressed using
-either the `Date` or `DateTime` data types. The **datePublished** represents the
-date at which the dataset was permanently published. The `Date` data type expects a
-value in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601). Whereas
-the `DateTime` data type requires a combination of date and time of day. An
-example if each is provided below.
-
-``` json
-{
-  "datePublished": "2023-01-01",
-}
-```
-
-``` json
-{
-  "datePublished": "2023-01-01T00:00:00+00:00",
-}
-```
-
 ### Subject Of
 
 **subjectOf** is a property of `CreativeWork` and can be used to encode a linkage
@@ -392,27 +373,6 @@ A more expressive status can be provided using the `DefinedTerm` subtype.
     "name": "public",
     "description": "a publicly accessible dataset on HydroShare.org"
   }
-}
-```
-
-### Date Modified
-
-**DateModified** is a property of `CreativeWork` that can be expressed using
-either the `Date` or `DateTime` classes. **DateModified** represents the
-date at which the dataset was most recently modified. The `Date` class expects a
-value in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601). Whereas
-the `DateTime` class requires a combination of date and time of day. An
-example if each is provided below.
-
-``` json
-{
-  "dateModified": "2023-01-01",
-}
-```
-
-``` json
-{
-  "dateModified": "2023-01-01T00:00:00+00:00",
 }
 ```
 
