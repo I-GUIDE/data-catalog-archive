@@ -434,6 +434,14 @@ expressed using the `DateTime` subtype.
 }
 ```
 
+Open-ended date ranges can be written with ".." in place of the end date. The following example indicates a range beginning in March 2007 and with no specified final date. Note that this is tentative and might be updated in future when ISO 8601 is officially updated.
+``` json
+{
+  "temporalCoverage": "2007-03/..",
+}
+```
+
+
 ### Spatial Coverage
 
 **SpatialCoverage** is a property of the `CreativeWork` class that is used to
