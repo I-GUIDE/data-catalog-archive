@@ -10,25 +10,25 @@ high-level properties selected from Schema.Org vocabulary to design the I-GUIDE 
 |[name](#name-description-and-url)|Thing|Text|1|The name or title of the record|
 |[description](#name-description-and-url)|Thing|Text|1|The description or abstract of the record|
 |[url](#name-description-and-url)|Thing|URL|1|The url of the record|
-|identifier|Thing|PropertyValue \| Text \| URL|1+|Any kind of identifier for the record|
-|creator|CreativeWork|Organization \| Person|1+|Organization or person that created the work|
-|dateCreated | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
-|keywords | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the dataset, delimited by commas. |
-|license | CreativeWork | CreativeWork \| URL | 1 | A license document that applies to the content, typically indicated by a URL |
-|provider | CreativeWork | Organization \| Person | 1 | The service provider, service operator, or service performer |
-|publisher| CreativeWork | Organization \| Person | 0,1 | The publisher of the record |
-|datePublished| CreativeWork | Date \| DateTime | 0,1 | Date of first publication for the record |
-|subjectOf| Thing | CreativeWork | 0+ | A CreativeWork about the record - e.g., a related metadata document describing the record |
-|version| CreativeWork | Number \| Text | 0,1 | The version of the record |
-|inLanguage|CreativeWork|Language \| Text|0,1| The language of the content of the record|
-|creativeWorkStatus | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a creative work in terms of its stage in a lifecycle. Example terms include Incomplete, Draft, Published, Obsolete. Some organizations define a set of terms for the stages of their publication lifecycle.|
-|dateModified |	CreativeWork |Date \| DateTime | 0,1| The date on which the CreativeWork was most recently modified or updated. | 
-|funding| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the dataset.|
-|temporalCoverage|CreativeWork|DateTime| 0,1 | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in ISO 8601 time interval format. |
-|spatialCoverage|CreativeWork|Place| 0,1 | The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content. It is a subproperty of contentLocation intended primarily for more technical and detailed materials. For example with a Dataset, it indicates areas that the dataset describes: a dataset of New York weather would have spatialCoverage which was the place: the state of New York.|
-|associatedMedia|CreativeWork|MediaObject|0+| An item (media object) or a group of items (media objects) that encodes this CreativeWork. This property is a synonym for encoding.|
-|hasPart|CreativeWork|CreativeWork|0+|Indicates a record or CreativeWork that is part of this record|
-|isPartOf|CreativeWork|CreativeWork OR URL |0+|Indicates a record or CreativeWork that this record, or CreativeWork (in some sense), is part of.|
+|[identifier](#identifier)|Thing|PropertyValue \| Text \| URL|1+|Any kind of identifier for the record|
+|[creator](#creator)|CreativeWork|Organization \| Person|1+|Organization or person that created the work|
+|[dateCreated](#date-created-date-modifie-and-date-published) | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
+|[keywords](#keywords) | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the dataset, delimited by commas. |
+|[license](#license) | CreativeWork | CreativeWork \| URL | 1 | A license document that applies to the content, typically indicated by a URL |
+|[provider](#provider-and-publisher) | CreativeWork | Organization \| Person | 1 | The service provider, service operator, or service performer |
+|[publisher](#provider-and-publisher)| CreativeWork | Organization \| Person | 0,1 | The publisher of the record |
+|[datePublished](#date-created-date-modifie-and-date-published)| CreativeWork | Date \| DateTime | 0,1 | Date of first publication for the record |
+|[subjectOf](#subject-of)| Thing | CreativeWork | 0+ | A CreativeWork about the record - e.g., a related metadata document describing the record |
+|[version](#version)| CreativeWork | Number \| Text | 0,1 | The version of the record |
+|[inLanguage](#language)|CreativeWork|Language \| Text|0,1| The language of the content of the record|
+|[creativeWorkStatus](#creative-work-status) | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a creative work in terms of its stage in a lifecycle. Example terms include Incomplete, Draft, Published, Obsolete. Some organizations define a set of terms for the stages of their publication lifecycle.|
+|[dateModified](#date-created-date-modifie-and-date-published) |	CreativeWork |Date \| DateTime | 0,1| The date on which the CreativeWork was most recently modified or updated. | 
+|[funding](#funding)| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the dataset.|
+|[temporalCoverage](#temporal-coverage)|CreativeWork|DateTime| 0,1 | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in ISO 8601 time interval format. |
+|[spatialCoverage](#spatial-coverage)|CreativeWork|Place| 0,1 | The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content. It is a subproperty of contentLocation intended primarily for more technical and detailed materials. For example with a Dataset, it indicates areas that the dataset describes: a dataset of New York weather would have spatialCoverage which was the place: the state of New York.|
+|[associatedMedia](#associated-media)|CreativeWork|MediaObject|0+| An item (media object) or a group of items (media objects) that encodes this CreativeWork. This property is a synonym for encoding.|
+|[hasPart](#has-part-and-is-part-of)|CreativeWork|CreativeWork|0+|Indicates a record or CreativeWork that is part of this record|
+|[isPartOf](#has-part-and-is-part-of)|CreativeWork|CreativeWork OR URL |0+|Indicates a record or CreativeWork that this record, or CreativeWork (in some sense), is part of.|
 
 
 The following examples demonstrate how each of these required properties may
