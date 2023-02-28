@@ -595,10 +595,12 @@ Multiple files can be expressed as:
 }
 ```
 
-### Data Collections
+### Has part and is part of
 
 Collections of records can be expressed using the **hasPart** (and inverse
-**isPartOf**) properties of `CreativeWork`.
+**isPartOf**) properties of `CreativeWork`. These properties are used to show
+a relationship between two or more records, along with `identifier` property to 
+uniquely identify them.  
 
 **Has Part** is used to describe a record or work that is part of the current
 record. For example, a body of work may consist of multiple related datasets that
@@ -607,57 +609,66 @@ are used for a particular study.
 Note: `hasPart` and `isPartOf` are generally used for records that are grouped
 together or records that belong to other groupings. For example, `hasPart` may
 be used to indicate a record that consists of one or more additional
-CreativeWork (this is similar to a HydroShare collection). In contrast,
+`CreativeWork` (this is similar to a HydroShare collection). In contrast,
 `isPartOf` is used to indicate catalog records that reference a designated
-CreativeWork. As such, these are not demonstrated in the example below.
+`CreativeWork`. 
 
+The example below shows a simple schema for a `CreativeWork` that links to another
+`CreativeWork`.
 
 ``` json
 {
+  "@type": "CreativeWork",
+  "name": "Collection of Sample Datasets for IGUIDE",
+  "description": "A collection of sample datasets used by the I-GUIDE team",
+  "identifier": "https://my-unique-url.com/data-collection",
   "hasPart": {
-    "@type": "Dataset",
+    "@type": "CreativeWork",
     "name": "IGUIDE Shapefile Testing Resource",
-    "description": "Test HydroShare resource for I-GUIDE",
-    "url": "https://www.hydroshare.org/resource/9d413b9d57824a79b8239a5f7c4fdf51/data/contents/HUC6_Harvey_TxLaMsAr.shp?zipped=true&aggregation=true"
+    "description": "Test HydroShare resource for I-GUIDE - Shapefile",
+    "identifier": "https://my-unique-url.com/shapefile"
   }
 }
 ```
 
-Multiple relations can be defined using a list.
+For the example above, multiple relations can be defined using a list.
 
 ``` json
 {
+  "@type": "CreativeWork",
+  "name": "Collection of Sample Datasets for IGUIDE",
+  "description": "A collection of sample datasets used by the I-GUIDE team",
+  "identifier": "https://my-unique-url.com/data-collection",
   "hasPart": [
     {
       "@type": "CreativeWork",
       "name": "IGUIDE Shapefile Testing Resource",
       "description": "Test HydroShare resource for I-GUIDE - Shapefile",
-      "url": "https://my-unique-url.com/shapefile",
+      "identifier": "https://my-unique-url.com/shapefile",
     },
     {
       "@type": "CreativeWork",
       "name": "IGUIDE GeoTiff Testing Resource",
       "description": "Test HydroShare resource for I-GUIDE - GeoTiff",
-      "url": "https://my-unique-url.com/geotiff",
+      "identifier": "https://my-unique-url.com/geotiff",
     }
   ]
 }
 ```
-
 
 **isPartOf** is the inverse property of **hasPart** and may be used to indicate
 that a work is part of another collection of works.
 
 ``` json
 {
-  "name": "IGUIDE Sample Dataset",
-  "description": "This is a sample datasets used in the I-GUIDE Catalog documentation",
-  "url": "https://my-unique-url.com/9d413b9d1",
+  "name": "Shapefile Testing Resource",
+  "description": "Test HydroShare resource for I-GUIDE - Shapefile",
+  "identifier": "https://my-unique-url.com/shapefile",
   "isPartOf": {
     "@type": "CreativeWork",
-    "name": "Collection of Sample Datasets",
+    "name": "Collection of Sample Datasets for IGUIDE",
     "description": "A collection of sample datasets used by the I-GUIDE team",
-    "url": "https://my-unique-url.com/data-collection"
+    "identifier": "https://my-unique-url.com/data-collection"
   }
 }
 ```
