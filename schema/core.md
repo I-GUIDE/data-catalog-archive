@@ -28,7 +28,7 @@ high-level properties selected from Schema.Org vocabulary to design the I-GUIDE 
 |spatialCoverage|CreativeWork|Place| 0,1 | The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content. It is a subproperty of contentLocation intended primarily for more technical and detailed materials. For example with a Dataset, it indicates areas that the dataset describes: a dataset of New York weather would have spatialCoverage which was the place: the state of New York.|
 |hasPart|CreativeWork|CreativeWork|0+|Indicates a record or CreativeWork that is part of this record|
 |isPartOf|CreativeWork|CreativeWork OR URL |0+|Indicates a record or CreativeWork that this record, or CreativeWork (in some sense), is part of.|
-|associatedMedia|CreativeWork|MediaObject|0+| A media object that encodes this CreativeWork. This property is a synonym for encoding.|
+|associatedMedia|CreativeWork|MediaObject|0+| An item (media object) or a group of items (media objects) that encodes this CreativeWork. This property is a synonym for encoding.|
 
 The following examples demonstrate how each of these required properties may
 be implemented in JSON+LD. Note, there are several properties omitted from each
@@ -544,19 +544,24 @@ Multiple locations can be specific using a list: (from [SOSO](https://github.com
 ### Associated Media
 
 **AssocatedMedia** is a property of `CreativeWork` for describing media objects 
-that encode the work. For example, this may be a text file that represents the
-data that is being cataloged. 
+that encode the work. Specific types of media objects that we selected for the I-GUIDE 
+data catalog are `DataDownload`, `ImageObject`, and `VideoObject`. Note that a media object 
+could have several properties from `CreativeWork`, but most importantly, it requires 
+`contentUrl`, `encodingFormat`. `contentUrl` is actual bytes of the media object and it is 
+represented as a URL. `encodingFormat` expresses the format of a media object using a MIME 
+format (see [IANA site](https://www.iana.org/assignments/media-types/media-types.xhtml) and 
+[MDN reference](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)). 
 
-A single file can be expressed as:
+A single text file that represents the data that is being cataloged can be expressed as:
 
 ``` json
 {
  "associatedMedia": {
-    "@type": "MediaObject",
+    "@type": "DataDownload",
     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file1.csv",
     "encodingFormat": "text/csv",
     "contentSize": "50 MB",
-    "name": "Data File 1"
+    "name": "Data File"
   }
 }
 ```
@@ -567,25 +572,24 @@ Multiple files can be expressed as:
 {
   "associatedMedia": [
    {
-     "@type": "MediaObject",
+     "@type": "DataDownload",
      "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file1.csv",
      "encodingFormat": "text/csv",
      "contentSize": "50 MB",
-     "name": "Data File 1"
+     "name": "Data File"
    },
    {
-     "@type": "MediaObject",
-     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file2.csv",
-     "encodingFormat": "text/csv",
-     "contentSize": "25 MB",
-     "name": "Data File 2"
+     "@type": "ImageObject",
+     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file3.tif",
+     "encodingFormat": "image/tiff",
+     "contentSize": "500 MB",
+     "name": "Image File"
    },
    {
-     "@type": "MediaObject",
-     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file3.csv",
-     "encodingFormat": "text/csv",
-     "contentSize": "25 MB",
-     "name": "Data File 3"
+     "@type": "VideoObject",
+     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file2.mp4",
+     "encodingFormat": "video/mp4",
+     "name": "Video File"
    }
   ]
 }
