@@ -7,9 +7,9 @@ high-level properties selected from Schema.Org vocabulary to design the I-GUIDE 
 
 |Property|Class|Expected Type|Cardinality|Description| 
 |---|---|---|---|---|
-|name|Thing|Text|1|The name or title of the record|
-|description|Thing|Text|1|The description or abstract of the record|
-|url|Thing|URL|1|The url of the record|
+|[name](#name-description-and-url)|Thing|Text|1|The name or title of the record|
+|[description](#name-description-and-url)|Thing|Text|1|The description or abstract of the record|
+|[url](#name-description-and-url)|Thing|URL|1|The url of the record|
 |identifier|Thing|PropertyValue \| Text \| URL|1+|Any kind of identifier for the record|
 |creator|CreativeWork|Organization \| Person|1+|Organization or person that created the work|
 |dateCreated | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
@@ -47,6 +47,13 @@ contain. A simple example is shown below:
   "url": "https://my-unique-url.com/9d413b9d1"
 }
 ```
+
+References:
+
+- [Schema:name](https://schema.org/name)
+- [Schema:description](https://schema.org/description)
+- [Schema:url](https://schema.org/url)
+
 
 ### Identifier
 
