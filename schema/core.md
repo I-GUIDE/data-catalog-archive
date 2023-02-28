@@ -26,8 +26,8 @@ high-level properties selected from Schema.Org vocabulary to design the I-GUIDE 
 |funding| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the dataset.|
 |temporalCoverage|CreativeWork|DateTime| 0,1 | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in ISO 8601 time interval format. |
 |spatialCoverage|CreativeWork|Place| 0,1 | The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content. It is a subproperty of contentLocation intended primarily for more technical and detailed materials. For example with a Dataset, it indicates areas that the dataset describes: a dataset of New York weather would have spatialCoverage which was the place: the state of New York.|
-|hasPart|CreativeWork|CreativeWork|0+|Indicates an record or CreativeWork that is part of this record|
-|isPartOf|CreativeWork|CreativeWork OR URL |0+|Indicates an record or CreativeWork that this record, or CreativeWork (in some sense), is part of.|
+|hasPart|CreativeWork|CreativeWork|0+|Indicates a record or CreativeWork that is part of this record|
+|isPartOf|CreativeWork|CreativeWork OR URL |0+|Indicates a record or CreativeWork that this record, or CreativeWork (in some sense), is part of.|
 |associatedMedia|CreativeWork|MediaObject|0+| A media object that encodes this CreativeWork. This property is a synonym for encoding.|
 
 The following examples demonstrate how each of these required properties may
@@ -543,7 +543,7 @@ Multiple locations can be specific using a list: (from [SOSO](https://github.com
 
 ### Associated Media
 
-**AssocatedMedia** is a property of `CreativeWork` for describing media objects
+**AssocatedMedia** is a property of `CreativeWork` for describing media objects 
 that encode the work. For example, this may be a text file that represents the
 data that is being cataloged. 
 
