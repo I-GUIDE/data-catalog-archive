@@ -105,7 +105,7 @@ A single author can be expressed as:
   "creator": {
     "@type": "Person",
     "name": "John Doe",
-    "email": "john.doe@email.com",
+    "email": "john.doe@email.com"
   }
 }
 ```
@@ -179,13 +179,13 @@ example if each is provided below.
 
 ``` json
 {
-  "dateCreated": "2023-01-01",
+  "dateCreated": "2023-01-01"
 }
 ```
 
 ``` json
 {
-  "dateCreated": "2023-01-01T00:00:00+00:00",
+  "dateCreated": "2023-01-01T00:00:00+00:00"
 }
 ```
 
@@ -199,7 +199,7 @@ repeating the **Keyword** property. Several examples are listed below.
 
 ``` json
 {
-  "keywords": ["keyword 1", "keyword 2", "keyword 3"],
+  "keywords": ["keyword 1", "keyword 2", "keyword 3"]
 }
 ```
 
@@ -210,6 +210,7 @@ repeating the **Keyword** property. Several examples are listed below.
     "name": "Leaf wetness",
     "description": "The effect of moisture settling on the surface of a leaf as a result of either condensation or rainfall.",
     "inDefinedTermSet": "http://his.cuahsi.org/mastercvreg/edit_cv11.aspx?tbl=VariableNameCV",
+    "inDefinedTermSet": "http://his.cuahsi.org/mastercvreg/edit_cv11.aspx?tbl=VariableNameCV"
   }
 }
 ```
@@ -221,13 +222,13 @@ repeating the **Keyword** property. Several examples are listed below.
       "@type": "DefinedTerm",
       "name": "Leaf wetness",
       "description": "The effect of moisture settling on the surface of a leaf as a result of either condensation or rainfall.",
-      "inDefinedTermSet": "http://his.cuahsi.org/mastercvreg/edit_cv11.aspx?tbl=VariableNameCV",
+      "inDefinedTermSet": "http://his.cuahsi.org/mastercvreg/edit_cv11.aspx?tbl=VariableNameCV"
     },
     {
       "@type": "DefinedTerm",
       "name": "Core",
       "description": "Core sample resulting in a section of a substance",
-      "inDefinedTermSet": "http://his.cuahsi.org/mastercvreg/edit_cv11.aspx?tbl=SampleTypeCV",
+      "inDefinedTermSet": "http://his.cuahsi.org/mastercvreg/edit_cv11.aspx?tbl=SampleTypeCV"
     }
   ]
 }
@@ -241,7 +242,7 @@ the content of the catalog record, for example a software license.
 
 ``` json
 {
-  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "license": "https://creativecommons.org/licenses/by/4.0/"
 }
 ```
 
@@ -271,7 +272,7 @@ Simple encoding for the URL of a provider:
 ``` json
 {
   "provider": {
-    "@id": "https://hydroshare.org",
+    "@id": "https://hydroshare.org"
   }
 }
 ```
@@ -283,7 +284,7 @@ Example encoding where a person is the provider:
   "provider": {
     "@type": "Person",
     "name": "John Doe",
-    "email": "jdoe@email.com",
+    "email": "jdoe@email.com"
   }
 }
 ```
@@ -301,7 +302,7 @@ Encoding for a formal repository with a parent organization:
     "url": "https://hydroshare.org",
     "parentOrganization": {
       "@type": "Organization",
-      "name": CUAHSI,
+      "name": "CUAHSI",
       "url": "www.cuahsi.org",
       "address": "1167 Massachusetts Ave Suites 418 & 419, Arlington, MA 02476"
     }
@@ -368,7 +369,7 @@ can be expressed as text or using the `DefinedTerm` class.
 
 ``` json
 {
-  "creativeWorkStatus": "published",
+  "creativeWorkStatus": "published"
 }
 ```
 
@@ -438,14 +439,14 @@ expressed using the `DateTime` subtype.
 
 ``` json
 {
-  "temporalCoverage": "2007-03-01T13:00:00Z/2008-05-11T15:30:00Z",
+  "temporalCoverage": "2007-03-01T13:00:00Z/2008-05-11T15:30:00Z"
 }
 ```
 
 Open-ended date ranges can be written with ".." in place of the end date. The following example indicates a range beginning in March 2007 and with no specified final date. Note that this is tentative and might be updated in future when ISO 8601 is officially updated.
 ``` json
 {
-  "temporalCoverage": "2007-03/..",
+  "temporalCoverage": "2007-03/.."
 }
 ```
 
@@ -465,7 +466,7 @@ A generic location may look like this:
   "spatialCoverage": {
     "@type": "Place",
     "name": "CUAHSI Office",
-    "address": "1167 Massachusetts Ave Suites 418 & 419, Arlington, MA 02476",
+    "address": "1167 Massachusetts Ave Suites 418 & 419, Arlington, MA 02476"
   }
 }
 ```
@@ -478,7 +479,7 @@ A geographic point may look like this (from [SOSO](https://github.com/ESIPFed/sc
     "@type": "Place",
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 39.3280
+      "latitude": 39.3280,
       "longitude": 120.1633
     }
   }
@@ -652,13 +653,13 @@ For the example above, multiple relations can be defined using a list.
       "@type": "CreativeWork",
       "name": "IGUIDE Shapefile Testing Resource",
       "description": "Test HydroShare resource for I-GUIDE - Shapefile",
-      "identifier": "https://my-unique-url.com/shapefile",
+      "identifier": "https://my-unique-url.com/shapefile"
     },
     {
       "@type": "CreativeWork",
       "name": "IGUIDE GeoTiff Testing Resource",
       "description": "Test HydroShare resource for I-GUIDE - GeoTiff",
-      "identifier": "https://my-unique-url.com/geotiff",
+      "identifier": "https://my-unique-url.com/geotiff"
     }
   ]
 }
