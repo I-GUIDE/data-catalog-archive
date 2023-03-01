@@ -558,8 +558,8 @@ Multiple locations can be specific using a list: (from [SOSO](https://github.com
 that encode the work. Specific types of media objects that we selected for the I-GUIDE 
 data catalog are `DataDownload`, `ImageObject`, and `VideoObject`. Note that a media object 
 could have several properties from `CreativeWork`, but most importantly, it requires 
-`contentUrl`, `encodingFormat`. `contentUrl` is actual bytes of the media object and it is 
-represented as a URL. `encodingFormat` expresses the format of a media object using a MIME 
+`contentUrl`, `encodingFormat`. `contentUrl` should point at the actual bytes of the media 
+object and is represented as a URL. `encodingFormat` expresses the format of a media object using a MIME 
 format (see [IANA site](https://www.iana.org/assignments/media-types/media-types.xhtml) and 
 [MDN reference](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)). 
 
