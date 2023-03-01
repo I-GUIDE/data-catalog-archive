@@ -12,17 +12,17 @@ high-level properties selected from Schema.Org vocabulary to design the I-GUIDE 
 |[url](#name-description-and-url)|Thing|URL|1|The url of the record|
 |[identifier](#identifier)|Thing|PropertyValue \| Text \| URL|1+|Any kind of identifier for the record|
 |[creator](#creator)|CreativeWork|Organization \| Person|1+|Organization or person that created the work|
-|[dateCreated](#date-created-date-modifie-and-date-published) | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
+|[dateCreated](#date-created-date-modified-and-date-published) | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
 |[keywords](#keywords) | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the dataset, delimited by commas. |
 |[license](#license) | CreativeWork | CreativeWork \| URL | 1 | A license document that applies to the content, typically indicated by a URL |
 |[provider](#provider-and-publisher) | CreativeWork | Organization \| Person | 1 | The service provider, service operator, or service performer |
 |[publisher](#provider-and-publisher)| CreativeWork | Organization \| Person | 0,1 | The publisher of the record |
-|[datePublished](#date-created-date-modifie-and-date-published)| CreativeWork | Date \| DateTime | 0,1 | Date of first publication for the record |
+|[datePublished](#date-created-date-modified-and-date-published)| CreativeWork | Date \| DateTime | 0,1 | Date of first publication for the record |
 |[subjectOf](#subject-of)| Thing | CreativeWork | 0+ | A CreativeWork about the record - e.g., a related metadata document describing the record |
 |[version](#version)| CreativeWork | Number \| Text | 0,1 | The version of the record |
 |[inLanguage](#language)|CreativeWork|Language \| Text|0,1| The language of the content of the record|
 |[creativeWorkStatus](#creative-work-status) | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a creative work in terms of its stage in a lifecycle. Example terms include Incomplete, Draft, Published, Obsolete. Some organizations define a set of terms for the stages of their publication lifecycle.|
-|[dateModified](#date-created-date-modifie-and-date-published) |	CreativeWork |Date \| DateTime | 0,1| The date on which the CreativeWork was most recently modified or updated. | 
+|[dateModified](#date-created-date-modified-and-date-published) |	CreativeWork |Date \| DateTime | 0,1| The date on which the CreativeWork was most recently modified or updated. | 
 |[funding](#funding)| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the dataset.|
 |[temporalCoverage](#temporal-coverage)|CreativeWork|DateTime| 0,1 | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in ISO 8601 time interval format. |
 |[spatialCoverage](#spatial-coverage)|CreativeWork|Place| 0,1 | The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content. It is a subproperty of contentLocation intended primarily for more technical and detailed materials. For example with a Dataset, it indicates areas that the dataset describes: a dataset of New York weather would have spatialCoverage which was the place: the state of New York.|
@@ -166,7 +166,7 @@ creators is preserved.
  }
 ```
 
-### Date Created, Date Modifie, and Date Published
+### Date Created, Date Modified, and Date Published
 
 **dateCreated** are properties of `CreativeWork` that can be expressed using
 either the `Date` or `DateTime` data types. The **dateCreated** represents the
@@ -209,7 +209,6 @@ repeating the **Keyword** property. Several examples are listed below.
     "@type": "DefinedTerm",
     "name": "Leaf wetness",
     "description": "The effect of moisture settling on the surface of a leaf as a result of either condensation or rainfall.",
-    "inDefinedTermSet": "http://his.cuahsi.org/mastercvreg/edit_cv11.aspx?tbl=VariableNameCV",
     "inDefinedTermSet": "http://his.cuahsi.org/mastercvreg/edit_cv11.aspx?tbl=VariableNameCV"
   }
 }
