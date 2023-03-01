@@ -12,17 +12,17 @@ high-level properties selected from Schema.Org vocabulary to design the I-GUIDE 
 |[url](#name-description-and-url)|Thing|URL|1|The url of the record|
 |[identifier](#identifier)|Thing|PropertyValue \| Text \| URL|1+|Any kind of identifier for the record|
 |[creator](#creator)|CreativeWork|Organization \| Person|1+|Organization or person that created the work|
-|[dateCreated](#date-created-date-modified-and-date-published) | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
+|[dateCreated](#dates) | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
 |[keywords](#keywords) | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the dataset, delimited by commas. |
 |[license](#license) | CreativeWork | CreativeWork \| URL | 1 | A license document that applies to the content, typically indicated by a URL |
 |[provider](#provider-and-publisher) | CreativeWork | Organization \| Person | 1 | The service provider, service operator, or service performer |
 |[publisher](#provider-and-publisher)| CreativeWork | Organization \| Person | 0,1 | The publisher of the record |
-|[datePublished](#date-created-date-modified-and-date-published)| CreativeWork | Date \| DateTime | 0,1 | Date of first publication for the record |
+|[datePublished](#dates)| CreativeWork | Date \| DateTime | 0,1 | Date of first publication for the record |
 |[subjectOf](#subject-of)| Thing | CreativeWork | 0+ | A CreativeWork about the record - e.g., a related metadata document describing the record |
 |[version](#version)| CreativeWork | Number \| Text | 0,1 | The version of the record |
 |[inLanguage](#language)|CreativeWork|Language \| Text|0,1| The language of the content of the record|
 |[creativeWorkStatus](#creative-work-status) | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a creative work in terms of its stage in a lifecycle. Example terms include Incomplete, Draft, Published, Obsolete. Some organizations define a set of terms for the stages of their publication lifecycle.|
-|[dateModified](#date-created-date-modified-and-date-published) |	CreativeWork |Date \| DateTime | 0,1| The date on which the CreativeWork was most recently modified or updated. | 
+|[dateModified](#dates) |	CreativeWork |Date \| DateTime | 0,1| The date on which the CreativeWork was most recently modified or updated. | 
 |[funding](#funding)| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the dataset.|
 |[temporalCoverage](#temporal-coverage)|CreativeWork|DateTime| 0,1 | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in ISO 8601 time interval format. |
 |[spatialCoverage](#spatial-coverage)|CreativeWork|Place| 0,1 | The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content. It is a subproperty of contentLocation intended primarily for more technical and detailed materials. For example with a Dataset, it indicates areas that the dataset describes: a dataset of New York weather would have spatialCoverage which was the place: the state of New York.|
@@ -166,26 +166,29 @@ creators is preserved.
  }
 ```
 
-### Date Created, Date Modified, and Date Published
+### Dates
 
-**dateCreated** are properties of `CreativeWork` that can be expressed using
-either the `Date` or `DateTime` data types. The **dateCreated** represents the
-date at which the dataset was initially generated. The **dateModified** represents the
-date at which the dataset was most recently modified. The **datePublished** represents the
-date at which the dataset was permanently published. The `Date` class expects a
-value in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601). Whereas
-the `DateTime` class requires a combination of date and time of day. An
-example if each is provided below.
+**dateCreated**, **dateModified**, and **datePublished** are properties of 
+`CreativeWork` that can be expressed using either the `Date` or `DateTime` data types. 
+The **dateCreated** represents the date at which the dataset was initially generated. 
+The **dateModified** represents the date at which the dataset was most recently modified. 
+The **datePublished** represents the date at which the dataset was permanently published. 
+The `Date` class expects a value in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601). 
+Whereas the `DateTime` class requires a combination of date and time of day. An example of each is provided below.
 
 ``` json
 {
-  "dateCreated": "2023-01-01"
+  "dateCreated": "2020-10-01",
+  "dateModified": "2022-11-24",
+  "datePublished": "2023-02-02"
 }
 ```
 
 ``` json
 {
-  "dateCreated": "2023-01-01T00:00:00+00:00"
+  "dateCreated": "2020-10-01T00:00:00+00:00",
+  "dateModified": "2022-11-24T00:00:00+00:00",
+  "datePublished": "2023-02-02T00:00:00+00:00"
 }
 ```
 
