@@ -551,7 +551,7 @@ Multiple locations can be specific using a list: (from [SOSO](https://github.com
 
 ### Associated Media
 
-**AssocatedMedia** is a property of `CreativeWork` for describing media objects 
+**AssociatedMedia** is a property of `CreativeWork` for describing media objects 
 that encode the work. Specific types of media objects that we selected for the I-GUIDE 
 data catalog are `DataDownload`, `ImageObject`, and `VideoObject`. Note that a media object 
 could have several properties from `CreativeWork`, but most importantly, it requires 
