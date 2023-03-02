@@ -13,7 +13,7 @@ high-level properties selected from Schema.Org vocabulary to design the I-GUIDE 
 |[identifier](#identifier)|Thing|PropertyValue \| Text \| URL|1+|Any kind of identifier for the record|
 |[creator](#creator)|CreativeWork|Organization \| Person|1+|Organization or person that created the work|
 |[dateCreated](#dates) | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
-|[keywords](#keywords) | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the dataset, delimited by commas. |
+|[keywords](#keywords) | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the dataset, delimited by commas|
 |[license](#license) | CreativeWork | CreativeWork \| URL | 1 | A license document that applies to the content, typically indicated by a URL |
 |[provider](#provider-and-publisher) | CreativeWork | Organization \| Person | 1 | The service provider, service operator, or service performer |
 |[publisher](#provider-and-publisher)| CreativeWork | Organization \| Person | 0,1 | The publisher of the record |
@@ -21,15 +21,15 @@ high-level properties selected from Schema.Org vocabulary to design the I-GUIDE 
 |[subjectOf](#subject-of)| Thing | CreativeWork | 0+ | A CreativeWork about the record - e.g., a related metadata document describing the record |
 |[version](#version)| CreativeWork | Number \| Text | 0,1 | The version of the record |
 |[inLanguage](#language)|CreativeWork|Language \| Text|0,1| The language of the content of the record|
-|[creativeWorkStatus](#creative-work-status) | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a creative work in terms of its stage in a lifecycle. Example terms include Incomplete, Draft, Published, Obsolete. Some organizations define a set of terms for the stages of their publication lifecycle.|
-|[dateModified](#dates) |	CreativeWork |Date \| DateTime | 0,1| The date on which the CreativeWork was most recently modified or updated. | 
+|[creativeWorkStatus](#creative-work-status) | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a creative work in terms of its stage in a lifecycle|
+|[dateModified](#dates) |	CreativeWork |Date \| DateTime | 0,1| The date on which the CreativeWork was most recently modified or updated | 
 |[funding](#funding)| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the dataset.|
-|[temporalCoverage](#temporal-coverage)|CreativeWork|DateTime| 0,1 | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in ISO 8601 time interval format. |
-|[spatialCoverage](#spatial-coverage)|CreativeWork|Place| 0,1 | The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content. It is a subproperty of contentLocation intended primarily for more technical and detailed materials. For example with a Dataset, it indicates areas that the dataset describes: a dataset of New York weather would have spatialCoverage which was the place: the state of New York.|
+|[temporalCoverage](#temporal-coverage)|CreativeWork|DateTime| 0,1 | The temporalCoverage of a CreativeWork indicates the period that the content applies to |
+|[spatialCoverage](#spatial-coverage)|CreativeWork|Place| 0,1 | The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content|
 |[associatedMedia](#associated-media)|CreativeWork|MediaObject|0+| An item (media object) or a group of items (media objects) that encodes this CreativeWork. This property is a synonym for encoding.|
-|[hasPart](#has-part-and-is-part-of)|CreativeWork|CreativeWork|0+|Indicates a record or CreativeWork that is part of this record|
-|[isPartOf](#has-part-and-is-part-of)|CreativeWork|CreativeWork OR URL |0+|Indicates a record or CreativeWork that this record, or CreativeWork (in some sense), is part of.|
-
+|[hasPart](#has-part-and-is-part-of)|CreativeWork|CreativeWork|0+| Indicates a record or CreativeWork that is part of this record|
+|[isPartOf](#has-part-and-is-part-of)|CreativeWork|CreativeWork \| URL |0+| Indicates a record or CreativeWork that this record, or CreativeWork (in some sense), is part of.|
+|[citation](#citation)|CreativeWork|CreativeWork \| Text|0+|Indicates general relationships between records|
 
 The following examples demonstrate how each of these required properties may
 be implemented in JSON+LD. Note, there are several properties omitted from each
@@ -363,8 +363,9 @@ used for this encoding. For most records, it is anticipated that this will be "e
 ### Creative Work Status
 
 [Schema:creativeWorkStatus](https://schema.org/creativeWorkStatus) is a property of `CreativeWork` used to capture the
-stage of a work's lifecycle; incomplete, draft, published, obsolete, etc. This
-can be expressed as text or using the [Schema:DefinedTerm](https://schema.org/DefinedTerm) class.
+stage of a work's lifecycle. Example terms include Incomplete, Draft, Published, Obsolete. Some organizations define a 
+set of terms for the stages of their publication lifecycle. This can be expressed as text or using the 
+[Schema:DefinedTerm](https://schema.org/DefinedTerm) class.
 
 ``` json
 {
@@ -715,5 +716,100 @@ record belongs to the "Collection of Great Salt Lake Data" creative work in the 
     },
     "identifier": "https://www.hydroshare.org/resource/b6c4fcad40c64c4cb4dd7d4a25d0db6e/"
   }
+}
+```
+
+### Citation
+
+In addition to `hasPart` and `isPartOf` that imply a specific collection/collected record relationship, 
+[Schema:citation](https://schema.org/citation) can be used to represent general relationships between records. 
+It can represent a citation or reference to another creative work, such as another publication, web page, scholarly article, etc. that 
+are related but not necessarily part of a collection record. 
+
+This is a simple example of using `citation` to refer to a published article that used the "NOAA National Water Model CONUS Retrospective Dataset, Version 2.1 in NetCDF Format" dataset.
+
+``` json
+{
+  "name": "NOAA National Water Model CONUS Retrospective Dataset, Version 2.1 in NetCDF Format",
+  "description": "The complete archive of NWM input forcing and model output data version 2.1 in NetCDF format.",
+  "url": "https://noaa-nwm-retrospective-2-1-pds.s3.amazonaws.com/index.html",
+  "creator": {
+    "@type" : "Organization",
+    "name": "Office of Water Prediction (OWP)",
+    "url": "https://water.noaa.gov/"
+  },
+  "citation": "https://doi.org/10.1016/j.ocemod.2019.101526"
+}
+```
+
+`citation` can be also expressed as a `creativework` to express more metadata of the item using subproperties from `creativework`. Note that not all the authors of 
+the cited article are listed in this example. 
+
+``` json
+{
+  "name": "NOAA National Water Model CONUS Retrospective Dataset, Version 2.1 in NetCDF Format",
+  "description": "The complete archive of NWM input forcing and model output data version 2.1 in NetCDF format.",
+  "url": "https://noaa-nwm-retrospective-2-1-pds.s3.amazonaws.com/index.html",
+  "creator": {
+    "@type" : "Organization",
+    "name": "Office of Water Prediction (OWP)",
+    "url": "https://water.noaa.gov/"
+  },
+  "citation": {
+    "@type": "CreativeWork",
+    "name" : "Simulating storm surge and compound flooding events with a creek-to-ocean model: Importance of baroclinic effects",
+    "identifier" : "https://doi.org/10.1016/j.ocemod.2019.101526",
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S1463500319302173?via%3Dihub",
+    "creator" : {
+      "@type" : "Person",
+      "name": "Fei Ye"
+    },
+    "creativeWorkStatus" : "published",
+    "publisher" : {
+      "@type": "Organization",
+      "name" : "Elsevier"
+    }
+  } 
+}
+```
+
+This is an example that demonstrates the use of multiple citations, including a published article and a Jupyter notebook. Mote that not all the authors of 
+the cited article are listed in this example. 
+ 
+
+
+``` json
+{
+  "name": "NOAA National Water Model CONUS Retrospective Dataset, Version 2.1 in NetCDF Format",
+  "description": "The complete archive of NWM input forcing and model output data version 2.1 in NetCDF format.",
+  "url": "https://noaa-nwm-retrospective-2-1-pds.s3.amazonaws.com/index.html",
+  "creator": {
+    "@type" : "Organization",
+    "name": "Office of Water Prediction (OWP)",
+    "url": "https://water.noaa.gov/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name" : "Rich Signell",
+      "identifier" : "https://nbviewer.org/gist/rsignell-usgs/d3dfaf3cd3d8b39894a69b22127dfe38",
+      "url": "https://nbviewer.org/gist/rsignell-usgs/d3dfaf3cd3d8b39894a69b22127dfe38"
+    },
+    {
+      "@type": "CreativeWork",
+      "name" : "Simulating storm surge and compound flooding events with a creek-to-ocean model: Importance of baroclinic effects",
+      "identifier" : "https://doi.org/10.1016/j.ocemod.2019.101526",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S1463500319302173?via%3Dihub",
+      "creator" : {
+        "@type" : "Person",
+        "name": "Fei Ye"
+      },
+      "creativeWorkStatus" : "published",
+      "publisher" : {
+        "@type": "Organization",
+        "name" : "Elsevier"
+      }
+    }
+  ]
 }
 ```
