@@ -5,10 +5,7 @@ The following is an example for how the I-GUIDE `core` schema can be used to enc
 ``` json
 
 {
-    "@context": "https://schema.org",
-    
-    "@id": "https://www.hydroshare.org/resource/08745ae940ab4433b6f73de6b79088f7#schemaorg",
-    
+    "@context": "https://schema.org", 
     "@type": "CreativeWork",
     "name": "Google New Articles - Aging Dams",
     "description": "News articles collected by searching words 'aging dams' in Google News and news websites. 188 news articles in total.",
