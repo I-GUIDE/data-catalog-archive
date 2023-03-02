@@ -626,8 +626,9 @@ be used to indicate a record that consists of one or more additional
 `isPartOf` is used to indicate catalog records that reference a designated
 `CreativeWork`. 
 
-The example below shows a simple schema for a `CreativeWork` that links to another
-`CreativeWork` using the **Has Part** property.
+The following example illustrates how a `CreativeWork` may reference another
+`CreativeWork` in the catalog. This can be read as, "Collection of Sample Datasets
+for IGUIDE" is a collection of record(s) that includes the "IGUIDE Shapefile Testing Resources".
 
 ``` json
 {
@@ -670,7 +671,8 @@ For the example above, multiple relations can be defined using a list.
 ```
 
 **isPartOf** is the inverse property of **hasPart** and may be used to indicate
-that a work is part of another collection of works.
+that a work is part of another collection of works. This can be read as, the "Shapefile 
+Testing Resource" record belongs to the "Shapefile Testing Resource" creative work in the catalog.  
 
 ``` json
 {
