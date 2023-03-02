@@ -609,15 +609,17 @@ Multiple files can be expressed as:
 ### Has part and is part of
 
 Collections of records can be expressed using the **hasPart** (and inverse
-**isPartOf**) properties of `CreativeWork`. These properties are used to show
-a relationship between two or more records, along with `identifier` property to 
-uniquely identify them.  
+**isPartOf**) properties of `CreativeWork`. These properties are used to show 
+specific relationships between a collection record and its member records where 
+`hasPart` is used on the collection to indicate that it contains other records, and 
+`isPartOf` is used on a collected record to indicate that it is part of a collection. 
+The `identifier` property is used to uniquely identify each record.  
 
 **Has Part** is used to describe a record or work that is part of the current
 record. For example, a body of work may consist of multiple related datasets that
 are used for a particular study.
 
-Note: `hasPart` and `isPartOf` are generally used for records that are grouped
+Note: `hasPart` and `isPartOf` are generally used to create linkage between records that are grouped
 together or records that belong to other groupings. For example, `hasPart` may
 be used to indicate a record that consists of one or more additional
 `CreativeWork` (this is similar to a HydroShare collection). In contrast,
@@ -625,7 +627,7 @@ be used to indicate a record that consists of one or more additional
 `CreativeWork`. 
 
 The example below shows a simple schema for a `CreativeWork` that links to another
-`CreativeWork`.
+`CreativeWork` using the **Has Part** property.
 
 ``` json
 {
