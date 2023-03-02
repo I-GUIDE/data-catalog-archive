@@ -724,7 +724,7 @@ record belongs to the "Collection of Great Salt Lake Data" creative work in the 
 In addition to `hasPart` and `isPartOf` that imply a specific collection/collected record relationship, 
 [Schema:citation](https://schema.org/citation) can be used to represent general relationships between records. 
 It can represent a citation or reference to another creative work, such as another publication, web page, scholarly article, etc. that 
-are related but not necessarily part of a collection record. 
+are related but not necessarily part of a collection record. Note that `citation` is NOT used to encode the citation of the record being described.
 
 This is a simple example of using `citation` to refer to a published article that used the "NOAA National Water Model CONUS Retrospective Dataset, Version 2.1 in NetCDF Format" dataset.
 
