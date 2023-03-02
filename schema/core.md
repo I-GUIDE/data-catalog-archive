@@ -36,7 +36,8 @@ be implemented in JSON+LD. Note, there are several properties omitted from each
 example such as `@context` and `@type`. 
 
 ### Name, Description, and URL
-**Name**, **Description**, and **URL** are properties inherited from the
+[Schema:name](https://schema.org/name), [Schema:description](https://schema.org/description), 
+and [Schema:url](https://schema.org/url) are properties inherited from the
 Schema.org `Thing` class. These are common properties that all Schema.org types
 contain. A simple example is shown below:
 
@@ -48,16 +49,9 @@ contain. A simple example is shown below:
 }
 ```
 
-References:
-
-- [Schema:name](https://schema.org/name)
-- [Schema:description](https://schema.org/description)
-- [Schema:url](https://schema.org/url)
-
-
 ### Identifier
 
-**Identifier** is a property of the `Thing` class. It is used to encode the record's identifier(s). For permanantly published records, this will likely be a digital object identifier (DOI). For unpublished records, this may be an identifier assigned by the system in which the content of the record resides. This element can be repeated if a record has multiple identifiers.
+[Schema:identifier](https://schema.org/identifier) is a property of the `Thing` class. It is used to encode the record's identifier(s). For permanantly published records, this will likely be a digital object identifier (DOI). For unpublished records, this may be an identifier assigned by the system in which the content of the record resides. This element can be repeated if a record has multiple identifiers.
 
 An identifier as text can be encoded as:
 
@@ -93,7 +87,7 @@ However, it is preferred for an identifier to be expressed as a URL if possible.
 
 ### Creator
 
-**Creator** is a property of the `CreativeWork` class. The purpose of this
+[Schema:creator](https://schema.org/creator) is a property of the `CreativeWork` class. The purpose of this
 property is to describe the author or authors of a catalog record. The
 recommended way to express authorship of a CreativeWork is shown below. Note,
 this approach was adopted from ESIP Science on Schema Org.
@@ -111,7 +105,7 @@ A single author can be expressed as:
 ```
 
 A more complete example of an author will include additional fields from the
-`Person` class such as an identifier.
+[Schema:Person](https://schema.org/Person) class such as an identifier.
 
 ``` json
 {
@@ -168,8 +162,11 @@ creators is preserved.
 
 ### Dates
 
-**dateCreated**, **dateModified**, and **datePublished** are properties of 
-`CreativeWork` that can be expressed using either the `Date` or `DateTime` data types. 
+[Schema:dateCreated](https://schema.org/dateCreated), 
+[Schema:dateModified](https://schema.org/dateModified), and 
+[Schema:datePublished](https://schema.org/datePublished) are properties of 
+`CreativeWork` that can be expressed using either the [Schema:Date](https://schema.org/Date) 
+or [Schema:DateTime](https://schema.org/DateTime)  data types. 
 The **dateCreated** represents the date at which the dataset was initially generated. 
 The **dateModified** represents the date at which the dataset was most recently modified. 
 The **datePublished** represents the date at which the dataset was permanently published. 
@@ -194,8 +191,8 @@ Whereas the `DateTime` class requires a combination of date and time of day. An 
 
 ### Keywords
 
-**Keywords** is a property of `CreativeWork` that can be expressed using either
-the `DefinedTerm`, `Text`, or `URL` Schema.org classes. Keywords are tags used
+[Schema:keywords](https://schema.org/keywords) is a property of `CreativeWork` that can be expressed using either
+the [Schema:DefinedTerm](https://schema.org/DefinedTerm), `Text`, or `URL` Schema.org classes. Keywords are tags used
 to describe the catalog record and are primarily used for resource discovery.
 **Keywords** are typically provided as a list of items, but can also done by
 repeating the **Keyword** property. Several examples are listed below.
@@ -238,7 +235,7 @@ repeating the **Keyword** property. Several examples are listed below.
 
 ### License 
 
-**License** is a property of the `CreativeWork` class and can be expressed as
+[Schema:license](https://schema.org/license) is a property of the `CreativeWork` class and can be expressed as
 another `CreativeWork` or as a `URL`. A license is a document that applies to
 the content of the catalog record, for example a software license. 
 
@@ -260,8 +257,8 @@ the content of the catalog record, for example a software license.
 
 ### Provider and Publisher
 
-**Provider** and **Publisher** are properties of the `CreativeWork` class that can be expressed as
-either an `Organization` or a `Person`. **Provider** represents the service operator,
+[Schema:provider](https://schema.org/provider) and [Schema:publisher](https://schema.org/publisher) are properties of the `CreativeWork` class that can be expressed as either an [Schema:Organization](https://schema.org/Organization) or a 
+[Schema:Person](https://schema.org/Person). **Provider** represents the service operator,
 service performer, or goods producer. In many cases this is the operator of the
 repository in which the data resides, but that may not always be the case. In the case that a record is 
 permanently published, **Publisher** indicates the organization or person that published the record.
@@ -314,7 +311,7 @@ Encoding for a formal repository with a parent organization:
 
 ### Subject Of
 
-**subjectOf** is a property of `CreativeWork` and can be used to encode a linkage
+[Schema:subjectOf](https://schema.org/subjectOf) is a property of `CreativeWork` and can be used to encode a linkage
 to a separate `CreativeWork` that describes or is about the record. An example would 
 be a formal metadata document encoded using some metadata standard that fully describes
 the record. More specifically, this could be a metadata document accompanying a
@@ -336,7 +333,7 @@ This linkage can be encoded as:
 
 ### Version
 
-The **version** is a propoerty of `CreativeWork` that can be used to encode a formal 
+The [Schema:version](https://schema.org/version) is a propoerty of `CreativeWork` that can be used to encode a formal 
 version number or name for a record. **version** can be encoded as either a number or
 a string; however, since many people use semantic versioning, a string is preferred as
 it will work regardless. 
@@ -352,7 +349,7 @@ Example encoding as string:
 
 ### Language
 
-The **inLanguage** property can be used to encode the language in which the content of 
+The [Schema:inLanguage](https://schema.org/inLanguage) property can be used to encode the language in which the content of 
 the record is expressed. Language codes from the [IETF BCP 47 standard]() should be 
 used for this encoding. For most records, it is anticipated that this will be "en-US".
 
@@ -365,9 +362,9 @@ used for this encoding. For most records, it is anticipated that this will be "e
 
 ### Creative Work Status
 
-**CreativeWorkStatus** is a property of `CreativeWork` used to capture the
+[Schema:creativeWorkStatus](https://schema.org/creativeWorkStatus) is a property of `CreativeWork` used to capture the
 stage of a work's lifecycle; incomplete, draft, published, obsolete, etc. This
-can be expressed as text or using the `DefinedTerm` class.
+can be expressed as text or using the [Schema:DefinedTerm](https://schema.org/DefinedTerm) class.
 
 ``` json
 {
@@ -388,9 +385,9 @@ A more expressive status can be provided using the `DefinedTerm` subtype.
 
 ### Funding
 
-**Funding** is a property of the `CreativeWork` class used to describe the
+[Schema:funding](https://schema.org/funding) is a property of the `CreativeWork` class used to describe the
 grant(s) that directly or indirectly funded or sponsored the work. **Funding**
-is expressed using the `Grant` subtype.
+is expressed using the [Schema:Grant](https://schema.org/Grant) subtype.
 
 ``` json
 {
@@ -435,9 +432,9 @@ Multiple funding sources can be expressed as a list:
 
 ### Temporal Coverage
 
-**TemporalCoverage** is a property of the `CreativeWork` class that is used to
+[Schema:temporalCoverage](https://schema.org/temporalCoverage) is a property of the `CreativeWork` class that is used to
 define a period of time in which the catalog record applies to. This should be
-expressed using the `DateTime` subtype.
+expressed using the [Schema:DateTime](https://schema.org/DateTime) subtype.
 
 ``` json
 {
@@ -455,10 +452,10 @@ Open-ended date ranges can be written with ".." in place of the end date. The fo
 
 ### Spatial Coverage
 
-**SpatialCoverage** is a property of the `CreativeWork` class that is used to
+[Schema:spatialCoverage](https://schema.org/spatialCoverage) is a property of the `CreativeWork` class that is used to
 indicate the location for which the content is valid. This can also be used to
 indicate the focus area of the content. This should be expressed using the
-`Place` subtype. There are numerous ways to describe the location of content,
+[Schema:Place](https://schema.org/Place) subtype. There are numerous ways to describe the location of content,
 below are several common ones.
 
 A generic location may look like this:
@@ -554,13 +551,14 @@ Multiple locations can be specific using a list: (from [SOSO](https://github.com
 
 ### Associated Media
 
-**AssociatedMedia** is a property of `CreativeWork` for describing media objects 
+[Schema:associatedMedia](https://schema.org/associatedMedia) is a property of `CreativeWork` for describing media objects 
 that encode the work. Specific types of media objects that we selected for the I-GUIDE 
-data catalog are `DataDownload`, `ImageObject`, and `VideoObject`. Note that a media object 
+data catalog are [Schema:DataDownload](https://schema.org/DataDownload), [Schema:ImageObject](https://schema.org/ImageObject), and [Schema:VideoObject](https://schema.org/VideoObject). Note that a media object 
 could have several properties from `CreativeWork`, but most importantly, it requires 
-`contentUrl`, `encodingFormat`. `contentUrl` should point at the actual bytes of the media 
-object and is represented as a URL. `encodingFormat` expresses the format of a media object using a MIME 
-format (see [IANA site](https://www.iana.org/assignments/media-types/media-types.xhtml) and 
+[Schema:contentUrl](https://schema.org/contentUrl) and [Schema:encodingFormat](https://schema.org/encodingFormat). 
+`contentUrl` should point at the actual bytes of the media object and is represented as a URL. 
+`encodingFormat` expresses the format of a media object using a MIME format 
+(see [IANA site](https://www.iana.org/assignments/media-types/media-types.xhtml) and 
 [MDN reference](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)). 
 
 A single text file that represents the data that is being cataloged can be expressed as:
@@ -608,12 +606,12 @@ Multiple files can be expressed as:
 
 ### Has part and is part of
 
-Collections of records can be expressed using the **hasPart** (and inverse
-**isPartOf**) properties of `CreativeWork`. These properties are used to show 
+Collections of records can be expressed using the [Schema:hasPart](https://schema.org/hasPart) (and inverse
+[Schema:isPartOf](https://schema.org/isPartOf)) properties of `CreativeWork`. These properties are used to show 
 specific relationships between a collection record and its member records where 
 `hasPart` is used on the collection to indicate that it contains other records, and 
 `isPartOf` is used on a collected record to indicate that it is part of a collection. 
-The `identifier` property is used to uniquely identify each record.  
+The [Schema:identifier](https://schema.org/identifier) property is used to uniquely identify each record.  
 
 **Has Part** is used to describe a record or work that is part of the current
 record. For example, a body of work may consist of multiple related datasets that
