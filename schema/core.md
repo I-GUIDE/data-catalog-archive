@@ -249,8 +249,8 @@ the content of the catalog record, for example a software license.
 {
   "license": {
     "@type": "CreativeWork",
-    "name": "My custom license",
-    "url": "https://my-custom-license.com/license.txt"
+    "name": "MIT License",
+    "url": "https://spdx.org/licenses/MIT"
     }
 }
 ```
@@ -302,7 +302,7 @@ Encoding for a formal repository with a parent organization:
     "parentOrganization": {
       "@type": "Organization",
       "name": "CUAHSI",
-      "url": "www.cuahsi.org",
+      "url": "https://www.cuahsi.org/",
       "address": "1167 Massachusetts Ave Suites 418 & 419, Arlington, MA 02476"
     }
   }
@@ -393,8 +393,8 @@ is expressed using the [Schema:Grant](https://schema.org/Grant) subtype.
 {
   "funding": {
     "@type": "MonetaryGrant",
-    "name": "My research project",
-     "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=000001",
+    "name": "HDR Institute: Geospatial Understanding through an Integrative Discovery Environment",
+     "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2118329",
      "funder": {
         "@type": "Organization",
         "name": "National Science Foundation"
@@ -410,8 +410,8 @@ Multiple funding sources can be expressed as a list:
   "funding": [
   {
     "@type": "MonetaryGrant",
-    "name": "My first research project",
-     "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=000001",
+    "name": "HDR Institute: Geospatial Understanding through an Integrative Discovery Environment",
+     "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2118329",
      "funder": {
         "@type": "Organization",
         "name": "National Science Foundation"
@@ -419,8 +419,8 @@ Multiple funding sources can be expressed as a list:
   },
   {
     "@type": "MonetaryGrant",
-    "name": "My second research project",
-     "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=000002",
+    "name": "Collaborative Research: Network Hub: Enabling, Supporting, and Communicating Critical Zone Research.",
+     "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2012748",
      "funder": {
         "@type": "Organization",
         "name": "National Science Foundation"
@@ -567,10 +567,22 @@ A single text file that represents the data that is being cataloged can be expre
 {
  "associatedMedia": {
     "@type": "DataDownload",
-    "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file1.csv",
+    "contentUrl": "https://www.hydroshare.org/resource/51d1539bf6e94b15ac33f7631228118c/data/contents/USGS_Harvey_gages_TxLaMsAr.csv",
     "encodingFormat": "text/csv",
-    "contentSize": "50 MB",
-    "name": "Data File"
+    "contentSize": "0.17 MB",
+    "name": "USGS gage locations within the Harvey-affected areas in Texas"
+  }
+}
+```
+
+``` json
+{
+ "associatedMedia": {
+    "@type": "VideoObject",
+    "contentUrl": "https://www.hydroshare.org/resource/81cb3f6c0dde4433ae4f43a26a889864/data/contents/HydroClientMovie.mp4",
+    "encodingFormat": "video/mp4",
+    "contentSize": "79.2 MB",
+    "name": "HydroClient Video"
   }
 }
 ```
@@ -581,24 +593,25 @@ Multiple files can be expressed as:
 {
   "associatedMedia": [
    {
+    "@type": "DataDownload",
+    "contentUrl": "https://www.hydroshare.org/resource/51d1539bf6e94b15ac33f7631228118c/data/contents/USGS_Harvey_gages_TxLaMsAr.csv",
+    "encodingFormat": "text/csv",
+    "contentSize": "0.17 MB",
+    "name": "USGS gage locations within the Harvey-affected areas in Texas"
+   },
+   {
      "@type": "DataDownload",
-     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file1.csv",
-     "encodingFormat": "text/csv",
-     "contentSize": "50 MB",
-     "name": "Data File"
+     "contentUrl": "https://www.hydroshare.org/resource/51d1539bf6e94b15ac33f7631228118c/data/contents/USGS_gage_discharge_timeseries.zip",
+     "encodingFormat": "application/zip",
+     "contentSize": "8.9 MB",
+     "name": "Discharge timeseries for the USGS gages located in the Harvey-affected areas in Texas"
    },
    {
      "@type": "ImageObject",
-     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file3.tif",
-     "encodingFormat": "image/tiff",
-     "contentSize": "500 MB",
-     "name": "Image File"
-   },
-   {
-     "@type": "VideoObject",
-     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file2.mp4",
-     "encodingFormat": "video/mp4",
-     "name": "Video File"
+     "contentUrl": "https://www.hydroshare.org/resource/51d1539bf6e94b15ac33f7631228118c/data/contents/USGS-NWS%20gages%20in%20Harvey%20study%20area.png",
+     "encodingFormat": "image/png",
+     "contentSize": "0.96 MB",
+     "name": "USGS-NWS gages in Harvey study area"
    }
   ]
 }
@@ -611,7 +624,9 @@ Collections of records can be expressed using the [Schema:hasPart](https://schem
 specific relationships between a collection record and its member records where 
 `hasPart` is used on the collection to indicate that it contains other records, and 
 `isPartOf` is used on a collected record to indicate that it is part of a collection. 
-The [Schema:identifier](https://schema.org/identifier) property is used to uniquely identify each record.  
+The [Schema:identifier](https://schema.org/identifier) property is used to uniquely identify each record. Note that
+the `identifier` property should be programmatically generated when the record is registered into the catalog. For more 
+information about `identifier`, see the [Identifier](#identifier) 
 
 **Has Part** is used to describe a record or work that is part of the current
 record. For example, a body of work may consist of multiple related datasets that
@@ -625,20 +640,25 @@ be used to indicate a record that consists of one or more additional
 `CreativeWork`. 
 
 The following example illustrates how a `CreativeWork` may reference another
-`CreativeWork` in the catalog. This can be read as, "Collection of Sample Datasets
-for IGUIDE" is a collection of record(s) that includes the "IGUIDE Shapefile Testing Resources".
+`CreativeWork` in the catalog. This can be read as, "Collection of Great Salt Lake Data" 
+is a collection of record(s) that includes the "Great Salt Lake Bathymetry" record.
 
 ``` json
 {
   "@type": "CreativeWork",
-  "name": "Collection of Sample Datasets for IGUIDE",
-  "description": "A collection of sample datasets used by the I-GUIDE team",
-  "identifier": "https://my-unique-url.com/data-collection",
+  "name": "Collection of Great Salt Lake Data",
+  "description": "Data from the Great Salt Lake and its basin",
+  "identifier": "https://www.hydroshare.org/resource/b6c4fcad40c64c4cb4dd7d4a25d0db6e/",
+  "creator":{
+    "@type": "Person",
+    "name": "David Tarboton"
+  },
+  "identifier": "",
   "hasPart": {
     "@type": "CreativeWork",
-    "name": "IGUIDE Shapefile Testing Resource",
-    "description": "Test HydroShare resource for I-GUIDE - Shapefile",
-    "identifier": "https://my-unique-url.com/shapefile"
+    "name": "Great Salt Lake Bathymetry",
+    "description": "Digital Elevation Model for the Great Salt Lake, lake bed bathymetry.",
+    "identifier": "https://www.hydroshare.org/resource/582060f00f6b443bb26e896426d9f62a/"
   }
 }
 ```
@@ -648,40 +668,52 @@ For the example above, multiple relations can be defined using a list.
 ``` json
 {
   "@type": "CreativeWork",
-  "name": "Collection of Sample Datasets for IGUIDE",
-  "description": "A collection of sample datasets used by the I-GUIDE team",
-  "identifier": "https://my-unique-url.com/data-collection",
+  "name": "Collection of Great Salt Lake Data",
+  "description": "Data from the Great Salt Lake and its basin",
+  "identifier": "https://www.hydroshare.org/resource/b6c4fcad40c64c4cb4dd7d4a25d0db6e/",
+  "creator":{
+    "@type": "Person",
+    "name": "David Tarboton"
+  },
   "hasPart": [
     {
       "@type": "CreativeWork",
-      "name": "IGUIDE Shapefile Testing Resource",
-      "description": "Test HydroShare resource for I-GUIDE - Shapefile",
-      "identifier": "https://my-unique-url.com/shapefile"
+      "name": "Great Salt Lake Bathymetry",
+      "description": "Digital Elevation Model for the Great Salt Lake, lake bed bathymetry.",
+      "identifier": "https://www.hydroshare.org/resource/582060f00f6b443bb26e896426d9f62a/"
     },
     {
       "@type": "CreativeWork",
-      "name": "IGUIDE GeoTiff Testing Resource",
-      "description": "Test HydroShare resource for I-GUIDE - GeoTiff",
-      "identifier": "https://my-unique-url.com/geotiff"
+      "name": "Great Salt Lake Level and Volume",
+      "description": "Time series of level, area and volume in the Great Salt Lake.",
+      "identifier": "https://www.hydroshare.org/resource/b26090299ec947c692d4ee4651815579/"
     }
   ]
 }
 ```
 
 **isPartOf** is the inverse property of **hasPart** and may be used to indicate
-that a work is part of another collection of works. This can be read as, the "Shapefile 
-Testing Resource" record belongs to the "Shapefile Testing Resource" creative work in the catalog.  
+that a work is part of another collection of works. This can be read as, the "Great Salt Lake Bathymetry" 
+record belongs to the "Collection of Great Salt Lake Data" creative work in the catalog.  
 
 ``` json
 {
-  "name": "Shapefile Testing Resource",
-  "description": "Test HydroShare resource for I-GUIDE - Shapefile",
-  "identifier": "https://my-unique-url.com/shapefile",
+  "name": "Great Salt Lake Bathymetry",
+  "description": "Digital Elevation Model for the Great Salt Lake, lake bed bathymetry.",
+  "creator": {
+    "@type": "Person",
+    "name": "David Tarboton"
+  },
+  "identifier": "https://www.hydroshare.org/resource/582060f00f6b443bb26e896426d9f62a/",
   "isPartOf": {
     "@type": "CreativeWork",
-    "name": "Collection of Sample Datasets for IGUIDE",
-    "description": "A collection of sample datasets used by the I-GUIDE team",
-    "identifier": "https://my-unique-url.com/data-collection"
+    "name": "Collection of Great Salt Lake Data",
+    "description": "Data from the Great Salt Lake and its basin",
+    "creator": {
+      "@type": "Person",
+      "name": "David Tarboton"
+    },
+    "identifier": "https://www.hydroshare.org/resource/b6c4fcad40c64c4cb4dd7d4a25d0db6e/"
   }
 }
 ```
