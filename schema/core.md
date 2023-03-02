@@ -43,9 +43,9 @@ contain. A simple example is shown below:
 
 ``` json
 {
-  "name": "IGUIDE Sample Dataset",
-  "description": "This is a sample datasets used in the I-GUIDE Catalog documentation",
-  "url": "https://my-unique-url.com/9d413b9d1"
+  "name": "I-GUIDE Dataset Catalog Example",
+  "description": "This resource contains a Jupyter notebook that demonstrates how someone can query the I-GUIDE data catalog, retrieve data, and execute a code workflow.",
+  "url": "https://www.hydroshare.org/resource/018fe11a7f644bc2bc82f9ec073eeca9/"
 }
 ```
 
