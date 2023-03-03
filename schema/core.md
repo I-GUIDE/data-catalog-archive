@@ -3,43 +3,47 @@
 Core metadata is a set of common metadata fields that all catalog
 holdings share and consists largely of high-level dataset attributes
 and properties. This document outlines the **required** and **optional**
-high-level properties selected from Schema.Org vocabulary to design the I-GUIDE metadata schema. These properties are encoded as `1` or `1+` for **required** and `0,1` or `0+` for **optional** in the Cardinality column of the table below.
+high-level properties selected from Schema.Org vocabulary to design the 
+I-GUIDE core metadata schema. These properties are encoded as `1` or `1+` 
+for **required** and `0,1` or `0+` for **optional** in the Cardinality column of the table below.
 
 |Property|Class|Expected Type|Cardinality|Description| 
 |---|---|---|---|---|
 |[name](#name-description-and-url)|Thing|Text|1|The name or title of the record|
 |[description](#name-description-and-url)|Thing|Text|1|The description or abstract of the record|
-|[url](#name-description-and-url)|Thing|URL|1|The url of the record|
+|[url](#name-description-and-url)|Thing|URL|1|The url of a landing page describing the record|
 |[identifier](#identifier)|Thing|PropertyValue \| Text \| URL|1+|Any kind of identifier for the record|
-|[creator](#creator)|CreativeWork|Organization \| Person|1+|Organization or person that created the work|
-|[dateCreated](#dates) | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
-|[keywords](#keywords) | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the dataset, delimited by commas|
-|[license](#license) | CreativeWork | CreativeWork \| URL | 1 | A license document that applies to the content, typically indicated by a URL |
+|[creator](#creator)|CreativeWork|Organization \| Person|1+|Organization or person that created the record|
+|[dateCreated](#dates) | CreativeWork | Date \| DateTime | 1 | The date on which the record was created|
+|[keywords](#keywords) | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the record|
+|[license](#license) | CreativeWork | CreativeWork \| URL | 1 | A license document that applies to the content |
 |[provider](#provider-and-publisher) | CreativeWork | Organization \| Person | 1 | The service provider, service operator, or service performer |
 |[publisher](#provider-and-publisher)| CreativeWork | Organization \| Person | 0,1 | The publisher of the record |
 |[datePublished](#dates)| CreativeWork | Date \| DateTime | 0,1 | Date of first publication for the record |
-|[subjectOf](#subject-of)| Thing | CreativeWork | 0+ | A CreativeWork about the record - e.g., a related metadata document describing the record |
+|[subjectOf](#subject-of)| Thing | CreativeWork | 0+ | A creative work about the record - e.g., a related metadata document describing the record |
 |[version](#version)| CreativeWork | Number \| Text | 0,1 | The version of the record |
 |[inLanguage](#language)|CreativeWork|Language \| Text|0,1| The language of the content of the record|
-|[creativeWorkStatus](#creative-work-status) | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a creative work in terms of its stage in a lifecycle|
-|[dateModified](#dates) |	CreativeWork |Date \| DateTime | 0,1| The date on which the CreativeWork was most recently modified or updated | 
-|[funding](#funding)| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the dataset.|
-|[temporalCoverage](#temporal-coverage)|CreativeWork|DateTime| 0,1 | The temporalCoverage of a CreativeWork indicates the period that the content applies to |
-|[spatialCoverage](#spatial-coverage)|CreativeWork|Place| 0,1 | The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content|
-|[associatedMedia](#associated-media)|CreativeWork|MediaObject|0+| An item (media object) or a group of items (media objects) that encodes this CreativeWork. This property is a synonym for encoding.|
-|[hasPart](#has-part-and-is-part-of)|CreativeWork|CreativeWork|0+| Indicates a record or CreativeWork that is part of this record|
-|[isPartOf](#has-part-and-is-part-of)|CreativeWork|CreativeWork \| URL |0+| Indicates a record or CreativeWork that this record, or CreativeWork (in some sense), is part of.|
-|[citation](#citation)|CreativeWork|CreativeWork \| Text|0+|Indicates general relationships between records|
+|[creativeWorkStatus](#creative-work-status) | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a record in terms of its stage in a lifecycle|
+|[dateModified](#dates) |	CreativeWork |Date \| DateTime | 0,1| The date on which the record was most recently modified or updated | 
+|[funding](#funding)| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the record|
+|[temporalCoverage](#temporal-coverage)|CreativeWork|DateTime| 0,1 | The period that the content of a record applies to |
+|[spatialCoverage](#spatial-coverage)|CreativeWork|Place| 0,1 | The place(s) which are the focus of the content of a record|
+|[associatedMedia](#associated-media)|CreativeWork|MediaObject|0+| An item (media object) or a group of items (media objects) that encodes this record |
+|[hasPart](#has-part-and-is-part-of)|CreativeWork|CreativeWork|0+| A creative work that is part of this record|
+|[isPartOf](#has-part-and-is-part-of)|CreativeWork|CreativeWork \| URL |0+| A creative work that this record (in some sense) is part of|
+|[citation](#citation)|CreativeWork|CreativeWork \| Text|0+|A citation or reference to another creative work|
 
-The following examples demonstrate how each of these required properties may
-be implemented in JSON+LD. Note, there are several properties omitted from each
+The following examples demonstrate how each one of these properties may
+be implemented in JSON+LD. Note that there are several properties omitted from each
 example such as `@context` and `@type`. 
 
 ### Name, Description, and URL
 [Schema:name](https://schema.org/name), [Schema:description](https://schema.org/description), 
 and [Schema:url](https://schema.org/url) are properties inherited from the
-Schema.org `Thing` class. These are common properties that all Schema.org types
-contain. A simple example is shown below:
+Schema.Org `Thing` class. These are common properties that all Schema.Org types
+contain. 
+
+A simple example is shown below:
 
 ``` json
 {
@@ -51,7 +55,7 @@ contain. A simple example is shown below:
 
 ### Identifier
 
-[Schema:identifier](https://schema.org/identifier) is a property of the `Thing` class. It is used to encode the record's identifier(s). For permanantly published records, this will likely be a digital object identifier (DOI). For unpublished records, this may be an identifier assigned by the system in which the content of the record resides. This element can be repeated if a record has multiple identifiers.
+[Schema:identifier](https://schema.org/identifier) is a property of the `Thing` class. It is used to encode the record's identifier(s). For permanently published records, `identifier` will likely be a digital object identifier (DOI). For unpublished records, this may be an identifier assigned by the system in which the record's content resides. This element can be repeated if a record has multiple identifiers.
 
 An identifier as text can be encoded as:
 
@@ -61,7 +65,7 @@ An identifier as text can be encoded as:
 }
 ```
 
-However, it is preferred for an identifier to be expressed as a URL if possible. An identifier that can be expressed as a URL can be encoded as:
+However, it is preferred for an identifier to be expressed as a URL if possible. The following example illustrates how an identifier can be encoded as a URL. In this example, the identifier is the unique ID of the creative work generated by the HydroShare system, where the content of the record resides. 
 
 ``` json
 {
@@ -85,12 +89,12 @@ However, it is preferred for an identifier to be expressed as a URL if possible.
 ```
 
 
-### Creator
+### Creator 
 
-[Schema:creator](https://schema.org/creator) is a property of the `CreativeWork` class. The purpose of this
+[Schema:creator](https://schema.org/creator) is a property of the `CreativeWork` class. The purpose of `creator`
 property is to describe the author or authors of a catalog record. The
-recommended way to express authorship of a CreativeWork is shown below. Note,
-this approach was adopted from ESIP Science on Schema Org.
+recommended way to express authorship of a CreativeWork is shown below. Note that
+this approach was adopted from ESIP SOSO.
 
 A single author can be expressed as:
 
@@ -124,8 +128,7 @@ A more complete example of an author will include additional fields from the
 }
 ```
 
-For multiple authors, the `@list` keyword is used such that the order of
-creators is preserved.
+For multiple authors, the `@list` keyword is used to preserve the order of creators.
 
 ``` json
  {
@@ -169,9 +172,8 @@ creators is preserved.
 or [Schema:DateTime](https://schema.org/DateTime)  data types. 
 The **dateCreated** represents the date at which the dataset was initially generated. 
 The **dateModified** represents the date at which the dataset was most recently modified. 
-The **datePublished** represents the date at which the dataset was permanently published. 
-The `Date` class expects a value in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601). 
-Whereas the `DateTime` class requires a combination of date and time of day. An example of each is provided below.
+The **datePublished** represents the date on which the dataset was permanently published. 
+The `Date` class expects a value in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601), whereas the `DateTime` class requires a combination of date and time of day. An example of each is provided below.
 
 ``` json
 {
@@ -192,9 +194,8 @@ Whereas the `DateTime` class requires a combination of date and time of day. An 
 ### Keywords
 
 [Schema:keywords](https://schema.org/keywords) is a property of `CreativeWork` that can be expressed using either
-the [Schema:DefinedTerm](https://schema.org/DefinedTerm), `Text`, or `URL` Schema.org classes. Keywords are tags used
-to describe the catalog record and are primarily used for resource discovery.
-**Keywords** are typically provided as a list of items, but can also done by
+the [Schema:DefinedTerm](https://schema.org/DefinedTerm), `Text`, or `URL` Schema.Org classes. Keywords are tags that describe the catalog record and are primarily used for resource discovery. The
+**Keywords** property is typically provided as a list of items, but it can also be presented by
 repeating the **Keyword** property. Several examples are listed below.
 
 ``` json
@@ -236,14 +237,17 @@ repeating the **Keyword** property. Several examples are listed below.
 ### License 
 
 [Schema:license](https://schema.org/license) is a property of the `CreativeWork` class and can be expressed as
-another `CreativeWork` or as a `URL`. A license is a document that applies to
-the content of the catalog record, for example a software license. 
+another `CreativeWork` or `URL`. A license is a document that applies to
+the content of the catalog record, for example, a software license. 
 
 ``` json
 {
   "license": "https://creativecommons.org/licenses/by/4.0/"
 }
 ```
+
+SOSO recommends that the license be drawn from the [SPDX license list](https://spdx.org/licenses/). For example, the MIT license 
+can be represented as: 
 
 ``` json
 {
@@ -259,12 +263,12 @@ the content of the catalog record, for example a software license.
 
 [Schema:provider](https://schema.org/provider) and [Schema:publisher](https://schema.org/publisher) are properties of the `CreativeWork` class that can be expressed as either an [Schema:Organization](https://schema.org/Organization) or a 
 [Schema:Person](https://schema.org/Person). **Provider** represents the service operator,
-service performer, or goods producer. In many cases this is the operator of the
-repository in which the data resides, but that may not always be the case. In the case that a record is 
+service performer, or goods producer. In many cases, this is the operator of the
+repository in which the data resides, but that may not always be the case. If a record is 
 permanently published, **Publisher** indicates the organization or person that published the record.
 
 **Provider** and **Publisher** are semantically similar and can be encoded similarly. The following 
-examples are for **Provider** but can also be used for **Publisher**.
+examples are for the **Provider** property but can also be used for **Publisher**.
 
 Simple encoding for the URL of a provider:
 
@@ -333,12 +337,12 @@ This linkage can be encoded as:
 
 ### Version
 
-The [Schema:version](https://schema.org/version) is a propoerty of `CreativeWork` that can be used to encode a formal 
+The [Schema:version](https://schema.org/version) is a property of `CreativeWork` that can be used to encode a formal 
 version number or name for a record. **version** can be encoded as either a number or
 a string; however, since many people use semantic versioning, a string is preferred as
 it will work regardless. 
 
-Example encoding as string:
+Example encoding as a string:
 
 ``` json
 {
@@ -349,8 +353,8 @@ Example encoding as string:
 
 ### Language
 
-The [Schema:inLanguage](https://schema.org/inLanguage) property can be used to encode the language in which the content of 
-the record is expressed. Language codes from the [IETF BCP 47 standard]() should be 
+The [Schema:inLanguage](https://schema.org/inLanguage) property can be used to encode the language in which the record's content 
+is expressed. Language codes from the [IETF BCP 47 standard]() should be 
 used for this encoding. For most records, it is anticipated that this will be "en-US".
 
 ``` json
@@ -363,7 +367,7 @@ used for this encoding. For most records, it is anticipated that this will be "e
 ### Creative Work Status
 
 [Schema:creativeWorkStatus](https://schema.org/creativeWorkStatus) is a property of `CreativeWork` used to capture the
-stage of a work's lifecycle. Example terms include Incomplete, Draft, Published, Obsolete. Some organizations define a 
+stage of a work's lifecycle. Example terms include Incomplete, Draft, Published, Obsolete, etc. Some organizations define a 
 set of terms for the stages of their publication lifecycle. This can be expressed as text or using the 
 [Schema:DefinedTerm](https://schema.org/DefinedTerm) class.
 
@@ -388,18 +392,26 @@ A more expressive status can be provided using the `DefinedTerm` subtype.
 
 [Schema:funding](https://schema.org/funding) is a property of the `CreativeWork` class used to describe the
 grant(s) that directly or indirectly funded or sponsored the work. **Funding**
-is expressed using the [Schema:Grant](https://schema.org/Grant) subtype.
+is expressed using the [Schema:Grant](https://schema.org/Grant) subtype. SOSO recommends using structural 
+information about the funding organization, including its `name` and `identifier`, such as  
+[ROR](https://ror.org/) and Funder ID. 
+
+Here is an example of describing the National Science Foundation agency using the `funding` property:
 
 ``` json
 {
   "funding": {
     "@type": "MonetaryGrant",
     "name": "HDR Institute: Geospatial Understanding through an Integrative Discovery Environment",
-     "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2118329",
-     "funder": {
-        "@type": "Organization",
-        "name": "National Science Foundation"
-      }
+    "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2118329",
+    "funder": {
+       "@type": "Organization",
+       "name": "National Science Foundation",
+       "identifier":[
+        "https://ror.org/021nxhr62",
+        "https://doi.org/10.13039/100000001"
+       ]
+    }
   }
 }
 ```
@@ -412,20 +424,28 @@ Multiple funding sources can be expressed as a list:
   {
     "@type": "MonetaryGrant",
     "name": "HDR Institute: Geospatial Understanding through an Integrative Discovery Environment",
-     "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2118329",
-     "funder": {
-        "@type": "Organization",
-        "name": "National Science Foundation"
-      }
+    "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2118329",
+    "funder": {
+       "@type": "Organization",
+       "name": "National Science Foundation",
+       "identifier":[
+        "https://ror.org/021nxhr62",
+        "https://doi.org/10.13039/100000001"
+       ]
+    }
   },
   {
     "@type": "MonetaryGrant",
     "name": "Collaborative Research: Network Hub: Enabling, Supporting, and Communicating Critical Zone Research.",
-     "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2012748",
-     "funder": {
-        "@type": "Organization",
-        "name": "National Science Foundation"
-      }
+    "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2012748",
+    "funder": {
+      "@type": "Organization",
+      "name": "National Science Foundation",
+      "identifier":[
+        "https://ror.org/021nxhr62",
+        "https://doi.org/10.13039/100000001"
+       ]
+    }
   }
   ]
 }
@@ -433,8 +453,8 @@ Multiple funding sources can be expressed as a list:
 
 ### Temporal Coverage
 
-[Schema:temporalCoverage](https://schema.org/temporalCoverage) is a property of the `CreativeWork` class that is used to
-define a period of time in which the catalog record applies to. This should be
+[Schema:temporalCoverage](https://schema.org/temporalCoverage) is a property of the `CreativeWork` class that 
+defines the period to which the catalog record applies. This should be
 expressed using the [Schema:DateTime](https://schema.org/DateTime) subtype.
 
 ``` json
@@ -453,11 +473,10 @@ Open-ended date ranges can be written with ".." in place of the end date. The fo
 
 ### Spatial Coverage
 
-[Schema:spatialCoverage](https://schema.org/spatialCoverage) is a property of the `CreativeWork` class that is used to
-indicate the location for which the content is valid. This can also be used to
-indicate the focus area of the content. This should be expressed using the
-[Schema:Place](https://schema.org/Place) subtype. There are numerous ways to describe the location of content,
-below are several common ones.
+[Schema:spatialCoverage](https://schema.org/spatialCoverage) is a property of the `CreativeWork` 
+class used to indicate the focus area of the record's content and to document the location for which the record's content is valid.
+This should be expressed using the [Schema:Place](https://schema.org/Place) subtype. 
+There are numerous ways to describe the spatial coverage of a record's content, but below are several common ones.
 
 A generic location may look like this:
 
@@ -471,7 +490,12 @@ A generic location may look like this:
 }
 ```
 
-A geographic point may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
+However, a recommended practice is to use the [Schema:geo](https://schema.org/geo) that is a subtype of `Place` and 
+could be specified by using either [Schema:GeoCoordinates](https://schema.org/GeoCoordinates) for a point location or 
+[Schema:GeoShape](https://schema.org/GeoShape) for a line or area coverage extent (such as bounding box, polygon, etc.). 
+Note that the geometry described by `GeoShape` should be expressed with a set of latitude and longitude pairs. 
+
+A geographic point location may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
 
 ``` json 
 {
@@ -486,7 +510,7 @@ A geographic point may look like this (from [SOSO](https://github.com/ESIPFed/sc
 }
 ```
 
-A geographic vector may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
+A geographic vector is expressed using [Schema:line](https://schema.org/line), and it may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
 
 ``` json 
 {
@@ -500,7 +524,7 @@ A geographic vector may look like this (from [SOSO](https://github.com/ESIPFed/s
 }
 ```
 
-A geographic polygon may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
+A geographic polygon is described using [Schema:polygon](https://schema.org/polygon), and it may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
 
 ``` json 
 {
@@ -514,7 +538,8 @@ A geographic polygon may look like this (from [SOSO](https://github.com/ESIPFed/
 }
 ```
 
-A geographic bounding box may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
+A geographic bounding box is an area enclosed by a rectangle formed by two points. It is expressed using 
+[Schema:box](https://schema.org/box), and it may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
 
 ``` json
 {
@@ -528,7 +553,7 @@ A geographic bounding box may look like this (from [SOSO](https://github.com/ESI
 }
 ```
 
-Multiple locations can be specific using a list: (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
+Multiple locations can be specified using a list: (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
 
 ``` json
 {
@@ -552,7 +577,8 @@ Multiple locations can be specific using a list: (from [SOSO](https://github.com
 
 ### Associated Media
 
-[Schema:associatedMedia](https://schema.org/associatedMedia) is a property of `CreativeWork` for describing media objects 
+[Schema:associatedMedia](https://schema.org/associatedMedia), which is also a synonym for 
+[Schema:encoding](https://schema.org/encoding), is a property of `CreativeWork` for describing media objects 
 that encode the work. Specific types of media objects that we selected for the I-GUIDE 
 data catalog are [Schema:DataDownload](https://schema.org/DataDownload), [Schema:ImageObject](https://schema.org/ImageObject), and [Schema:VideoObject](https://schema.org/VideoObject). Note that a media object 
 could have several properties from `CreativeWork`, but most importantly, it requires 
@@ -629,19 +655,19 @@ The [Schema:identifier](https://schema.org/identifier) property is used to uniqu
 the `identifier` property should be programmatically generated when the record is registered into the catalog. For more 
 information about `identifier`, see the [Identifier](#identifier) 
 
-**Has Part** is used to describe a record or work that is part of the current
+**Has Part** describes a record or work that is part of the current
 record. For example, a body of work may consist of multiple related datasets that
 are used for a particular study.
 
-Note: `hasPart` and `isPartOf` are generally used to create linkage between records that are grouped
-together or records that belong to other groupings. For example, `hasPart` may
+Note: `hasPart` and `isPartOf` are generally used to link records that are grouped
+together or those that belong to other groupings. For example, `hasPart` may
 be used to indicate a record that consists of one or more additional
 `CreativeWork` (this is similar to a HydroShare collection). In contrast,
 `isPartOf` is used to indicate catalog records that reference a designated
 `CreativeWork`. 
 
 The following example illustrates how a `CreativeWork` may reference another
-`CreativeWork` in the catalog. This can be read as, "Collection of Great Salt Lake Data" 
+`CreativeWork` in the catalog. This can be read as: "Collection of Great Salt Lake Data" 
 is a collection of record(s) that includes the "Great Salt Lake Bathymetry" record.
 
 ``` json
@@ -694,7 +720,7 @@ For the example above, multiple relations can be defined using a list.
 ```
 
 **isPartOf** is the inverse property of **hasPart** and may be used to indicate
-that a work is part of another collection of works. This can be read as, the "Great Salt Lake Bathymetry" 
+that a work is part of another collection of works. This can be read as: the "Great Salt Lake Bathymetry" 
 record belongs to the "Collection of Great Salt Lake Data" creative work in the catalog.  
 
 ``` json
@@ -721,7 +747,7 @@ record belongs to the "Collection of Great Salt Lake Data" creative work in the 
 
 ### Citation
 
-In addition to `hasPart` and `isPartOf` that imply a specific collection/collected record relationship, 
+In addition to `hasPart` and `isPartOf` that overall imply a specific collection/collected record relationship, 
 [Schema:citation](https://schema.org/citation) can be used to represent general relationships between records. 
 It can represent a citation or reference to another creative work, such as another publication, web page, scholarly article, etc. that 
 are related but not necessarily part of a collection record. Note that `citation` is NOT used to encode the citation of the record being described.
@@ -742,7 +768,7 @@ This is a simple example of using `citation` to refer to a published article tha
 }
 ```
 
-`citation` can be also expressed as a `creativework` to express more metadata of the item using subproperties from `creativework`. Note that not all the authors of 
+`citation` can also be expressed as a `creativework` to express more metadata of the item using sub-properties from `creativework`. Note that not all the authors of 
 the cited article are listed in this example. 
 
 ``` json
@@ -773,11 +799,8 @@ the cited article are listed in this example.
 }
 ```
 
-This is an example that demonstrates the use of multiple citations, including a published article and a Jupyter notebook. Mote that not all the authors of 
-the cited article are listed in this example. 
+This example demonstrates the use of multiple citations, including a published article and a Jupyter notebook. Note that not all the authors of the cited article are listed in this example. 
  
-
-
 ``` json
 {
   "name": "NOAA National Water Model CONUS Retrospective Dataset, Version 2.1 in NetCDF Format",
