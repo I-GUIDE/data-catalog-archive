@@ -3,69 +3,72 @@
 Core metadata is a set of common metadata fields that all catalog
 holdings share and consists largely of high-level dataset attributes
 and properties. This document outlines the **required** and **optional**
-high-level properties selected from Schema.Org vocabulary to design the I-GUIDE metadata schema. These properties are encoded as `1` or `1+` for **required** and `1,0` or `0+` for **optional** in the Cardinality column of the table below.
+high-level properties selected from Schema.Org vocabulary to design the 
+I-GUIDE core metadata schema. These properties are encoded as `1` or `1+` 
+for **required** and `0,1` or `0+` for **optional** in the Cardinality column of the table below.
 
 |Property|Class|Expected Type|Cardinality|Description| 
 |---|---|---|---|---|
-|name|Thing|Text|1|The name or title of the record|
-|description|Thing|Text|1|The description or abstract of the record|
-|url|Thing|URL|1|The url of the record|
-|identifier|Thing|PropertyValue \| Text \| URL|1+|Any kind of identifier for the record|
-|creator|CreativeWork|Person OR Organization|1+|Person or organization that created the work|
-|dateCreated | CreativeWork | Date \| DateTime | 1 | The date on which the work was created|
-|keywords | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the dataset, delimited by commas. |
-|license | CreativeWork | CreativeWork \| URL | 1 | A license document that applies to the content, typically indicated by a URL |
-|provider | CreativeWork | Organization \| Person | 1 | The service provider, service operator, or service performer |
-|publisher| CreativeWork | Organization \| Person | 0,1 | The publisher of the record |
-|datePublished| CreativeWork | Date \| DateTime | 0,1 | Date of first publication for the record |
-|subjectOf| Thing | CreativeWork | 0+ | A CreativeWork about the record - e.g., a related metadata document describing the record |
-|version| CreativeWork | Number \| Text | 0,1 | The version of the record |
-|inLanguage|CreativeWork|Language \| Text|0,1| The language of the content of the record|
-|creativeWorkStatus | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a creative work in terms of its stage in a lifecycle. Example terms include Incomplete, Draft, Published, Obsolete. Some organizations define a set of terms for the stages of their publication lifecycle.|
-|dateModified |	CreativeWork |Date \| DateTime | 0,1| The date on which the CreativeWork was most recently modified or updated. | 
-|funding| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the dataset.|
-|temporalCoverage|CreativeWork|DateTime| 0,1 | The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in ISO 8601 time interval format. |
-|spatialCoverage|CreativeWork|Place| 0,1 | The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content. It is a subproperty of contentLocation intended primarily for more technical and detailed materials. For example with a Dataset, it indicates areas that the dataset describes: a dataset of New York weather would have spatialCoverage which was the place: the state of New York.|
-|hasPart|CreativeWork|CreativeWork|0+|Indicates an record or CreativeWork that is part of this record|
-|isPartOf|CreativeWork|CreativeWork OR URL |0+|Indicates an record or CreativeWork that this record, or CreativeWork (in some sense), is part of.|
-|associatedMedia|CreativeWork|MediaObject|0+| A media object that encodes this CreativeWork. This property is a synonym for encoding.|
+|[name](#name-description-and-url)|Thing|Text|1|The name or title of the record|
+|[description](#name-description-and-url)|Thing|Text|1|The description or abstract of the record|
+|[url](#name-description-and-url)|Thing|URL|1|The url of a landing page describing the record|
+|[identifier](#identifier)|Thing|PropertyValue \| Text \| URL|1+|Any kind of identifier for the record|
+|[creator](#creator)|CreativeWork|Organization \| Person|1+|Organization or person that created the record|
+|[dateCreated](#dates) | CreativeWork | Date \| DateTime | 1 | The date on which the record was created|
+|[keywords](#keywords) | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the record|
+|[license](#license) | CreativeWork | CreativeWork \| URL | 1 | A license document that applies to the content |
+|[provider](#provider-and-publisher) | CreativeWork | Organization \| Person | 1 | The service provider, service operator, or service performer |
+|[publisher](#provider-and-publisher)| CreativeWork | Organization \| Person | 0,1 | The publisher of the record |
+|[datePublished](#dates)| CreativeWork | Date \| DateTime | 0,1 | Date of first publication for the record |
+|[subjectOf](#subject-of)| Thing | CreativeWork | 0+ | A creative work about the record - e.g., a related metadata document describing the record |
+|[version](#version)| CreativeWork | Number \| Text | 0,1 | The version of the record |
+|[inLanguage](#language)|CreativeWork|Language \| Text|0,1| The language of the content of the record|
+|[creativeWorkStatus](#creative-work-status) | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a record in terms of its stage in a lifecycle|
+|[dateModified](#dates) |	CreativeWork |Date \| DateTime | 0,1| The date on which the record was most recently modified or updated | 
+|[funding](#funding)| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the record|
+|[temporalCoverage](#temporal-coverage)|CreativeWork|DateTime| 0,1 | The period that the content of a record applies to |
+|[spatialCoverage](#spatial-coverage)|CreativeWork|Place| 0,1 | The place(s) which are the focus of the content of a record|
+|[associatedMedia](#associated-media)|CreativeWork|MediaObject|0+| An item (media object) or a group of items (media objects) that encodes this record |
+|[hasPart](#has-part-and-is-part-of)|CreativeWork|CreativeWork|0+| A creative work that is part of this record|
+|[isPartOf](#has-part-and-is-part-of)|CreativeWork|CreativeWork \| URL |0+| A creative work that this record (in some sense) is part of|
+|[citation](#citation)|CreativeWork|CreativeWork \| Text|0+|A citation or reference to another creative work|
 
-The following examples demonstrate how each of these required properties may
-be implemented in JSON+LD. Note, there are several properties omitted from each
+The following examples demonstrate how each one of these properties may
+be implemented in JSON+LD. Note that there are several properties omitted from each
 example such as `@context` and `@type`. 
 
 ### Name, Description, and URL
-**Name**, **Description**, and **URL** are properties inherited from the
-Schema.org `Thing` class. These are common properties that all Schema.org types
-contain. A simple example is shown below:
+[Schema:name](https://schema.org/name), [Schema:description](https://schema.org/description), 
+and [Schema:url](https://schema.org/url) are properties inherited from the
+Schema.Org `Thing` class. These are common properties that all Schema.Org types
+contain. 
+
+A simple example is shown below:
 
 ``` json
 {
-  ...
-  "name": "IGUIDE Sample Dataset",
-  "description": "This is a sample datasets used in the I-GUIDE Catalog documentation",
-  "url": "https://my-unique-url.com/9d413b9d1"
+  "name": "I-GUIDE Dataset Catalog Example",
+  "description": "This resource contains a Jupyter notebook that demonstrates how someone can query the I-GUIDE data catalog, retrieve data, and execute a code workflow.",
+  "url": "https://www.hydroshare.org/resource/018fe11a7f644bc2bc82f9ec073eeca9/"
 }
 ```
 
 ### Identifier
 
-**Identifier** is a property of the `Thing` class. It is used to encode the record's identifier(s). For permanantly published records, this will likely be a digital object identifier (DOI). For unpublished records, this may be an identifier assigned by the system in which the content of the record resides. This element can be repeated if a record has multiple identifiers.
+[Schema:identifier](https://schema.org/identifier) is a property of the `Thing` class. It is used to encode the record's identifier(s). For permanently published records, `identifier` will likely be a digital object identifier (DOI). For unpublished records, this may be an identifier assigned by the system in which the record's content resides. This element can be repeated if a record has multiple identifiers.
 
 An identifier as text can be encoded as:
 
 ``` json
 {
-  ...
   "identifier": "6625bdbde41c45c2b906f32be7ea70f0/"
 }
 ```
 
-However, it is preferred for an identifier to be expressed as a URL if possible. An identifier that can be expressed as a URL can be encoded as:
+However, it is preferred for an identifier to be expressed as a URL if possible. The following example illustrates how an identifier can be encoded as a URL. In this example, the identifier is the unique ID of the creative work generated by the HydroShare system, where the content of the record resides. 
 
 ``` json
 {
-  ...
   "identifier": "https://www.hydroshare.org/resource/6625bdbde41c45c2b906f32be7ea70f0/"
 }
 ```
@@ -74,7 +77,6 @@ However, it is preferred for an identifier to be expressed as a URL if possible.
 
 ``` json
 {
-  ...
   "identifier": {
     "@id": "https://doi.org/10.4211/hs.6625bdbde41c45c2b906f32be7ea70f0",
     "@type": "PropertyValue",
@@ -87,29 +89,30 @@ However, it is preferred for an identifier to be expressed as a URL if possible.
 ```
 
 
-### Creator
+### Creator 
 
-**Creator** is a property of the `CreativeWork` class. The purpose of this
+[Schema:creator](https://schema.org/creator) is a property of the `CreativeWork` class. The purpose of `creator`
 property is to describe the author or authors of a catalog record. The
-recommended way to express authorship of a CreativeWork is shown below. Note,
-this approach was adopted from ESIP Science on Schema Org.
+recommended way to express authorship of a CreativeWork is shown below. Note that
+this approach was adopted from ESIP SOSO.
 
 A single author can be expressed as:
 
 ``` json
-  ...
+{
   "creator": {
     "@type": "Person",
     "name": "John Doe",
-    "email": "john.doe@email.com",
+    "email": "john.doe@email.com"
   }
+}
 ```
 
 A more complete example of an author will include additional fields from the
-`Person` class such as an identifier.
+[Schema:Person](https://schema.org/Person) class such as an identifier.
 
 ``` json
-  ...
+{
   "creator": {
     "@type": "Person",
     "name": "John Doe",
@@ -122,13 +125,13 @@ A more complete example of an author will include additional fields from the
       "value": "0000-0000-0000-0001"
     }
   }
+}
 ```
 
-For multiple authors, the `@list` keyword is used such that the order of
-creators is preserved.
+For multiple authors, the `@list` keyword is used to preserve the order of creators.
 
 ``` json
-  ...
+ {
   "creator": {
     "@list":[
       {
@@ -157,76 +160,75 @@ creators is preserved.
       }
     ]
   }
-
+ }
 ```
 
-### Date Created
+### Dates
 
-**DateCreated** is a property of `CreativeWork` that can be expressed using
-either the `Date` or `DateTime` classes. The **dateCreated** represents the
-date at which the dataset was initially generated. The `Date` class expects a
-value in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601). Whereas
-the `DateTime` class requires a combination of date and time of day. An
-example if each is provided below.
+[Schema:dateCreated](https://schema.org/dateCreated), 
+[Schema:dateModified](https://schema.org/dateModified), and 
+[Schema:datePublished](https://schema.org/datePublished) are properties of 
+`CreativeWork` that can be expressed using either the [Schema:Date](https://schema.org/Date) 
+or [Schema:DateTime](https://schema.org/DateTime)  data types. 
+The **dateCreated** represents the date at which the dataset was initially generated. 
+The **dateModified** represents the date at which the dataset was most recently modified. 
+The **datePublished** represents the date on which the dataset was permanently published. 
+The `Date` class expects a value in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601), whereas the `DateTime` class requires a combination of date and time of day. An example of each is provided below.
 
 ``` json
 {
-  ...
-  "dateCreated": "2023-01-01",
+  "dateCreated": "2020-10-01",
+  "dateModified": "2022-11-24",
+  "datePublished": "2023-02-02"
 }
-
 ```
 
 ``` json
 {
-  ...
-  "dateCreated": "2023-01-01T00:00:00+00:00",
+  "dateCreated": "2020-10-01T00:00:00+00:00",
+  "dateModified": "2022-11-24T00:00:00+00:00",
+  "datePublished": "2023-02-02T00:00:00+00:00"
 }
-
 ```
 
 ### Keywords
 
-**Keywords** is a property of `CreativeWork` that can be expressed using either
-the `DefinedTerm`, `Text`, or `URL` Schema.org classes. Keywords are tags used
-to describe the catalog record and are primarily used for resource discovery.
-**Keywords** are typically provided as a list of items, but can also done by
+[Schema:keywords](https://schema.org/keywords) is a property of `CreativeWork` that can be expressed using either
+the [Schema:DefinedTerm](https://schema.org/DefinedTerm), `Text`, or `URL` Schema.Org classes. Keywords are tags that describe the catalog record and are primarily used for resource discovery. The
+**Keywords** property is typically provided as a list of items, but it can also be presented by
 repeating the **Keyword** property. Several examples are listed below.
 
 ``` json
 {
-  ...
-  "keywords": ["keyword 1", "keyword 2", "keyword 3"],
+  "keywords": ["keyword 1", "keyword 2", "keyword 3"]
 }
 ```
 
 ``` json
 {
-  ...
   "keywords": {
     "@type": "DefinedTerm",
     "name": "Leaf wetness",
     "description": "The effect of moisture settling on the surface of a leaf as a result of either condensation or rainfall.",
-    "inDefinedTermSet": "http://his.cuahsi.org/mastercvreg/edit_cv11.aspx?tbl=VariableNameCV",
+    "inDefinedTermSet": "http://his.cuahsi.org/mastercvreg/edit_cv11.aspx?tbl=VariableNameCV"
   }
 }
 ```
 
 ``` json
 {
-  ...
   "keywords": [
     {
       "@type": "DefinedTerm",
       "name": "Leaf wetness",
       "description": "The effect of moisture settling on the surface of a leaf as a result of either condensation or rainfall.",
-      "inDefinedTermSet": "http://his.cuahsi.org/mastercvreg/edit_cv11.aspx?tbl=VariableNameCV",
+      "inDefinedTermSet": "http://his.cuahsi.org/mastercvreg/edit_cv11.aspx?tbl=VariableNameCV"
     },
     {
       "@type": "DefinedTerm",
       "name": "Core",
       "description": "Core sample resulting in a section of a substance",
-      "inDefinedTermSet": "http://his.cuahsi.org/mastercvreg/edit_cv11.aspx?tbl=SampleTypeCV",
+      "inDefinedTermSet": "http://his.cuahsi.org/mastercvreg/edit_cv11.aspx?tbl=SampleTypeCV"
     }
   ]
 }
@@ -234,46 +236,46 @@ repeating the **Keyword** property. Several examples are listed below.
 
 ### License 
 
-**License** is a property of the `CreativeWork` class and can be expressed as
-another `CreativeWork` or as a `URL`. A license is a document that applies to
-the content of the catalog record, for example a software license. 
+[Schema:license](https://schema.org/license) is a property of the `CreativeWork` class and can be expressed as
+another `CreativeWork` or `URL`. A license is a document that applies to
+the content of the catalog record, for example, a software license. 
 
 ``` json
 {
-  ...
-  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "license": "https://creativecommons.org/licenses/by/4.0/"
 }
 ```
 
+SOSO recommends that the license be drawn from the [SPDX license list](https://spdx.org/licenses/). For example, the MIT license 
+can be represented as: 
+
 ``` json
 {
-  ...
   "license": {
     "@type": "CreativeWork",
-    "name": "My custom license",
-    "url": "https://my-custom-license.com/license.txt"
+    "name": "MIT License",
+    "url": "https://spdx.org/licenses/MIT"
     }
 }
 ```
 
 ### Provider and Publisher
 
-**Provider** and **Publisher** are properties of the `CreativeWork` class that can be expressed as
-either an `Organization` or a `Person`. **Provider** represents the service operator,
-service performer, or goods producer. In many cases this is the operator of the
-repository in which the data resides, but that may not always be the case. In the case that a record is 
+[Schema:provider](https://schema.org/provider) and [Schema:publisher](https://schema.org/publisher) are properties of the `CreativeWork` class that can be expressed as either an [Schema:Organization](https://schema.org/Organization) or a 
+[Schema:Person](https://schema.org/Person). **Provider** represents the service operator,
+service performer, or goods producer. In many cases, this is the operator of the
+repository in which the data resides, but that may not always be the case. If a record is 
 permanently published, **Publisher** indicates the organization or person that published the record.
 
 **Provider** and **Publisher** are semantically similar and can be encoded similarly. The following 
-examples are for **Provider** but can also be used for **Publisher**.
+examples are for the **Provider** property but can also be used for **Publisher**.
 
 Simple encoding for the URL of a provider:
 
 ``` json
 {
-  ...
   "provider": {
-    "@id": "https://hydroshare.org",
+    "@id": "https://hydroshare.org"
   }
 }
 ```
@@ -282,11 +284,10 @@ Example encoding where a person is the provider:
 
 ``` json
 {
-  ...
   "provider": {
     "@type": "Person",
     "name": "John Doe",
-    "email": "jdoe@email.com",
+    "email": "jdoe@email.com"
   }
 }
 ```
@@ -298,47 +299,23 @@ Encoding for a formal repository with a parent organization:
 
 ``` json
 {
-  ...
   "provider": {
     "@type": "Organization",
     "name": "HydroShare",
     "url": "https://hydroshare.org",
     "parentOrganization": {
       "@type": "Organization",
-      "name": CUAHSI,
-      "url": "www.cuahsi.org",
+      "name": "CUAHSI",
+      "url": "https://www.cuahsi.org/",
       "address": "1167 Massachusetts Ave Suites 418 & 419, Arlington, MA 02476"
     }
   }
 }
 ```
 
-### Date Published
-
-**DatePublished** is a property of `CreativeWork` that can be expressed using
-either the `Date` or `DateTime` data types. The **datePublished** represents the
-date at which the dataset was permanently published. The `Date` data type expects a
-value in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601). Whereas
-the `DateTime` data type requires a combination of date and time of day. An
-example if each is provided below.
-
-``` json
-{
-  ...
-  "datePublished": "2023-01-01",
-}
-```
-
-``` json
-{
-  ...
-  "datePublished": "2023-01-01T00:00:00+00:00",
-}
-```
-
 ### Subject Of
 
-**subjectOf** is a property of `CreativeWork` and can be used to encode a linkage
+[Schema:subjectOf](https://schema.org/subjectOf) is a property of `CreativeWork` and can be used to encode a linkage
 to a separate `CreativeWork` that describes or is about the record. An example would 
 be a formal metadata document encoded using some metadata standard that fully describes
 the record. More specifically, this could be a metadata document accompanying a
@@ -349,63 +326,60 @@ This linkage can be encoded as:
 
 ``` json
 {
-  ...
   "subjectOf": {
     "@type": "CreativeWork",
     "name": "Dublin Core Metadata Document Describing the Dataset",
     "url": "https://www.hydroshare.org/hsapi/resource/c1be74eeea614d65a29a185a66a7552f/scimeta/",
     "encodingFormat": "application/rdf+xml"
   }
-  "creativeWorkStatus": "published",
+}
 ```
 
 ### Version
 
-The **version** is a propoerty of `CreativeWork` that can be used to encode a formal 
+The [Schema:version](https://schema.org/version) is a property of `CreativeWork` that can be used to encode a formal 
 version number or name for a record. **version** can be encoded as either a number or
 a string; however, since many people use semantic versioning, a string is preferred as
 it will work regardless. 
 
-Example encoding as string:
+Example encoding as a string:
 
 ``` json
 {
-  ...
   "version": "v1.0.2"
+}
 ```
 
 
 ### Language
 
-The **inLanguage** property can be used to encode the language in which the content of 
-the record is expressed. Language codes from the [IETF BCP 47 standard]() should be 
+The [Schema:inLanguage](https://schema.org/inLanguage) property can be used to encode the language in which the record's content 
+is expressed. Language codes from the [IETF BCP 47 standard]() should be 
 used for this encoding. For most records, it is anticipated that this will be "en-US".
 
 ``` json
 {
-  ...
   "inLanguage": "en-US"
+}
 ```
 
 
 ### Creative Work Status
 
-**CreativeWorkStatus** is a property of `CreativeWork` used to capture the
-stage of a work's lifecycle; incomplete, draft, published, obsolete, etc. This
-can be expressed as text or using the `DefinedTerm` class.
+[Schema:creativeWorkStatus](https://schema.org/creativeWorkStatus) is a property of `CreativeWork` used to capture the
+stage of a work's lifecycle. Example terms include Incomplete, Draft, Published, Obsolete, etc. Some organizations define a 
+set of terms for the stages of their publication lifecycle. This can be expressed as text or using the 
+[Schema:DefinedTerm](https://schema.org/DefinedTerm) class.
 
 ``` json
 {
-  ...
-  
-  "creativeWorkStatus": "published",
+  "creativeWorkStatus": "published"
+}
 ```
 
 A more expressive status can be provided using the `DefinedTerm` subtype.
 ``` json
 {
-  ...
-  
   "creativeWorkStatus": {
     "@type": "DefinedTerm",
     "name": "public",
@@ -414,137 +388,133 @@ A more expressive status can be provided using the `DefinedTerm` subtype.
 }
 ```
 
-### Date Modified
-
-**DateModified** is a property of `CreativeWork` that can be expressed using
-either the `Date` or `DateTime` classes. **DateModified** represents the
-date at which the dataset was most recently modified. The `Date` class expects a
-value in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601). Whereas
-the `DateTime` class requires a combination of date and time of day. An
-example if each is provided below.
-
-``` json
-{
-  ...
-  "dateModified": "2023-01-01",
-}
-
-```
-
-``` json
-{
-  ...
-  "dateModified": "2023-01-01T00:00:00+00:00",
-}
-
-```
-
 ### Funding
 
-**Funding** is a property of the `CreativeWork` class used to describe the
+[Schema:funding](https://schema.org/funding) is a property of the `CreativeWork` class used to describe the
 grant(s) that directly or indirectly funded or sponsored the work. **Funding**
-is expressed using the `Grant` subtype.
+is expressed using the [Schema:Grant](https://schema.org/Grant) subtype. SOSO recommends using structural 
+information about the funding organization, including its `name` and `identifier`, such as  
+[ROR](https://ror.org/) and Funder ID. 
+
+Here is an example of describing the National Science Foundation agency using the `funding` property:
 
 ``` json
 {
-  ...
-  "funding":
-  {
+  "funding": {
     "@type": "MonetaryGrant",
-    "name": "My research project",
-     "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=000001",
-     "funder": {
-        "@type": "Organization",
-        "name": "National Science Foundation"
-      }
+    "name": "HDR Institute: Geospatial Understanding through an Integrative Discovery Environment",
+    "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2118329",
+    "funder": {
+       "@type": "Organization",
+       "name": "National Science Foundation",
+       "identifier":[
+        "https://ror.org/021nxhr62",
+        "https://doi.org/10.13039/100000001"
+       ]
     }
+  }
+}
 ```
 
 Multiple funding sources can be expressed as a list:
 
 ``` json
 {
-  ...
   "funding": [
   {
     "@type": "MonetaryGrant",
-    "name": "My first research project",
-     "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=000001",
-     "funder": {
-        "@type": "Organization",
-        "name": "National Science Foundation"
-      }
-    },
+    "name": "HDR Institute: Geospatial Understanding through an Integrative Discovery Environment",
+    "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2118329",
+    "funder": {
+       "@type": "Organization",
+       "name": "National Science Foundation",
+       "identifier":[
+        "https://ror.org/021nxhr62",
+        "https://doi.org/10.13039/100000001"
+       ]
+    }
+  },
   {
     "@type": "MonetaryGrant",
-    "name": "My second research project",
-     "url": "https://www.nsf.gov/awardsearch/showAward?AWD_ID=000002",
-     "funder": {
-        "@type": "Organization",
-        "name": "National Science Foundation"
-      }
+    "name": "Collaborative Research: Network Hub: Enabling, Supporting, and Communicating Critical Zone Research.",
+    "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2012748",
+    "funder": {
+      "@type": "Organization",
+      "name": "National Science Foundation",
+      "identifier":[
+        "https://ror.org/021nxhr62",
+        "https://doi.org/10.13039/100000001"
+       ]
     }
+  }
   ]
 }
 ```
 
 ### Temporal Coverage
 
-**TemporalCoverage** is a property of the `CreativeWork` class that is used to
-define a period of time in which the catalog record applies to. This should be
-expressed using the `DateTime` subtype.
+[Schema:temporalCoverage](https://schema.org/temporalCoverage) is a property of the `CreativeWork` class that 
+defines the period to which the catalog record applies. This should be
+expressed using the [Schema:DateTime](https://schema.org/DateTime) subtype.
 
 ``` json
 {
-  ...
-  "temporalCoverage": "2007-03-01T13:00:00Z/2008-05-11T15:30:00Z",
+  "temporalCoverage": "2007-03-01T13:00:00Z/2008-05-11T15:30:00Z"
 }
 ```
 
+Open-ended date ranges can be written with ".." in place of the end date. The following example indicates a range beginning in March 2007 and with no specified final date. Note that this is tentative and might be updated in future when ISO 8601 is officially updated.
+``` json
+{
+  "temporalCoverage": "2007-03/.."
+}
+```
+
+
 ### Spatial Coverage
 
-**SpatialCoverage** is a property of the `CreativeWork` class that is used to
-indicate the location for which the content is valid. This can also be used to
-indicate the focus area of the content. This should be expressed using the
-`Place` subtype. There are numerous ways to describe the location of content,
-below are several common ones.
+[Schema:spatialCoverage](https://schema.org/spatialCoverage) is a property of the `CreativeWork` 
+class used to indicate the focus area of the record's content and to document the location for which the record's content is valid.
+This should be expressed using the [Schema:Place](https://schema.org/Place) subtype. 
+There are numerous ways to describe the spatial coverage of a record's content, but below are several common ones.
 
 A generic location may look like this:
 
 ``` json 
 {
-  ...
   "spatialCoverage": {
     "@type": "Place",
     "name": "CUAHSI Office",
-    "address": "1167 Massachusetts Ave Suites 418 & 419, Arlington, MA 02476",
+    "address": "1167 Massachusetts Ave Suites 418 & 419, Arlington, MA 02476"
   }
-
 }
 ```
 
-A geographic point may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
+However, a recommended practice is to use the [Schema:geo](https://schema.org/geo) that is a subtype of `Place` and 
+could be specified by using either [Schema:GeoCoordinates](https://schema.org/GeoCoordinates) for a point location or 
+[Schema:GeoShape](https://schema.org/GeoShape) for a line or area coverage extent (such as bounding box, polygon, etc.). 
+Note that the geometry described by `GeoShape` should be expressed with a set of latitude and longitude pairs. 
+
+A geographic point location may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
 
 ``` json 
 {
-  ...
   "spatialCoverage": {
     "@type": "Place",
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 39.3280
+      "latitude": 39.3280,
       "longitude": 120.1633
     }
   }
 }
 ```
 
-A geographic vector may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
+A geographic vector is expressed using [Schema:line](https://schema.org/line), and it may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
 
 ``` json 
 {
-  ...
-    "spatialCoverage": {
+  "spatialCoverage": {
     "@type": "Place",
     "geo": {
       "@type": "GeoShape",
@@ -552,15 +522,13 @@ A geographic vector may look like this (from [SOSO](https://github.com/ESIPFed/s
     }
   }
 }
-}
 ```
 
-A geographic polygon may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
+A geographic polygon is described using [Schema:polygon](https://schema.org/polygon), and it may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
 
 ``` json 
 {
-  ...
-    "spatialCoverage": {
+  "spatialCoverage": {
     "@type": "Place",
     "geo": {
       "@type": "GeoShape",
@@ -570,12 +538,12 @@ A geographic polygon may look like this (from [SOSO](https://github.com/ESIPFed/
 }
 ```
 
-A geographic bounding box may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
+A geographic bounding box is an area enclosed by a rectangle formed by two points. It is expressed using 
+[Schema:box](https://schema.org/box), and it may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
 
 ``` json
 {
-  ...
-    "spatialCoverage": {
+  "spatialCoverage": {
     "@type": "Place",
     "geo": {
       "@type": "GeoShape",
@@ -585,11 +553,10 @@ A geographic bounding box may look like this (from [SOSO](https://github.com/ESI
 }
 ```
 
-Multiple locations can be specific using a list: (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
+Multiple locations can be specified using a list: (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
 
 ``` json
 {
-  ...
   "spatialCoverage": {
     "@type": "Place",
     "geo": [
@@ -610,23 +577,40 @@ Multiple locations can be specific using a list: (from [SOSO](https://github.com
 
 ### Associated Media
 
-**AssocatedMedia** is a property of `CreativeWork` for describing media objects
-that encode the work. For example, this may be a text file that represents the
-data that is being cataloged. 
+[Schema:associatedMedia](https://schema.org/associatedMedia), which is also a synonym for 
+[Schema:encoding](https://schema.org/encoding), is a property of `CreativeWork` for describing media objects 
+that encode the work. Specific types of media objects that we selected for the I-GUIDE 
+data catalog are [Schema:DataDownload](https://schema.org/DataDownload), [Schema:ImageObject](https://schema.org/ImageObject), and [Schema:VideoObject](https://schema.org/VideoObject). Note that a media object 
+could have several properties from `CreativeWork`, but most importantly, it requires 
+[Schema:contentUrl](https://schema.org/contentUrl) and [Schema:encodingFormat](https://schema.org/encodingFormat). 
+`contentUrl` should point at the actual bytes of the media object and is represented as a URL. 
+`encodingFormat` expresses the format of a media object using a MIME format 
+(see [IANA site](https://www.iana.org/assignments/media-types/media-types.xhtml) and 
+[MDN reference](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)). 
 
-A single file can be expressed as:
+A single text file that represents the data that is being cataloged can be expressed as:
 
 ``` json
 {
- ...
- "associatedMedia":
-   {
-     "@type": "MediaObject",
-     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file1.csv",
-     "encodingFormat": "text/csv",
-     "contentSize": "50 MB",
-     "name": "Data File 1"
-   }
+ "associatedMedia": {
+    "@type": "DataDownload",
+    "contentUrl": "https://www.hydroshare.org/resource/51d1539bf6e94b15ac33f7631228118c/data/contents/USGS_Harvey_gages_TxLaMsAr.csv",
+    "encodingFormat": "text/csv",
+    "contentSize": "0.17 MB",
+    "name": "USGS gage locations within the Harvey-affected areas in Texas"
+  }
+}
+```
+
+``` json
+{
+ "associatedMedia": {
+    "@type": "VideoObject",
+    "contentUrl": "https://www.hydroshare.org/resource/81cb3f6c0dde4433ae4f43a26a889864/data/contents/HydroClientMovie.mp4",
+    "encodingFormat": "video/mp4",
+    "contentSize": "79.2 MB",
+    "name": "HydroClient Video"
+  }
 }
 ```
 
@@ -634,102 +618,221 @@ Multiple files can be expressed as:
 
 ``` json
 {
-  ...
   "associatedMedia": [
    {
-     "@type": "MediaObject",
-     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file1.csv",
-     "encodingFormat": "text/csv",
-     "contentSize": "50 MB",
-     "name": "Data File 1"
+    "@type": "DataDownload",
+    "contentUrl": "https://www.hydroshare.org/resource/51d1539bf6e94b15ac33f7631228118c/data/contents/USGS_Harvey_gages_TxLaMsAr.csv",
+    "encodingFormat": "text/csv",
+    "contentSize": "0.17 MB",
+    "name": "USGS gage locations within the Harvey-affected areas in Texas"
    },
    {
-     "@type": "MediaObject",
-     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file2.csv",
-     "encodingFormat": "text/csv",
-     "contentSize": "25 MB",
-     "name": "Data File 2"
+     "@type": "DataDownload",
+     "contentUrl": "https://www.hydroshare.org/resource/51d1539bf6e94b15ac33f7631228118c/data/contents/USGS_gage_discharge_timeseries.zip",
+     "encodingFormat": "application/zip",
+     "contentSize": "8.9 MB",
+     "name": "Discharge timeseries for the USGS gages located in the Harvey-affected areas in Texas"
    },
    {
-     "@type": "MediaObject",
-     "contentUrl": "https://www.my-unique-url.com/9d413b9d1/file3.csv",
-     "encodingFormat": "text/csv",
-     "contentSize": "25 MB",
-     "name": "Data File 3"
+     "@type": "ImageObject",
+     "contentUrl": "https://www.hydroshare.org/resource/51d1539bf6e94b15ac33f7631228118c/data/contents/USGS-NWS%20gages%20in%20Harvey%20study%20area.png",
+     "encodingFormat": "image/png",
+     "contentSize": "0.96 MB",
+     "name": "USGS-NWS gages in Harvey study area"
    }
   ]
 }
 ```
 
-### Data Collections
+### Has part and is part of
 
-Collections of records can be expressed using the **hasPart** (and inverse
-**isPartOf**) properties of `CreativeWork`.
+Collections of records can be expressed using the [Schema:hasPart](https://schema.org/hasPart) (and inverse
+[Schema:isPartOf](https://schema.org/isPartOf)) properties of `CreativeWork`. These properties are used to show 
+specific relationships between a collection record and its member records where 
+`hasPart` is used on the collection to indicate that it contains other records, and 
+`isPartOf` is used on a collected record to indicate that it is part of a collection. 
+The [Schema:identifier](https://schema.org/identifier) property is used to uniquely identify each record. Note that
+the `identifier` property should be programmatically generated when the record is registered into the catalog. For more 
+information about `identifier`, see the [Identifier](#identifier) 
 
-**Has Part** is used to describe a record or work that is part of the current
+**Has Part** describes a record or work that is part of the current
 record. For example, a body of work may consist of multiple related datasets that
 are used for a particular study.
 
-Note: `hasPart` and `isPartOf` are generally used for records that are grouped
-together or records that belong to other groupings. For example, `hasPart` may
+Note: `hasPart` and `isPartOf` are generally used to link records that are grouped
+together or those that belong to other groupings. For example, `hasPart` may
 be used to indicate a record that consists of one or more additional
-CreativeWork (this is similar to a HydroShare collection). In contrast,
+`CreativeWork` (this is similar to a HydroShare collection). In contrast,
 `isPartOf` is used to indicate catalog records that reference a designated
-CreativeWork. As such, these are not demonstrated in the example below.
+`CreativeWork`. 
 
+The following example illustrates how a `CreativeWork` may reference another
+`CreativeWork` in the catalog. This can be read as: "Collection of Great Salt Lake Data" 
+is a collection of record(s) that includes the "Great Salt Lake Bathymetry" record.
 
 ``` json
 {
-  ...
+  "@type": "CreativeWork",
+  "name": "Collection of Great Salt Lake Data",
+  "description": "Data from the Great Salt Lake and its basin",
+  "identifier": "https://www.hydroshare.org/resource/b6c4fcad40c64c4cb4dd7d4a25d0db6e/",
+  "creator":{
+    "@type": "Person",
+    "name": "David Tarboton"
+  },
+  "identifier": "",
   "hasPart": {
-    "@type": "Dataset",
-    "name": "IGUIDE Shapefile Testing Resource",
-    "description": "Test HydroShare resource for I-GUIDE",
-    "url": "https://www.hydroshare.org/resource/9d413b9d57824a79b8239a5f7c4fdf51/data/contents/HUC6_Harvey_TxLaMsAr.shp?zipped=true&aggregation=true"
+    "@type": "CreativeWork",
+    "name": "Great Salt Lake Bathymetry",
+    "description": "Digital Elevation Model for the Great Salt Lake, lake bed bathymetry.",
+    "identifier": "https://www.hydroshare.org/resource/582060f00f6b443bb26e896426d9f62a/"
   }
-
 }
-
 ```
 
-Multiple relations can be defined using a list.
+For the example above, multiple relations can be defined using a list.
 
 ``` json
 {
-  ...
+  "@type": "CreativeWork",
+  "name": "Collection of Great Salt Lake Data",
+  "description": "Data from the Great Salt Lake and its basin",
+  "identifier": "https://www.hydroshare.org/resource/b6c4fcad40c64c4cb4dd7d4a25d0db6e/",
+  "creator":{
+    "@type": "Person",
+    "name": "David Tarboton"
+  },
   "hasPart": [
     {
       "@type": "CreativeWork",
-      "name": "IGUIDE Shapefile Testing Resource",
-      "description": "Test HydroShare resource for I-GUIDE - Shapefile",
-      "url": "https://my-unique-url.com/shapefile",
+      "name": "Great Salt Lake Bathymetry",
+      "description": "Digital Elevation Model for the Great Salt Lake, lake bed bathymetry.",
+      "identifier": "https://www.hydroshare.org/resource/582060f00f6b443bb26e896426d9f62a/"
     },
     {
       "@type": "CreativeWork",
-      "name": "IGUIDE GeoTiff Testing Resource",
-      "description": "Test HydroShare resource for I-GUIDE - GeoTiff",
-      "url": "https://my-unique-url.com/geotiff",
+      "name": "Great Salt Lake Level and Volume",
+      "description": "Time series of level, area and volume in the Great Salt Lake.",
+      "identifier": "https://www.hydroshare.org/resource/b26090299ec947c692d4ee4651815579/"
     }
   ]
 }
-
 ```
 
-
 **isPartOf** is the inverse property of **hasPart** and may be used to indicate
-that a work is part of another collection of works.
+that a work is part of another collection of works. This can be read as: the "Great Salt Lake Bathymetry" 
+record belongs to the "Collection of Great Salt Lake Data" creative work in the catalog.  
 
 ``` json
 {
-  ...
-  "name": "IGUIDE Sample Dataset",
-  "description": "This is a sample datasets used in the I-GUIDE Catalog documentation",
-  "url": "https://my-unique-url.com/9d413b9d1",
+  "name": "Great Salt Lake Bathymetry",
+  "description": "Digital Elevation Model for the Great Salt Lake, lake bed bathymetry.",
+  "creator": {
+    "@type": "Person",
+    "name": "David Tarboton"
+  },
+  "identifier": "https://www.hydroshare.org/resource/582060f00f6b443bb26e896426d9f62a/",
   "isPartOf": {
     "@type": "CreativeWork",
-    "name": "Collection of Sample Datasets",
-    "description": "A collection of sample datasets used by the I-GUIDE team",
-    "url": "https://my-unique-url.com/data-collection"
+    "name": "Collection of Great Salt Lake Data",
+    "description": "Data from the Great Salt Lake and its basin",
+    "creator": {
+      "@type": "Person",
+      "name": "David Tarboton"
+    },
+    "identifier": "https://www.hydroshare.org/resource/b6c4fcad40c64c4cb4dd7d4a25d0db6e/"
   }
+}
+```
+
+### Citation
+
+In addition to `hasPart` and `isPartOf` that overall imply a specific collection/collected record relationship, 
+[Schema:citation](https://schema.org/citation) can be used to represent general relationships between records. 
+It can represent a citation or reference to another creative work, such as another publication, web page, scholarly article, etc. that 
+are related but not necessarily part of a collection record. Note that `citation` is NOT used to encode the citation of the record being described.
+
+This is a simple example of using `citation` to refer to a published article that used the "NOAA National Water Model CONUS Retrospective Dataset, Version 2.1 in NetCDF Format" dataset.
+
+``` json
+{
+  "name": "NOAA National Water Model CONUS Retrospective Dataset, Version 2.1 in NetCDF Format",
+  "description": "The complete archive of NWM input forcing and model output data version 2.1 in NetCDF format.",
+  "url": "https://noaa-nwm-retrospective-2-1-pds.s3.amazonaws.com/index.html",
+  "creator": {
+    "@type" : "Organization",
+    "name": "Office of Water Prediction (OWP)",
+    "url": "https://water.noaa.gov/"
+  },
+  "citation": "https://doi.org/10.1016/j.ocemod.2019.101526"
+}
+```
+
+`citation` can also be expressed as a `creativework` to express more metadata of the item using sub-properties from `creativework`. Note that not all the authors of 
+the cited article are listed in this example. 
+
+``` json
+{
+  "name": "NOAA National Water Model CONUS Retrospective Dataset, Version 2.1 in NetCDF Format",
+  "description": "The complete archive of NWM input forcing and model output data version 2.1 in NetCDF format.",
+  "url": "https://noaa-nwm-retrospective-2-1-pds.s3.amazonaws.com/index.html",
+  "creator": {
+    "@type" : "Organization",
+    "name": "Office of Water Prediction (OWP)",
+    "url": "https://water.noaa.gov/"
+  },
+  "citation": {
+    "@type": "CreativeWork",
+    "name" : "Simulating storm surge and compound flooding events with a creek-to-ocean model: Importance of baroclinic effects",
+    "identifier" : "https://doi.org/10.1016/j.ocemod.2019.101526",
+    "url": "https://www.sciencedirect.com/science/article/abs/pii/S1463500319302173?via%3Dihub",
+    "creator" : {
+      "@type" : "Person",
+      "name": "Fei Ye"
+    },
+    "creativeWorkStatus" : "published",
+    "publisher" : {
+      "@type": "Organization",
+      "name" : "Elsevier"
+    }
+  } 
+}
+```
+
+This example demonstrates the use of multiple citations, including a published article and a Jupyter notebook. Note that not all the authors of the cited article are listed in this example. 
+ 
+``` json
+{
+  "name": "NOAA National Water Model CONUS Retrospective Dataset, Version 2.1 in NetCDF Format",
+  "description": "The complete archive of NWM input forcing and model output data version 2.1 in NetCDF format.",
+  "url": "https://noaa-nwm-retrospective-2-1-pds.s3.amazonaws.com/index.html",
+  "creator": {
+    "@type" : "Organization",
+    "name": "Office of Water Prediction (OWP)",
+    "url": "https://water.noaa.gov/"
+  },
+  "citation": [
+    {
+      "@type": "CreativeWork",
+      "name" : "Rich Signell",
+      "identifier" : "https://nbviewer.org/gist/rsignell-usgs/d3dfaf3cd3d8b39894a69b22127dfe38",
+      "url": "https://nbviewer.org/gist/rsignell-usgs/d3dfaf3cd3d8b39894a69b22127dfe38"
+    },
+    {
+      "@type": "CreativeWork",
+      "name" : "Simulating storm surge and compound flooding events with a creek-to-ocean model: Importance of baroclinic effects",
+      "identifier" : "https://doi.org/10.1016/j.ocemod.2019.101526",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S1463500319302173?via%3Dihub",
+      "creator" : {
+        "@type" : "Person",
+        "name": "Fei Ye"
+      },
+      "creativeWorkStatus" : "published",
+      "publisher" : {
+        "@type": "Organization",
+        "name" : "Elsevier"
+      }
+    }
+  ]
 }
 ```
