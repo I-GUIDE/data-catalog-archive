@@ -9,7 +9,7 @@
 
     "@id": "https://www.sciencebase.gov/catalog/item/626b086bd34e76103cd183c5",
 
-    "name": "Frequency domain electromagnetic induction (FDEM) data collected around mine-impacted streams near Silverton, Colorado in September 2019 and 2021 (ver. 2.0, May 2022)",
+    "name": "Fiber-optic distributed temperature sensing data collected in mine-impacted streams near Silverton, Colorado in September 2019 and 2021 (ver. 2.0, May 2022)",
 
     "description": "This dataset contains fiber-optic distributed temperature sensing (FO-DTS) data collected along the streambed interface of two streams named Cement Creek and California Gulch Creek, as well as the Animas River, located near Silverton Colorado. The FO-DTS method utilizes the temperature-dependent backscatter of light pulses emitted along armored fiber-optic cables to evaluate temperature at discrete linear sampling locations. For these deployments a Salixa XT-DTS control unit (Salixa Ltd, Hertfordshire, UK) was used, and measurements were made over several day increments at 0.508 m linear resolution along the streambed interface. Specific locations for collected data are located within the data files, and additional details are contained in the ‘readme’ files within each zip data directory.",
 
