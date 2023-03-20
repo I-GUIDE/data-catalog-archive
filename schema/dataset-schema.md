@@ -69,7 +69,11 @@ In the example below, we used the `includedInDataCatalog` property to show that 
         "description" : "The Science Data Catalog (SDC) is the official public and searchable index that aggregates descriptions of all public research data that have been published by the USGS.",
         "url":"https://data.usgs.gov/datacatalog/",
         "identifier": "<internally-created-identifier>",
-        "creator": "U.S. Geological Survey"
+        "creator": {
+            "@type": "Organization",
+            "name": "U.S. Geological Survey",
+            "url": "https://www.usgs.gov/"
+        }
     } 
 }
 ```
