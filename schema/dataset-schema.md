@@ -25,8 +25,6 @@ The [`Schema:distribution`](https://schema.org/distribution) is a property of th
     "identifier":"",
     "description":"This dataset contains fiber-optic distributed temperature sensing (FO-DTS) data collected along the streambed interface of two streams named Cement Creek and California Gulch Creek, as well as the Animas River, located near Silverton Colorado. ",
 
-    ...
-
     "distribution": {
             "@type":"DataDownload",
             "name":"Fiber_opticdist.zip",
@@ -49,8 +47,6 @@ The [`Schema:distribution`](https://schema.org/distribution) is a property of th
     "name":"Fiber-optic distributed temperature sensing data collected in mine-impacted streams near Silverton, Colorado in September 2019 and 2021 (ver. 2.0, May 2022)",
     "url":"https://www.sciencebase.gov/catalog/item/626b086bd34e76103cd183c5",
     "description":"This dataset contains fiber-optic distributed temperature sensing (FO-DTS) data collected along the streambed interface of two streams named Cement Creek and California Gulch Creek, as well as the Animas River, located near Silverton Colorado. ",
-
-    ...
        
     "variableMeasured": {
         "@type": "PropertyValue",
@@ -74,8 +70,6 @@ In the example below, we used the `includedInDataCatalog` property to show that 
     "name":"Fiber-optic distributed temperature sensing data collected in mine-impacted streams near Silverton, Colorado in September 2019 and 2021 (ver. 2.0, May 2022)",
     "url":"https://www.sciencebase.gov/catalog/item/626b086bd34e76103cd183c5",
     "description":"This dataset contains fiber-optic distributed temperature sensing (FO-DTS) data collected along the streambed interface of two streams named Cement Creek and California Gulch Creek, as well as the Animas River, located near Silverton Colorado. ",
-
-    ...
 
     "includedInDataCatalog": {
         "@type" :"DataCatalog",
