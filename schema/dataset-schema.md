@@ -21,12 +21,12 @@ A distribution can be expressed as:
 ``` json
 {
     "distribution": {
-            "@type":"DataDownload",
-            "name":"Fiber_opticdist.zip",
-            "contentUrl":"https://www.sciencebase.gov/catalog/file/get/626b086bd34e76103cd183c5",
-            "encodingFormat": "application/zip",
-            "contentSize": "439 MB",
-            "comment":"Downloading all the data within this dataset"
+        "@type":"DataDownload",
+        "name":"Fiber_opticdist.zip",
+        "contentUrl":"https://www.sciencebase.gov/catalog/file/get/626b086bd34e76103cd183c5",
+        "encodingFormat": "application/zip",
+        "contentSize": "439 MB",
+        "comment":"Downloading all the data within this dataset"
     }
 }
 ```
