@@ -1,0 +1,547 @@
+{
+    "title": "CoreMetadata",
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "description": "The name or title of the record.",
+        "type": "string"
+      },
+      "description": {
+        "title": "Description",
+        "description": "The description or abstract of the record.",
+        "type": "string"
+      },
+      "url": {
+        "title": "Url",
+        "description": "The url of the record.",
+        "minLength": 1,
+        "maxLength": 2083,
+        "format": "uri",
+        "type": "string"
+      },
+      "identifier": {
+        "title": "Identifier",
+        "description": "Any kind of identifier for the record.",
+        "type": "array",
+        "items": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2083,
+              "format": "uri"
+            },
+            {
+              "$ref": "#/definitions/PropertyValue"
+            }
+          ]
+        }
+      },
+      "creator": {
+        "title": "Creator",
+        "description": "Person or organization that created the work.",
+        "type": "array",
+        "items": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Person"
+            },
+            {
+              "$ref": "#/definitions/Organization"
+            }
+          ]
+        }
+      },
+      "dateCreated": {
+        "title": "Datecreated",
+        "description": "The date on which the work was created.",
+        "anyOf": [
+          {
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "type": "string",
+            "format": "date-time"
+          }
+        ]
+      },
+      "keywords": {
+        "title": "Keywords",
+        "description": "Keywords or tags used to describe the dataset, delimited by commas.",
+        "minItems": 1,
+        "type": "array",
+        "items": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/DefinedTerm"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2083,
+              "format": "uri"
+            }
+          ]
+        }
+      },
+      "license": {
+        "title": "License",
+        "description": "A license document that applies to the content, typically indicated by a URL.",
+        "minLength": 1,
+        "maxLength": 2083,
+        "format": "uri",
+        "type": "string"
+      },
+      "provider": {
+        "title": "Provider",
+        "description": "The service provider, service operator, or service performer.",
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Organization"
+          },
+          {
+            "$ref": "#/definitions/Person"
+          }
+        ]
+      },
+      "publisher": {
+        "title": "Publisher",
+        "description": "The publisher of the record.",
+        "anyOf": [
+          {
+            "$ref": "#/definitions/Organization"
+          },
+          {
+            "$ref": "#/definitions/Person"
+          }
+        ]
+      },
+      "datePublished": {
+        "title": "Datepublished",
+        "description": "Date of first publication for the record.",
+        "anyOf": [
+          {
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "type": "string",
+            "format": "date-time"
+          }
+        ]
+      },
+      "subjectOf": {
+        "title": "Subjectof",
+        "description": "A CreativeWork about the record - e.g., a related metadata document describing the record.",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "version": {
+        "title": "Version",
+        "description": "The version of the record.",
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "inLanguage": {
+        "title": "Inlanguage",
+        "description": "The language of the content of the record.",
+        "anyOf": [
+          {
+            "$ref": "#/definitions/LanugageEnum"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "creativeWorkStatus": {
+        "title": "Creativeworkstatus",
+        "description": "The status of a creative work in terms of its stage in a lifecycle. Example terms include Incomplete, Draft, Published, Obsolete. Some organizations define a set of terms for the stages of their publication lifecycle.",
+        "anyOf": [
+          {
+            "$ref": "#/definitions/DefinedTerm"
+          },
+          {
+            "type": "string"
+          }
+        ]
+      },
+      "dateModified": {
+        "title": "Datemodified",
+        "description": "The date on which the CreativeWork was most recently modified or updated.",
+        "anyOf": [
+          {
+            "type": "string",
+            "format": "date"
+          },
+          {
+            "type": "string",
+            "format": "date-time"
+          }
+        ]
+      },
+      "funding": {
+        "title": "Funding",
+        "description": "A Grant that directly or indirectly provide funding or sponsorship for creation of the dataset.",
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/Grant"
+        }
+      },
+      "temporalCoverage": {
+        "title": "Temporalcoverage",
+        "description": "The temporalCoverage of a CreativeWork indicates the period that the content applies to, i.e. that it describes, either as a DateTime or as a textual string indicating a time period in ISO 8601 time interval format.",
+        "type": "string"
+      },
+      "spatialCoverage": {
+        "title": "Spatialcoverage",
+        "description": "The spatialCoverage of a CreativeWork indicates the place(s) which are the focus of the content. It is a subproperty of contentLocation intended primarily for more technical and detailed materials. For example with a Dataset, it indicates areas that the dataset describes: a dataset of New York weather would have spatialCoverage which was the place: the state of New York.",
+        "allOf": [
+          {
+            "$ref": "#/definitions/Place"
+          }
+        ]
+      },
+      "hasPart": {
+        "title": "Haspart",
+        "description": "Indicates an record or CreativeWork that is part of this record.",
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "isPartOf": {
+        "title": "Ispartof",
+        "description": "Indicates an record or CreativeWork that this record, or CreativeWork (in some sense), is part of.",
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2083,
+          "format": "uri"
+        }
+      },
+      "associatedMedia": {
+        "title": "Associatedmedia",
+        "description": "A media object that encodes this CreativeWork. This property is a synonym for encoding.",
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/MediaObject"
+        }
+      }
+    },
+    "required": [
+      "name",
+      "description",
+      "url",
+      "identifier",
+      "creator",
+      "dateCreated",
+      "keywords",
+      "license",
+      "provider",
+      "datePublished"
+    ],
+    "definitions": {
+      "PropertyValue": {
+        "title": "PropertyValue",
+        "type": "object",
+        "properties": {
+          "@id": {
+            "title": "@Id",
+            "minLength": 1,
+            "maxLength": 2083,
+            "format": "uri",
+            "type": "string"
+          },
+          "@type": {
+            "title": "@Type",
+            "default": "PropertyValue",
+            "const": "PropertyValue",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "propertyID": {
+            "title": "Propertyid",
+            "minLength": 1,
+            "maxLength": 2083,
+            "format": "uri",
+            "type": "string"
+          },
+          "value": {
+            "title": "Value",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "minLength": 1,
+            "maxLength": 2083,
+            "format": "uri",
+            "type": "string"
+          }
+        },
+        "required": [
+          "@id",
+          "value",
+          "url"
+        ]
+      },
+      "Person": {
+        "title": "Person",
+        "type": "object",
+        "properties": {
+          "@type": {
+            "title": "@Type",
+            "default": "Person",
+            "const": "Person",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "email": {
+            "title": "Email",
+            "type": "string",
+            "format": "email"
+          },
+          "identifier": {
+            "$ref": "#/definitions/PropertyValue"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "Organization": {
+        "title": "Organization",
+        "type": "object",
+        "properties": {
+          "@type": {
+            "title": "@Type",
+            "default": "Organization",
+            "const": "Organization",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "minLength": 1,
+            "maxLength": 2083,
+            "format": "uri",
+            "type": "string"
+          },
+          "identifier": {
+            "$ref": "#/definitions/PropertyValue"
+          },
+          "address": {
+            "title": "Address",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "DefinedTerm": {
+        "title": "DefinedTerm",
+        "type": "object",
+        "properties": {
+          "@type": {
+            "title": "@Type",
+            "default": "DefinedTerm",
+            "const": "DefinedTerm",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "description"
+        ]
+      },
+      "LanugageEnum": {
+        "title": "LanugageEnum",
+        "description": "An enumeration.",
+        "enum": [
+          "eng",
+          "esp"
+        ],
+        "type": "string"
+      },
+      "Grant": {
+        "title": "Grant",
+        "type": "object",
+        "properties": {
+          "@type": {
+            "title": "@Type",
+            "default": "MonetaryGrant",
+            "const": "MonetaryGrant",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "minLength": 1,
+            "maxLength": 2083,
+            "format": "uri",
+            "type": "string"
+          },
+          "funder": {
+            "title": "Funder",
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Person"
+              },
+              {
+                "$ref": "#/definitions/Organization"
+              }
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "url",
+          "funder"
+        ]
+      },
+      "Line": {
+        "title": "Line",
+        "type": "object",
+        "properties": {
+          "@type": {
+            "title": "@Type",
+            "default": "GeoShape",
+            "const": "GeoShape",
+            "type": "string"
+          },
+          "line": {
+            "title": "Line",
+            "type": "string"
+          }
+        },
+        "required": [
+          "line"
+        ]
+      },
+      "Polygon": {
+        "title": "Polygon",
+        "type": "object",
+        "properties": {
+          "@type": {
+            "title": "@Type",
+            "default": "GeoShape",
+            "const": "GeoShape",
+            "type": "string"
+          },
+          "polygon": {
+            "title": "Polygon",
+            "type": "string"
+          }
+        },
+        "required": [
+          "polygon"
+        ]
+      },
+      "Place": {
+        "title": "Place",
+        "type": "object",
+        "properties": {
+          "@type": {
+            "title": "@Type",
+            "default": "Place",
+            "const": "Place",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "address": {
+            "title": "Address",
+            "type": "string"
+          },
+          "geo": {
+            "title": "Geo",
+            "anyOf": [
+              {
+                "$ref": "#/definitions/Line"
+              },
+              {
+                "$ref": "#/definitions/Polygon"
+              }
+            ]
+          }
+        }
+      },
+      "MediaObject": {
+        "title": "MediaObject",
+        "type": "object",
+        "properties": {
+          "@type": {
+            "title": "@Type",
+            "default": "MediaObject",
+            "const": "MediaObject",
+            "type": "string"
+          },
+          "contentUrl": {
+            "title": "Contenturl",
+            "minLength": 1,
+            "maxLength": 2083,
+            "format": "uri",
+            "type": "string"
+          },
+          "encodingFormat": {
+            "title": "Encodingformat",
+            "type": "string"
+          },
+          "contentSize": {
+            "title": "Contentsize",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "contentUrl",
+          "encodingFormat",
+          "contentSize",
+          "name"
+        ]
+      }
+    }
+  }
