@@ -5,9 +5,9 @@ for **required** and `0,1` or `0+` for **optional** in the Cardinality column of
 
 |Property|Class|Expected Type|Cardinality|Description|
 |---|---|---|---|---|
-|[`Schema:distribution`](https://schema.org/distribution)| Dataset| DataDownload | 1+ | A downloadable form of this dataset, at a specific location, in a specific format. This property can be repeated if different variations are available. There is no expectation that different downloadable distributions must contain exactly equivalent information (see also DCAT on this point). Different distributions might include or exclude different subsets of the entire dataset, for example.|
-|[`Schema:variableMeasured`](https://schema.org/variableMeasured)| Dataset | Text \| PropertyValue | 0+| The variableMeasured property can indicate (repeated as necessary) the variables that are measured in some dataset, either described as text or as pairs of identifier and description using PropertyValue. |
-|[`Schema:includedInDataCatalog`](https://schema.org/includedInDataCatalog)| Dataset | DataCatalog | 0,1 | A data catalog which contains this dataset. |
+|[distribution](#distribution)| Dataset| DataDownload | 1+ | A downloadable form of this dataset, at a specific location, in a specific format. This property can be repeated if different variations are available. There is no expectation that different downloadable distributions must contain exactly equivalent information (see also DCAT on this point). Different distributions might include or exclude different subsets of the entire dataset, for example.|
+|[variableMeasured](#variable-measured)| Dataset | Text \| PropertyValue | 0+| The variableMeasured property can indicate (repeated as necessary) the variables that are measured in some dataset, either described as text or as pairs of identifier and description using PropertyValue. |
+|[includedInDataCatalog](#included-in-datacatalog)| Dataset | DataCatalog | 0,1 | A data catalog which contains this dataset. |
 
 The following examples demonstrate how each of these properties may
 be implemented in JSON+LD. 
