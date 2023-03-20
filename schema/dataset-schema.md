@@ -16,6 +16,8 @@ be implemented in JSON+LD.
 
 The [`Schema:distribution`](https://schema.org/distribution) is a property of the [Schema:Dataset](https://schema.org/Dataset) class and must be expressed using the [`Schema:DataDownload`](https://schema.org/DataDownload) subtype. `Distribution` describes how the content related to the catalog record may be obtained. The `DataDownload` type contains a number of optional properties including `contentUrl`, `contentSize`, and `encodingFormat` that can be used to describe the downloadable content of the dataset.
 
+A distribution can be expressed as:
+
 ``` json
 {
     "distribution": {
@@ -32,6 +34,15 @@ The [`Schema:distribution`](https://schema.org/distribution) is a property of th
 ### Variable Measured
 
 [`Schema:variableMeasured`](https://schema.org/variableMeasured) is a property of the `Dataset` class and can be expressed as either `Text` or a [`Schema:PropertyValue`](https://schema.org/PropertyValue), the latter being preferred. The `variableMeasured` represents the scientific variables that are measured or present within the dataset. Note, the `PropertyValue` type contains a number of useful properties that may be implements including units, min/max values, etc. For a complete list of properties see the [`Schema:PropertyValue`](https://schema.org/PropertyValue) definition.
+
+A simple example as text can be encoded as:
+
+``` json
+{
+    "variableMeasured": "Water Temperature"
+}
+```
+However, it is preferred for a measured variable to be expressed as a `PropertyValue`.
 
 ``` json
 {     
