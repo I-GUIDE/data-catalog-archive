@@ -5,7 +5,7 @@ for **required** and `0,1` or `0+` for **optional** in the Cardinality column of
 
 |Property|Class|Expected Type|Cardinality|Description|
 |---|---|---|---|---|
-|[distribution](#distribution)| Dataset| DataDownload | 1+ | A downloadable form of this dataset, at a specific location, in a specific format. This property can be repeated if different variations are available. There is no expectation that different downloadable distributions must contain exactly equivalent information (see also DCAT on this point). Different distributions might include or exclude different subsets of the entire dataset, for example.|
+|[distribution](#distribution)| Dataset| DataDownload | 1+ | A specific downloadable representation of a dataset. |
 |[variableMeasured](#variable-measured)| Dataset | Text \| PropertyValue | 0+| The variableMeasured property can indicate (repeated as necessary) the variables that are measured in some dataset, either described as text or as pairs of identifier and description using PropertyValue. |
 |[includedInDataCatalog](#included-in-datacatalog)| Dataset | DataCatalog | 0,1 | A data catalog which contains this dataset. |
 
@@ -14,7 +14,9 @@ be implemented in JSON+LD.
 
 ### Distribution
 
-The [`Schema:distribution`](https://schema.org/distribution) is a property of the [Schema:Dataset](https://schema.org/Dataset) class and must be expressed using the [`Schema:DataDownload`](https://schema.org/DataDownload) subtype. `Distribution` describes how the content related to the catalog record may be obtained. The `DataDownload` type contains a number of optional properties including `contentUrl`, `contentSize`, and `encodingFormat` that can be used to describe the downloadable content of the dataset.
+The [`Schema:distribution`](https://schema.org/distribution) is a property of the [Schema:Dataset](https://schema.org/Dataset) class and must be expressed using the [`Schema:DataDownload`](https://schema.org/DataDownload) subtype. `Distribution` represents the general availability of a dataset and describes how the content related to the catalog record may be obtained. This could be different from `associatedMedia` described in Core.md in that associatedMedia 
+
+The following example uses the `DataDownload` class along with a number of its optional properties including `contentUrl`, `contentSize`, and `encodingFormat` to describe the downloadable content of the dataset.
 
 A distribution can be expressed as:
 
@@ -28,6 +30,36 @@ A distribution can be expressed as:
         "contentSize": "439 MB",
         "comment":"Downloading all the data within this dataset"
     }
+}
+```
+
+A dataset might be accessed in various ways and downloaded in multiple serializations. Thus, this property can be repeated if different variations are available. There is no expectation that different downloadable distributions must contain exactly equivalent information (see also [Data Catalog Vocabulary (DCAT)](https://www.w3.org/TR/vocab-dcat-3/#Class:Distribution) on this point). For example, different distributions might include or exclude different subsets of the entire dataset.
+
+In the context of a real-world example (NOAA's Storm Events Data), three distinct methods exist to access data. The first data access approach is through the Search function, where a user can specify criteria such as the area of interest, start and end dates, county, and event type and subsequently access the relevant data. The second method allows downloading the bulk dataset in CSV format. Lastly, the third technique entails using a function t0 generate monthly data publication in the form of a PDF file.   
+
+``` json
+{
+    "distribution": [
+        {
+            "@type": "DataDownload",
+            "name": "Search",
+            "contentUrl": "https://www.ncdc.noaa.gov/stormevents/",
+            "contentSize": "application/xhtml+xml"
+
+        },
+        {
+            "@type": "DataDownload",
+            "name": "Bulk Data Download (CSV)",
+            "contentUrl": "https://www.ncei.noaa.gov/pub/data/swdi/stormevents/csvfiles/",
+            "encodingFormat": ["text/csv", "application/zip"]
+        },
+        {
+            "@type": "DataDownload",
+            "name": "Storm Data Publication",
+            "contentUrl": "https://www.ncdc.noaa.gov/IPS/sd/sd.html",
+            "encodingFormat": ["application/xhtml+xml", "application/pdf"]
+        }
+    ]
 }
 ```
 
