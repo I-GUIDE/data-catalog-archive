@@ -6,8 +6,8 @@ for **required** and `0,1` or `0+` for **optional** in the Cardinality column of
 |Property|Class|Expected Type|Cardinality|Description|
 |---|---|---|---|---|
 |[distribution](#distribution)| Dataset| DataDownload | 1+ | A specific downloadable representation of a dataset. |
-|[variableMeasured](#variable-measured)| Dataset | Text \| PropertyValue | 0+| The variableMeasured property can indicate (repeated as necessary) the variables that are measured in some dataset, either described as text or as pairs of identifier and description using PropertyValue. |
-|[includedInDataCatalog](#included-in-datacatalog)| Dataset | DataCatalog | 0,1 | A data catalog which contains this dataset. |
+|[variableMeasured](#variable-measured)| Dataset | Text \| PropertyValue | 0+ | The variableMeasured property can indicate (repeated as necessary) the variables that are measured in some dataset, either described as text or as pairs of identifier and description using PropertyValue. |
+|[includedInDataCatalog](#included-in-datacatalog)| Dataset | DataCatalog | 1+ | A data catalog which contains this dataset. |
 
 The following examples demonstrate how each of these properties may
 be implemented in JSON+LD. 
@@ -116,24 +116,38 @@ However, it is preferred for a measured variable to be expressed as a `PropertyV
 
 ### Included in DataCatalog
 
-DataCatalog is a collection of datasets. [`Schema:includedInDataCatalog`](https://schema.org/includedInDataCatalog) can be used to show the data catalog containing a dataset. 
+DataCatalog comprises a set of datasets. [`Schema:includedInDataCatalog`](https://schema.org/includedInDataCatalog) can be used to show the data catalog containing a dataset. Essentially, every registered record to the I-GUIDE data catalog must have a minimum of one `DataCatalog` object, namely the I-GUIDE data catalog itself. In some cases, certain records may feature more than one `DataCatalog` object represented in the `includedIndDataCatalog` property if they are part of other data catalogs. This property can be used as a filter to specify which data catalog(s) include a particular dataset. 
 
-In the example below, we used the `includedInDataCatalog` property to show that the dataset is included in the U.S. Geological Survey Science Data Catalog (SDC). 
+In the example below, we used the `includedInDataCatalog` property to show that the dataset is included in the U.S. Geological Survey Science Data Catalog (SDC) as well as in the I-GUIDE data catalog. 
 
 
 ``` json
 {
-    "includedInDataCatalog": {
-        "@type" :"DataCatalog",
-        "name": "The USGS Science Data Catalog (SDC)",
-        "description" : "The Science Data Catalog (SDC) is the official public and searchable index that aggregates descriptions of all public research data that have been published by the USGS.",
-        "url":"https://data.usgs.gov/datacatalog/",
-        "identifier": "<internally-created-identifier>",
-        "creator": {
-            "@type": "Organization",
-            "name": "U.S. Geological Survey",
-            "url": "https://www.usgs.gov/"
+    "includedInDataCatalog": [
+        {
+            "@type" :"DataCatalog",
+            "name": "The USGS Science Data Catalog (SDC)",
+            "description" : "The Science Data Catalog (SDC) is the official public and searchable index that aggregates descriptions of all public research data that have been published by the USGS.",
+            "url":"https://data.usgs.gov/datacatalog/",
+            "identifier": "<internally-created-identifier>",
+            "creator": {
+                "@type": "Organization",
+                "name": "U.S. Geological Survey",
+                "url": "https://www.usgs.gov/"
+            }
+        },
+        {
+            "@type" :"DataCatalog",
+            "name": "The I-GUIDE Data Catalog",
+            "description": "A centralized metadata catalog capable of indexing data from the diverse, distributed data required by the I-GUIDE project focus areas.",
+            "url": "https://iguide.cuahsi.io/discover",
+            "identifier": "<>",
+            "creator": {
+                "@type": "Organization",
+                "name": "NSF Institute for Geospatial Understanding through an Integrative Discovery Environment (I-GUIDE)",
+                "url": "https://iguide.illinois.edu/"
+            }
         }
-    } 
+    ] 
 }
 ```
