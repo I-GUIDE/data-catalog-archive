@@ -73,13 +73,13 @@ The following illustrates an example where both `associatedMedia` and `distribut
             "@type": "DataDownload",
             "name":"Quashnet_SiteLoc.csv",
             "contentUrl": "https://www.hydroshare.org/resource/cd003e98225a4408b8012eefad14db2a/data/contents/Quashnet_SiteLoc.csv",
-            "encodingFormat": "text/csv",
-        }
-        ,{
+            "encodingFormat": "text/csv"
+        },
+        {
             "@type": "DataDownload",
             "name":"Quashnet_StreamTemperature.csv",
             "contentUrl": "https://www.hydroshare.org/resource/cd003e98225a4408b8012eefad14db2a/data/contents/Quashnet_StreamTemperature.csv",
-            "encodingFormat": "text/csv",
+            "encodingFormat": "text/csv"
         }
     ],
     
