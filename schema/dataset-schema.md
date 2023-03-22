@@ -14,7 +14,7 @@ be implemented in JSON+LD.
 
 ### Distribution
 
-The [`Schema:distribution`](https://schema.org/distribution) is a property of the [Schema:Dataset](https://schema.org/Dataset) class and must be expressed using the [`Schema:DataDownload`](https://schema.org/DataDownload) subtype. `Distribution` represents the general availability of a dataset and describes how the content related to the catalog record may be obtained. This could be different from `associatedMedia` described in Core.md in that associatedMedia 
+The [`Schema:distribution`](https://schema.org/distribution) is a property of the [Schema:Dataset](https://schema.org/Dataset) class and must be expressed using the [`Schema:DataDownload`](https://schema.org/DataDownload) subtype. `Distribution` represents the general availability of a dataset and describes how the content related to the catalog record may be obtained.
 
 The following example uses the `DataDownload` class along with a number of its optional properties including `contentUrl`, `contentSize`, and `encodingFormat` to describe the downloadable content of the dataset.
 
@@ -60,6 +60,34 @@ In the context of a real-world example (NOAA's Storm Events Data), three distinc
             "encodingFormat": ["application/xhtml+xml", "application/pdf"]
         }
     ]
+}
+```
+In order to accurately represent the complete set of metadata for a dataset resource, it may be necessary to utilize both `associatedMedia` class, which is part of the core metadata, as well as `distribution` class, which is a dataset-specific metadata. It should be noted that a nuanced distiction exists between the `distribution>DataDownlaod` and the `associatedMedia>DataDownload`. While `associatedMedia` is used to specify various media objects (such as source codes, images, as well as datasets, etc.) that encode the contents of a creative work, it does not necessarily indicate how to download these objects. In contrast, `distribution` is merely used for dataset metadata and tells how to obtain the contents depending on how the data provider(s) decides. 
+
+The following illustrates an example where both `associatedMedia` and `distribution` are used to represent part of the metadata for a dataset resource on the HydroShare data repository containing two CSV files that can be downloaded as a zip file. In this example, the `distribution` class shows that the content of this dataset can be downloaded individually or as one single zip file using the BagIt file format. 
+
+``` json
+{
+    "associatedMedia": [
+        {
+            "@type": "DataDownload",
+            "name":"Quashnet_SiteLoc.csv",
+            "contentUrl": "https://www.hydroshare.org/resource/cd003e98225a4408b8012eefad14db2a/data/contents/Quashnet_SiteLoc.csv",
+            "encodingFormat": "text/csv",
+        }
+        ,{
+            "@type": "DataDownload",
+            "name":"Quashnet_StreamTemperature.csv",
+            "contentUrl": "https://www.hydroshare.org/resource/cd003e98225a4408b8012eefad14db2a/data/contents/Quashnet_StreamTemperature.csv",
+            "encodingFormat": "text/csv",
+        }
+    ],
+    
+    "distribution": {
+        "@type": "DataDownload",
+        "contentUrl": "https://www.hydroshare.org/resource/cd003e98225a4408b8012eefad14db2a/",
+        "encodingFormat": ["text/csv", "application/zip"]
+    }
 }
 ```
 
