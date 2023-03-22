@@ -108,6 +108,18 @@ A single author can be expressed as:
 }
 ```
 
+A single organization can be represented as:
+
+``` json
+{
+  "creator": {
+    "@type": "Organization",
+    "name": "National Aeronautics and Space Administration (NASA)",
+    "url": "https://www.nasa.gov/"
+  }
+} 
+```
+
 A more complete example of an author will include additional fields from the
 [Schema:Person](https://schema.org/Person) class such as an identifier.
 
