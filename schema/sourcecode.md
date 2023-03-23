@@ -13,11 +13,13 @@ in the [Core Metadata](core.md) document, which are not
 described on this page.
 
 #### Required Properties
-|Property|Class|Type|Cardinality|Description|
+|Property|Class|Expected Type|Cardinality|Description|
 |---|---|---|---|---|
 | programmingLanguage | SoftwareSourceCode | ComputerLanguage \| Text | 1+ | The computer programming language |
 | runtimePlatform | SoftwareSourceCode | Text | 1+ | Runtime platform or script interpreter dependencies |
 | targetProduct | SoftwareSourceCode | SoftwareApplication | 1+ | Target Operating System or Product to which the code applies |
+| codeRepository | SoftwareSourceCode| URL | 1 | Link to the repository where the un-compiled, human readable code and related code is located |
+| codeSampleType | SoftwareApplication | Text | 1 | 	What type of code sample: full (compile ready) solution, code snippet, inline code, scripts, template |
 
 The following is an example implementation of the required metadata
 properties for a software source code object.
@@ -69,14 +71,10 @@ properties for a software source code object.
 
 
 
-#### Recommended Properties
+
 |Property|Class|Type|Cardinality|Description|
 |---|---|---|---|---|
-| maintainer | CreativeWork | Person \| Organization | 1+ |A maintainer is a Person or Organization that manages contributions to, and/or publication of, some (typically complex) artifact |
-| license | CreativeWork | CreativeWork \| URL | 1 | A license document that applies to this content, typically indicated by URL |
-| version | CreativeWork | Number \| Text | 1 | The version of the CreativeWork embodied by a specified resource |
-| codeRepository | SoftwareSourceCode| URL | 1 | Link to the repository where the un-compiled, human readable code and related code is located |
-| codeSampleType | SoftwareApplication | Text | 1 | 	What type of code sample: full (compile ready) solution, code snippet, inline code, scripts, template |
+
 
 ## TODO
 ```
