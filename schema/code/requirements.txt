@@ -1,2 +1,8 @@
-pydantic
-pydantic[email]
+authlib
+fastapi
+httpx
+python-jose
+uvicorn
+hsclient
+itsdangerous
+python-dotenv

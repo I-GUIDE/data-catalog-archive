@@ -114,5 +114,4 @@ class CoreMetadata(BaseModel):
     hasPart: Optional[List[str]] = Field(description="Indicates an record or CreativeWork that is part of this record.") # TODO creativework
     isPartOf: Optional[List[HttpUrl]] = Field(description="Indicates an record or CreativeWork that this record, or CreativeWork (in some sense), is part of.") # TODO creativework
     associatedMedia: Optional[List[MediaObject]] = Field(description="A media object that encodes this CreativeWork. This property is a synonym for encoding.")
-
-print(CoreMetadata.schema_json(indent=2))
+    distribution: Optional[List[HttpUrl]] = Field(description="A url for distribution of thed data")
