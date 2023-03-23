@@ -48,11 +48,8 @@ def get_file_metadata(file_url, files_metadata):
     return None
 
 def parse_aggregations_and_files(agg, agg_dict, files_dict, id, files_metadata, isPartOf=None):
-    md = convert(agg.metadata)
-    if isPartOf:
-        md['isPartOf'] = isPartOf
-
     files = {}
+    resource_size = 0
     for file in agg.files():
         file_id = f"{agg.metadata.url}/data/contents/{file.path}"
         file_metadata = get_file_metadata(file_id, files_metadata)
@@ -61,11 +58,15 @@ def parse_aggregations_and_files(agg, agg_dict, files_dict, id, files_metadata, 
                                          contentSize=naturalsize(file_metadata['size']), 
                                          encodingFormat=file_metadata['content_type'] if file_metadata['content_type'] != "None" else os.path.splitext(file.path)[1], 
                                          name=os.path.basename(file.path))
+            resource_size += file_metadata['size']
         else:
             files[file_id] = MediaObject(contentUrl=file_id, 
                                          contentSize="Could not find", 
                                          encodingFormat=os.path.splitext(file.path)[1], 
                                          name=os.path.basename(file.path))
+    md = convert(agg.metadata, distribution_size=naturalsize(resource_size))
+    if isPartOf:
+        md['isPartOf'] = isPartOf
     md["associatedMedia"] = list(files.keys())
     files_dict.update(files)
 

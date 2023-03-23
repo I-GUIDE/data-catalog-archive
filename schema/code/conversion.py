@@ -9,7 +9,7 @@ from pydantic_schemas.schema import CoreMetadata, Organization, Grant, Person, P
 def exists(obj, prop_name):
     return hasattr(obj, prop_name) and getattr(obj, prop_name)
 
-def convert(md: Union[ResourceMetadata, GeographicFeatureMetadata, GeographicRasterMetadata, TimeSeriesMetadata, ReferencedTimeSeriesMetadata, MultidimensionalMetadata]) -> CoreMetadata:
+def convert(md: Union[ResourceMetadata, GeographicFeatureMetadata, GeographicRasterMetadata, TimeSeriesMetadata, ReferencedTimeSeriesMetadata, MultidimensionalMetadata], distribution_size='TODO') -> CoreMetadata:
     new_md = CoreMetadata.construct()
     if exists(md, "title"):
         new_md.name = md.title
@@ -23,7 +23,7 @@ def convert(md: Union[ResourceMetadata, GeographicFeatureMetadata, GeographicRas
         distribution.contentUrl = md.url
         distribution.encodingFormat = "application/zip"
         distribution.comment = "The HydroShare Resource Landing Page contains instructions for downloading the dataset"
-        distribution.contentSize = 'TODO'
+        distribution.contentSize = distribution_size
         new_md.distribution = [distribution]
     if exists(md, "creators"):
         new_creators = []
