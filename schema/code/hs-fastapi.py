@@ -4,7 +4,7 @@ import os
 
 from conversion import convert
 from pydantic_schemas.schema import MediaObject
-
+from humanize import naturalsize
 import uvicorn as uvicorn
 from fastapi import FastAPI
 from hsclient import HydroShare
@@ -58,7 +58,7 @@ def parse_aggregations_and_files(agg, agg_dict, files_dict, id, files_metadata, 
         file_metadata = get_file_metadata(file_id, files_metadata)
         if file_metadata:
             files[file_id] = MediaObject(contentUrl=file_id, 
-                                         contentSize=file_metadata['size'], 
+                                         contentSize=naturalsize(file_metadata['size']), 
                                          encodingFormat=file_metadata['content_type'] if file_metadata['content_type'] != "None" else os.path.splitext(file.path)[1], 
                                          name=os.path.basename(file.path))
         else:
