@@ -19,7 +19,7 @@ def convert(md: Union[ResourceMetadata, GeographicFeatureMetadata, GeographicRas
         new_md.url = md.url
         new_md.identifier = [md.url]
         distribution = Distribution.construct()
-        distribution.name = f"{md.identifier.split('/')[-1]}.zip"
+        distribution.name = f"{md.url.split('/')[-1]}.zip"
         distribution.contentUrl = md.url
         distribution.encodingFormat = "application/zip"
         distribution.comment = "The HydroShare Resource Landing Page contains instructions for downloading the dataset"
