@@ -54,6 +54,7 @@ def parse_aggregations_and_files(agg, agg_dict, files_dict, id):
 
     aggs = []
     for agg in agg.aggregations():
+        agg['isPartOf'] = md['url']
         uid = str(uuid.uuid4())
         aggs.append(uid)
         agg_dict, files = parse_aggregations_and_files(agg, agg_dict, files_dict, uid)
