@@ -41,16 +41,31 @@ my_resources = [res for res in hs.search(owner=user_id)]
 
 db = {}
 
+def get_file_metadata(file_url, files_metadata):
+    for file in files_metadata:
+        if file['url'] == file_url:
+            return file
+    return None
 
-def parse_aggregations_and_files(agg, agg_dict, files_dict, id, isPartOf=None):
+def parse_aggregations_and_files(agg, agg_dict, files_dict, id, files_metadata, isPartOf=None):
     md = convert(agg.metadata)
     if isPartOf:
         md['isPartOf'] = isPartOf
 
     files = {}
     for file in agg.files():
-        file_id = str(uuid.uuid4()) # str(mimetypes.guess_type(file.path))
-        files[file_id] = MediaObject(contentUrl=f"{agg.metadata.url}/{file.path}" , contentSize='TODO', encodingFormat=os.path.splitext(file.path)[1], name=os.path.basename(file.path))
+        file_id = f"{agg.metadata.url}/data/contents/{file.path}"
+        file_metadata = get_file_metadata(file_id, files_metadata)
+        if file_metadata:
+            files[file_id] = MediaObject(contentUrl=file_id, 
+                                         contentSize=file_metadata['size'], 
+                                         encodingFormat=file_metadata['content_type'] if file_metadata['content_type'] != "None" else os.path.splitext(file.path)[1], 
+                                         name=os.path.basename(file.path))
+        else:
+            files[file_id] = MediaObject(contentUrl=file_id, 
+                                         contentSize="Could not find", 
+                                         encodingFormat=os.path.splitext(file.path)[1], 
+                                         name=os.path.basename(file.path))
     md["associatedMedia"] = list(files.keys())
     files_dict.update(files)
 
@@ -58,7 +73,7 @@ def parse_aggregations_and_files(agg, agg_dict, files_dict, id, isPartOf=None):
     for agg in agg.aggregations():
         uid = str(uuid.uuid4())
         aggs.append(uid)
-        agg_dict, files = parse_aggregations_and_files(agg, agg_dict, files_dict, uid, md['url'])
+        agg_dict, files = parse_aggregations_and_files(agg, agg_dict, files_dict, uid, files_metadata, md['url'])
 
     md["hasPart"] = list(aggs)
     agg_dict[id] = md
@@ -67,7 +82,11 @@ def parse_aggregations_and_files(agg, agg_dict, files_dict, id, isPartOf=None):
 
 def parse_and_resolve_aggregations(resource_id: str):
     res = hs.resource(resource_id=resource_id)
-    aggregations, files = parse_aggregations_and_files(res, {}, {}, resource_id)
+    response = hs._hs_session.get(f"{res._hsapi_path}/files/?count=1000", status_code=200)
+    file_result = response.json()
+    files_metadata = file_result["results"]
+
+    aggregations, files = parse_aggregations_and_files(res, {}, {}, resource_id, files_metadata)
 
     # resolve files first
     for agg in aggregations.values():
