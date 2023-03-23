@@ -80,7 +80,7 @@ def parse_and_resolve_aggregations(resource_id: str):
     for key, agg in aggregations.items():
         resolved_aggregations = []
         for agg_id in agg["hasPart"]:
-            aggregations[agg_id]["id"] = agg_id
+            #aggregations[agg_id]["id"] = agg_id
             resolved_aggregations.append(aggregations[agg_id])
         agg["hasPart"] = resolved_aggregations
 
