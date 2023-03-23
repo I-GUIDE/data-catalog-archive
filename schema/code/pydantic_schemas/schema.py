@@ -100,6 +100,7 @@ class MediaObject(BaseModel):
     name: str
 
 class CoreMetadata(BaseModel):
+    type: str = Field(alias="@type", const=True, default="Dataset")
     name: str = Field(description="The name or title of the record.")
     description: str = Field(description="The description or abstract of the record.")
     url: HttpUrl = Field(description="The url of the record.")
