@@ -100,6 +100,7 @@ class MediaObject(BaseModel):
     name: str
 
 class CoreMetadata(BaseModel):
+    context: HttpUrl = Field(alias='@context', default='https://schema.org')
     type: str = Field(alias="@type", const=True, default="Dataset")
     name: str = Field(description="The name or title of the record.")
     description: str = Field(description="The description or abstract of the record.")
