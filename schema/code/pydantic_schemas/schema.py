@@ -5,6 +5,14 @@ from typing import List, Optional, Union
 from pydantic import BaseModel, HttpUrl, EmailStr, Field
 
 
+class Distribution(BaseModel):
+    type: str = Field(alias="@type", const=True, default="DataDownload")
+    name: str
+    contentUrl: str
+    encodingFormat: str
+    contentSize: str
+    comment: Optional[str]
+
 class PropertyValue(BaseModel):
     id: HttpUrl = Field(alias="@id")
     type: str = Field(alias="@type", const=True, default="PropertyValue")

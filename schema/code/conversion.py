@@ -3,7 +3,7 @@ from hsmodels.schemas.aggregations import GeographicFeatureMetadata, GeographicR
 from typing import Union
 from hsmodels.schemas.enums import RelationType
 
-from pydantic_schemas.schema import CoreMetadata, Organization, Grant, Person, Place, Polygon, Line
+from pydantic_schemas.schema import CoreMetadata, Organization, Grant, Person, Place, Polygon, Line, Distribution
 
 
 def exists(obj, prop_name):
@@ -18,7 +18,13 @@ def convert(md: Union[ResourceMetadata, GeographicFeatureMetadata, GeographicRas
     if exists(md, "url"):
         new_md.url = md.url
         new_md.identifier = [md.url]
-        new_md.distribution = [md.url]
+        distribution = Distribution.construct()
+        distribution.name = f"{md.identifier.split('/')[-1]}.zip"
+        distribution.contentUrl = md.url
+        distribution.encodingFormat = "application/zip"
+        distribution.comment = "The HydroShare Resource Landing Page contains instructions for downloading the dataset"
+        distribution.contentSize = 'TODO'
+        new_md.distribution = [distribution]
     if exists(md, "creators"):
         new_creators = []
         for creator in md.creators:

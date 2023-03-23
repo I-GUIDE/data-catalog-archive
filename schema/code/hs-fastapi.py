@@ -48,7 +48,7 @@ def parse_aggregations_and_files(agg, agg_dict, files_dict, id):
     files = {}
     for file in agg.files():
         file_id = str(uuid.uuid4()) # str(mimetypes.guess_type(file.path))
-        files[file_id] = MediaObject(contentUrl=f"{agg.metadata.url}/{file.path}" , contentSize=file.checksum, encodingFormat=os.path.splitext(file.path)[1], name=os.path.basename(file.path))
+        files[file_id] = MediaObject(contentUrl=f"{agg.metadata.url}/{file.path}" , contentSize='TODO', encodingFormat=os.path.splitext(file.path)[1], name=os.path.basename(file.path))
     md["associatedMedia"] = list(files.keys())
     files_dict.update(files)
 
