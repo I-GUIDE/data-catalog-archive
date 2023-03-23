@@ -47,11 +47,11 @@ def get_file_metadata(file_url, files_metadata):
             return file
     return None
 
-def parse_aggregations_and_files(agg, agg_dict, files_dict, id, files_metadata, isPartOf=None):
+def parse_aggregations_and_files(agg, agg_dict, files_dict, id, files_metadata, resource_url, isPartOf=None):
     files = {}
     resource_size = 0
     for file in agg.files():
-        file_id = f"{agg.metadata.url}/data/contents/{file.path}"
+        file_id = f"{resource_url}/data/contents/{file.path}"
         file_metadata = get_file_metadata(file_id, files_metadata)
         if file_metadata:
             files[file_id] = MediaObject(contentUrl=file_id, 
@@ -67,6 +67,7 @@ def parse_aggregations_and_files(agg, agg_dict, files_dict, id, files_metadata, 
     md = convert(agg.metadata, distribution_size=naturalsize(resource_size))
     if isPartOf:
         md['isPartOf'] = isPartOf
+        del md['distribution']
     md["associatedMedia"] = list(files.keys())
     files_dict.update(files)
 
@@ -74,7 +75,7 @@ def parse_aggregations_and_files(agg, agg_dict, files_dict, id, files_metadata, 
     for agg in agg.aggregations():
         uid = str(uuid.uuid4())
         aggs.append(uid)
-        agg_dict, files = parse_aggregations_and_files(agg, agg_dict, files_dict, uid, files_metadata, md['url'])
+        agg_dict, files = parse_aggregations_and_files(agg, agg_dict, files_dict, uid, files_metadata, resource_url, md['url'])
 
     md["hasPart"] = list(aggs)
     agg_dict[id] = md
@@ -87,7 +88,7 @@ def parse_and_resolve_aggregations(resource_id: str):
     file_result = response.json()
     files_metadata = file_result["results"]
 
-    aggregations, files = parse_aggregations_and_files(res, {}, {}, resource_id, files_metadata)
+    aggregations, files = parse_aggregations_and_files(res, {}, {}, resource_id, files_metadata, res.metadata.url)
 
     # resolve files first
     for agg in aggregations.values():
