@@ -1,25 +1,74 @@
 
 # Software Source Code
 
-This document outlines the *required* and *recommended* properties for
-describing source code.
+To classify a record as a computer programming source code, `"@type: "SoftwareSourceCode"` should be used in the json schema. This will classify the record such as compile ready solutions, code snippet samples, scripts, etc. as a specific Schema.Org type called `SoftwareSourceCode` for which the metadata should be described using the [core metadata](https://github.com/I-GUIDE/data-catalog/blob/main/schema/core.md), as well as the software-source-code-specific properties for the [Schema:SoftwareSourceCode](https://schema.org/SoftwareSourceCode) class. The following table outlines the required and optional properties selected from Schema.Org vocabulary to design the I-GUIDE software source code metadata schema. These properties are encoded as `1` or `1+` for **required** and `0,1` or `0+` for **optional** in the Cardinality column of the table below.
 
-While all Schema.org properties are valid, below is a suggested subset to
-represent a single source code object using the 
-*[SoftwareSourceCode](https://schema.org/SoftwareSourceCode)* class.
-
-**Note**: A valid source code entry must include the required metadata outlined
-in the [Core Metadata](core.md) document, which are not
-described on this page.
-
-#### Required Properties
 |Property|Class|Expected Type|Cardinality|Description|
 |---|---|---|---|---|
-| programmingLanguage | SoftwareSourceCode | ComputerLanguage \| Text | 1+ | The computer programming language |
-| runtimePlatform | SoftwareSourceCode | Text | 1+ | Runtime platform or script interpreter dependencies |
-| targetProduct | SoftwareSourceCode | SoftwareApplication | 1+ | Target Operating System or Product to which the code applies |
-| codeRepository | SoftwareSourceCode| URL | 1 | Link to the repository where the un-compiled, human readable code and related code is located |
-| codeSampleType | SoftwareApplication | Text | 1 | 	What type of code sample: full (compile ready) solution, code snippet, inline code, scripts, template |
+| [programmingLanguage](https://schema.org/programmingLanguage) | SoftwareSourceCode | ComputerLanguage \| Text | 1+ | The computer programming language |
+| [runtimePlatform](https://schema.org/runtimePlatform) | SoftwareSourceCode | Text | 1+ | Runtime platform or script interpreter dependencies |
+| [targetProduct](https://schema.org/targetProduct) | SoftwareSourceCode | SoftwareApplication | 1+ | Target Operating System or Product to which the code applies |
+| [codeRepository](https://schema.org/codeRepository) | SoftwareSourceCode| URL | 1 | Link to the repository where the un-compiled, human readable code and related code is located |
+| [codeSampleType](https://schema.org/codeSampleType) | SoftwareApplication | Text | 0,1 | What type of code sample: full (compile ready) solution, code snippet, inline code, scripts, template |
+| [text](https://schema.org/text) | CreativeWork | Text | 0+ |The textual content of the source code. |
+
+### Programming Language
+
+[Schema:programmingLanguage](https://schema.org/programmingLanguage) is a property of the `Thing` class. It is used to encode the computer programming language of a record that is classified as a source code. 
+
+A simple example is shown below.
+
+``` json
+{
+  "programmingLanguage": "Python"
+}
+```
+
+However, it is preferred for a programming language to be expressed as a [ComputerLanguage](https://schema.org/ComputerLanguage) class if possible. The following example illustrates how an identifier can be encoded as a `ComputerLanguage`.
+
+``` json
+{
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "Python",
+    "url": "https://www.python.org/",
+    "description": "Python is an interpreted, object-oriented, high-level programming language with dynamic semantics."
+  }
+}
+```
+
+### Runtime Platform
+
+This property is used to indicate the platform or environment on which a given source code can be executed. Examples include Java v1, Python 2.3, .NET Framework 3.0. 
+
+### Target Product
+
+### Code Repository
+
+### Code Sample Type
+
+### COde Textual Content
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 The following is an example implementation of the required metadata
 properties for a software source code object.
