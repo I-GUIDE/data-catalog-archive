@@ -7,7 +7,7 @@ To classify a record as a computer programming source code, `"@type: "SoftwareSo
 |---|---|---|---|---|
 | [programmingLanguage](https://schema.org/programmingLanguage) | SoftwareSourceCode | ComputerLanguage \| Text | 1+ | The computer programming language |
 | [runtimePlatform](https://schema.org/runtimePlatform) | SoftwareSourceCode | Text | 1+ | Runtime platform or script interpreter dependencies |
-| [targetProduct](https://schema.org/targetProduct) | SoftwareSourceCode | SoftwareApplication | 1+ | Target Operating System or Product to which the code applies |
+| [targetProduct](https://schema.org/targetProduct) | SoftwareSourceCode | [SoftwareApplication](https://github.com/I-GUIDE/data-catalog/blob/main/schema/softwareapp.md) | 1+ | Target Operating System or Product to which the code applies |
 | [codeRepository](https://schema.org/codeRepository) | SoftwareSourceCode| URL | 1 | Link to the repository where the un-compiled, human readable code and related code is located |
 | [codeSampleType](https://schema.org/codeSampleType) | SoftwareApplication | Text | 0,1 | What type of code sample: full (compile ready) solution, code snippet, inline code, scripts, template |
 | [text](https://schema.org/text) | CreativeWork | Text | 0+ |The textual content of the source code. |
@@ -49,9 +49,39 @@ However, it is preferred for a programming language to be expressed as a [Comput
 
 ### Target Product
 
+| [Schema:targetProduct](https://schema.org/targetProduct) is used in the context of software source code to describe a product that the can use the source code. We use the `SoftwareApplication` class and some of its properties to specify `targetProduct`. 
 
+Here is an example that describe a Python library intended to be used with a specific machine learning framework such as TensorFlow.
+
+``` json
+{
+  "@type": "SoftwareSourceCode",
+  "name": "My Python Library",
+  "programmingLanguage": "Python",
+  "targetProduct": {
+    "@type": "SoftwareApplication",
+    "name": "TensorFlow",
+    "operatingSystem": ["Windows", "MacOS", "Linux"]
+  }
+}
+```
+
+An example of an IPython Jupyter Notebook as a `targetProduct` for a record in the data catalog classifed as a software source code can be shown as below.
+
+``` json
+{
+  "targetProduct": {
+      "@type": "SoftwareApplication",
+      "name": "Jupyter Notebook",
+      "applicationSuite": "JupyterLab",
+      "operatingSystem": ["Windows", "MacOS", "Linux"]
+    }
+}
+```
 
 ### Code Repository
+
+
 
 ### Code Sample Type
 
