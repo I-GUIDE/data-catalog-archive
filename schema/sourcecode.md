@@ -39,9 +39,17 @@ However, it is preferred for a programming language to be expressed as a [Comput
 
 ### Runtime Platform
 
-This property is used to indicate the platform or environment on which a given source code can be executed. Examples include Java v1, Python 2.3, .NET Framework 3.0. 
+[Schema:runtimePlatform](https://schema.org/runtimePlatform) is a type of software platform that is used to indicate the platform or environment on which a given source code can be executed. Examples include Java v1, Python 3.9, .NET Framework 3.0. Here's an example of how  `RuntimePlatform` property is used to describe a software source code that can run using Ptyhon 3.9.
+
+``` json
+{
+  "runtimePlatform": "Python 3.9"
+}
+```
 
 ### Target Product
+
+
 
 ### Code Repository
 
