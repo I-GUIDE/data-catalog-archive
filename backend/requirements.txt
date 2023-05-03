@@ -1,0 +1,6 @@
+fastapi
+beanie
+motor
+pytest
+uvicorn
+itsdangerous
