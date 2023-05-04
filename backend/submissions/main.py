@@ -18,9 +18,5 @@ async def main():
 
 
 if __name__ == "__main__":
-    # Print Rocketry's logs to terminal
-    rocketry_logger = logging.getLogger("rocketry.task")
-    rocketry_logger.addHandler(logging.StreamHandler())
-
     # Run all applications
     asyncio.run(main())

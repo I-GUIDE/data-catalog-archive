@@ -8,6 +8,6 @@ WORKDIR /app
 
 EXPOSE 5002
 
-ENV PYTHONPATH "${PYTHONPATH}:/app/submissions"
+ENV PYTHONPATH "${PYTHONPATH}:/app"
 
-CMD ["python", "submissions/main.py"]
+CMD ["python", "main.py"]

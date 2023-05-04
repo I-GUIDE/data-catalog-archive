@@ -1,5 +1,11 @@
 version: '3'
 
+volumes:
+  h2_data:
+    driver: local
+  mongo_data:
+    driver: local
+
 services:
 
   #dspfront:
@@ -26,7 +32,7 @@ services:
     image: iguide_api
     container_name: iguide_api
     volumes:
-      - ./:/app
+      - ./submissions:/app
       #- ./tests:/tests
     #entrypoint: bash dev-entrypoint.sh
     build:
@@ -43,7 +49,36 @@ services:
     ports:
       - '27017:27017'
     volumes:
-      - ./mongo-data:/data/db
+      - mongo_data:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=AzureDiamond
       - MONGO_INITDB_ROOT_PASSWORD=hunter2
+  
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_DB: testkeycloakdb
+      POSTGRES_USER: testkeycloakuser
+      POSTGRES_PASSWORD: testkeycloakpassword
+    restart:
+      always
+  
+  keycloak:
+    # build from cuahsi/keycloak
+    image: docker.io/library/keycloak-keycloak
+    volumes:
+      - h2_data:/opt/keycloak/data
+    environment:
+      DB_VENDOR: POSTGRES
+      DB_ADDR: postgres
+      DB_DATABASE: testkeycloakdb
+      DB_USER: testkeycloakuser
+      DB_SCHEMA: public
+      DB_PASSWORD: testkeycloakpassword
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+      KC_HTTP_RELATIVE_PATH: /auth
+      KC_FEATURES: preview,admin2
+    ports:
+      - 8080:8080
+    #command: [ "start-dev" ] 
