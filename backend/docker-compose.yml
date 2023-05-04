@@ -32,7 +32,7 @@ services:
     image: iguide_api
     container_name: iguide_api
     volumes:
-      - ./submissions:/app
+      - ./submissions:/submissions
       #- ./tests:/tests
     #entrypoint: bash dev-entrypoint.sh
     build:
@@ -43,6 +43,7 @@ services:
     restart: on-failure
     depends_on:
       - mongodb
+      - keycloak
 
   mongodb:
     image: mongo:5.0
@@ -81,4 +82,6 @@ services:
       KC_FEATURES: preview,admin2
     ports:
       - 8080:8080
-    #command: [ "start-dev" ] 
+    depends_on:
+      - postgres
+    command: [ "/opt/bitnami/keycloak/bin/kc.sh", "start-dev", "--proxy=passthrough", "--hostname-url=https://localhost/auth", "--hostname-admin-url=https://localhost/auth"] 

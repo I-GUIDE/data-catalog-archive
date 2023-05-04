@@ -1,6 +1,7 @@
 import motor
 from beanie import init_beanie
 from fastapi import FastAPI
+from routers import authentication
 
 from starlette.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
@@ -17,6 +18,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.include_router(authentication.router, prefix="/api")
+
 
 @app.on_event("startup")
 async def startup_db_client():
@@ -31,3 +34,4 @@ async def startup_db_client():
 async def shutdown_db_client():
     pass
     #app.db.close()
+

@@ -11,7 +11,7 @@ keycloak is used with the oidc protocol for user authentication.  This template 
 Used exclusiviely by keycloak
 
 ### nginx
-nginx is used for routing between all the services and handle ssl certificates.  Because the oidc protocol requires ssl, a default certificate is included with this project.  Of course, these certificates should only be used for local development.
+nginx is used for routing between all the services and handle ssl certificates.  Because some identity providers who use the oidc protocol requires ssl, a default certificate is included with this project.  Of course, these certificates should only be used for local development.
 - `https://localhost`
 
 ### api
