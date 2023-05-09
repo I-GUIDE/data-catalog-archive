@@ -32,7 +32,7 @@ services:
     image: iguide_api
     container_name: iguide_api
     volumes:
-      - ./submissions:/submissions
+      - ./submissions:/app/submissions
       #- ./tests:/tests
     #entrypoint: bash dev-entrypoint.sh
     build:

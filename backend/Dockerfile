@@ -4,10 +4,10 @@ COPY requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
-WORKDIR /submissions
+WORKDIR /app
 
 EXPOSE 5002
 
-ENV PYTHONPATH "${PYTHONPATH}:/submissions"
+ENV PYTHONPATH "${PYTHONPATH}:/app/submissions"
 
-CMD ["python", "main.py"]
+CMD ["python", "submissions/main.py"]

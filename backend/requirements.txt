@@ -4,4 +4,4 @@ motor
 pytest
 uvicorn
 itsdangerous
-fastapi_keycloak
+prokie-fastapi-oidc-auth

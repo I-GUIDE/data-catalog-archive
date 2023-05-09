@@ -1,40 +1,40 @@
-from beanie import init_beanie
-from fastapi import APIRouter, Depends, HTTPException
-from fastapi.responses import RedirectResponse
-from fastapi_keycloak import FastAPIKeycloak, OIDCUser
+from fastapi import APIRouter, Request
+from starlette.responses import RedirectResponse
+import uvicorn
 
+from fastapi_oidc_auth.auth import OpenIDConnect
+
+host = "https://auth.cuahsi.io"
+realm = "IGUIDE"
+client_id = "iguide-catalog"
+client_secret = "jC8NwfW8KHMv0ww0WEFvpYSv9R5ddjAD"
+app_uri = "http://localhost/api/"
+
+
+class CustomOpenIDConnect(OpenIDConnect):
+    well_known_pattern = "{}/realms/{}/.well-known/openid-configuration"
+
+oidc = CustomOpenIDConnect(host, realm, app_uri, client_id, client_secret)
 router = APIRouter()
 
-idp = FastAPIKeycloak(
-    server_url="https://localhost/auth",
-    client_id="test-client",
-    client_secret="GzgACcJzhzQ4j8kWhmhazt7WSdxDVUyE",
-    admin_client_secret="BIcczGsZ6I8W5zf0rZg5qSexlloQLPKB",
-    realm="Test",
-    callback_uri="https://localhost/api/callback"
-)
-idp.add_swagger_config(router)
 
-@router.get("/")  # Unprotected
-def root():
-    return 'Hello World'
+@router.get("/")
+async def homepage(request: Request) -> dict[str, str]:
+    return {"message": "Not a secret"}
 
 
-@router.get("/user")  # Requires logged in
-def current_users(user: OIDCUser = Depends(idp.get_current_user())):
-    return user
-
-
-@router.get("/admin")  # Requires the admin role
-def company_admin(user: OIDCUser = Depends(idp.get_current_user(required_roles=["admin"]))):
-    return f'Hi admin {user}'
+@router.get("/secret")
+@oidc.require_login
+async def secret(request: Request) -> dict[str, str]:
+    return {"message": "Secret"}
 
 
 @router.get("/login")
-def login_redirect():
-    return RedirectResponse(idp.login_uri)
+@oidc.require_login
+async def login(request: Request) -> dict[str, str]:
+    return {"message": "success"}
 
 
-@router.get("/callback")
-def callback(session_state: str, code: str):
-    return idp.exchange_authorization_code(session_state=session_state, code=code)  # This will return an access token
+@router.get("/logout")
+async def logout(request: Request) -> RedirectResponse:
+    return oidc.logout(request=request)

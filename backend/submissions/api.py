@@ -1,7 +1,7 @@
 import motor
 from beanie import init_beanie
 from fastapi import FastAPI
-from routers import authentication
+from submissions.routers import authentication
 
 from starlette.middleware.cors import CORSMiddleware
 from starlette.middleware.sessions import SessionMiddleware
