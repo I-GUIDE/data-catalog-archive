@@ -4,4 +4,8 @@ motor
 pytest
 uvicorn
 itsdangerous
-prokie-fastapi-oidc-auth
+python-jose
+python-jose[cryptography]
+requests
+cachetools
+pyjwt
