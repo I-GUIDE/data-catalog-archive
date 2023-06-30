@@ -465,17 +465,13 @@ expressed using the [Schema:DateTime](https://schema.org/DateTime) subtype.
 
 ``` json
 {
-  "temporalCoverage": "2007-03-01T13:00:00Z/2008-05-11T15:30:00Z"
+  "temporalCoverage": {
+    "@type": "DateTime",
+    "startDate": "2007-03-01T13:00:00Z",
+    "endDate": "2008-05-11T15:30:00Z"
+  }
 }
 ```
-
-Open-ended date ranges can be written with ".." in place of the end date. The following example indicates a range beginning in March 2007 and with no specified final date. Note that this is tentative and might be updated in future when ISO 8601 is officially updated.
-``` json
-{
-  "temporalCoverage": "2007-03/.."
-}
-```
-
 
 ### Spatial Coverage
 
