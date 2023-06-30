@@ -420,11 +420,7 @@ Here is an example of describing the National Science Foundation agency using th
     "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2118329",
     "funder": {
        "@type": "Organization",
-       "name": "National Science Foundation",
-       "identifier":[
-        "https://ror.org/021nxhr62",
-        "https://doi.org/10.13039/100000001"
-       ]
+       "name": "National Science Foundation"
     }
   }
 }
@@ -441,11 +437,7 @@ Multiple funding sources can be expressed as a list:
     "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2118329",
     "funder": {
        "@type": "Organization",
-       "name": "National Science Foundation",
-       "identifier":[
-        "https://ror.org/021nxhr62",
-        "https://doi.org/10.13039/100000001"
-       ]
+       "name": "National Science Foundation"
     }
   },
   {
