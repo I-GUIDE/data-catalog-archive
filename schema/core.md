@@ -128,7 +128,12 @@ A more complete example of an author will include additional fields from the
   "creator": {
     "@type": "Person",
     "name": "John Doe",
-    "email": "john.doe@email.com",
+    "email": "john.doe@noaa.gov",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "National Oceanic and Atmospheric Administration (NOAA)",
+      "url": "https://www.noaa.gov/"
+    },
     "identifier": {
       "@type": "PropertyValue",
       "@id": "https://orcid.org/0000-0000-0000-0001",
@@ -149,7 +154,12 @@ For multiple authors, the `@list` keyword is used to preserve the order of creat
       {
         "@type": "Person",
         "name": "John Doe",
-        "email": "john.doe@email.com",
+        "email": "john.doe@noaa.gov",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "National Oceanic and Atmospheric Administration (NOAA)",
+          "url": "https://www.noaa.gov/"
+        },
         "identifier": {
           "@id": "https://orcid.org/0000-0000-0000-0001",
           "@type": "PropertyValue",
@@ -299,7 +309,12 @@ Example encoding where a person is the provider:
   "provider": {
     "@type": "Person",
     "name": "John Doe",
-    "email": "jdoe@email.com"
+    "email": "jdoe@noaa.gov",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "National Oceanic and Atmospheric Administration (NOAA)",
+      "url": "https://www.noaa.gov/"
+    }
   }
 }
 ```
@@ -677,9 +692,14 @@ is a collection of record(s) that includes the "Great Salt Lake Bathymetry" reco
   "identifier": "https://www.hydroshare.org/resource/b6c4fcad40c64c4cb4dd7d4a25d0db6e/",
   "creator":{
     "@type": "Person",
-    "name": "David Tarboton"
+    "name": "David Tarboton",
+    "email": "david.tarboton@usu.edu",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Utah State University",
+      "url": "www.usu.edu"
+    }
   },
-  "identifier": "",
   "hasPart": {
     "@type": "CreativeWork",
     "name": "Great Salt Lake Bathymetry",
@@ -699,7 +719,13 @@ For the example above, multiple relations can be defined using a list.
   "identifier": "https://www.hydroshare.org/resource/b6c4fcad40c64c4cb4dd7d4a25d0db6e/",
   "creator":{
     "@type": "Person",
-    "name": "David Tarboton"
+    "name": "David Tarboton",
+    "email": "david.tarboton@usu.edu",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Utah State University",
+      "url": "www.usu.edu"
+    }
   },
   "hasPart": [
     {
@@ -728,7 +754,13 @@ record belongs to the "Collection of Great Salt Lake Data" creative work in the 
   "description": "Digital Elevation Model for the Great Salt Lake, lake bed bathymetry.",
   "creator": {
     "@type": "Person",
-    "name": "David Tarboton"
+    "name": "David Tarboton",
+    "email": "david.tarboton@usu.edu",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Utah State University",
+      "url": "www.usu.edu"
+    }
   },
   "identifier": "https://www.hydroshare.org/resource/582060f00f6b443bb26e896426d9f62a/",
   "isPartOf": {
@@ -787,7 +819,13 @@ the cited article are listed in this example.
     "url": "https://www.sciencedirect.com/science/article/abs/pii/S1463500319302173?via%3Dihub",
     "creator" : {
       "@type" : "Person",
-      "name": "Fei Ye"
+      "name": "Fei Ye",
+      "email": "feiye@vims.edu",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Virginia Institute of Marine Science",
+        "url": "https://www.vims.edu"
+      }
     },
     "creativeWorkStatus" : "published",
     "publisher" : {
@@ -824,7 +862,13 @@ This example demonstrates the use of multiple citations, including a published a
       "url": "https://www.sciencedirect.com/science/article/abs/pii/S1463500319302173?via%3Dihub",
       "creator" : {
         "@type" : "Person",
-        "name": "Fei Ye"
+        "name": "Fei Ye",
+        "email": "feiye@vims.edu",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Virginia Institute of Marine Science",
+          "url": "https://www.vims.edu"
+        }
       },
       "creativeWorkStatus" : "published",
       "publisher" : {
