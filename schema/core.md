@@ -23,7 +23,7 @@ for **required** and `0,1` or `0+` for **optional** in the Cardinality column of
 |[subjectOf](#subject-of)| Thing | CreativeWork | 0+ | A creative work about the record - e.g., a related metadata document describing the record |
 |[version](#version)| CreativeWork | Number \| Text | 0,1 | The version of the record |
 |[inLanguage](#language)|CreativeWork|Language \| Text|0,1| The language of the content of the record|
-|[creativeWorkStatus](#creative-work-status) | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a record in terms of its stage in a lifecycle|
+|[creativeWorkStatus](#creative-work-status) | CreativeWork | Text | 0,1 | The status of a record in terms of its stage in a lifecycle|
 |[dateModified](#dates) |	CreativeWork |Date \| DateTime | 0,1| The date on which the record was most recently modified or updated | 
 |[funding](#funding)| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the record|
 |[temporalCoverage](#temporal-coverage)|CreativeWork|DateTime| 0,1 | The period that the content of a record applies to |
@@ -379,24 +379,11 @@ used for this encoding. For most records, it is anticipated that this will be "e
 ### Creative Work Status
 
 [Schema:creativeWorkStatus](https://schema.org/creativeWorkStatus) is a property of `CreativeWork` used to capture the
-stage of a work's lifecycle. Example terms include Incomplete, Draft, Published, Obsolete, etc. Some organizations define a 
-set of terms for the stages of their publication lifecycle. This can be expressed as text or using the 
-[Schema:DefinedTerm](https://schema.org/DefinedTerm) class.
+stage of a work's lifecycle. Example terms include Incomplete, Draft, Obsolete, and Published. 
 
 ``` json
 {
   "creativeWorkStatus": "published"
-}
-```
-
-A more expressive status can be provided using the `DefinedTerm` subtype.
-``` json
-{
-  "creativeWorkStatus": {
-    "@type": "DefinedTerm",
-    "name": "public",
-    "description": "a publicly accessible dataset on HydroShare.org"
-  }
 }
 ```
 
