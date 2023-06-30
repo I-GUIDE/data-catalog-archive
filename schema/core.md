@@ -362,6 +362,29 @@ This linkage can be encoded as:
 }
 ```
 
+Here is an example that demonstrates the utilization of the `subjectOf` property to reference a journal paper describing a particular resource:
+
+```json
+{
+  "subjectOf": {
+    "@type": "CreativeWork",
+      "name" : "Simulating storm surge and compound flooding events with a creek-to-ocean model: Importance of baroclinic effects",
+      "identifier" : "https://doi.org/10.1016/j.ocemod.2019.101526",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S1463500319302173?via%3Dihub",
+      "creator" : {
+        "@type" : "Person",
+        "name": "Fei Ye",
+        "email": "feiye@vims.edu",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Virginia Institute of Marine Science",
+          "url": "https://www.vims.edu"
+        }
+      }
+  }
+}
+```
+
 ### Version
 
 The [Schema:version](https://schema.org/version) is a property of `CreativeWork` that can be used to encode a formal 
