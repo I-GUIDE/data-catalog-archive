@@ -129,7 +129,6 @@ In the example below, we used the `includedInDataCatalog` property to show that 
             "name": "The USGS Science Data Catalog (SDC)",
             "description" : "The Science Data Catalog (SDC) is the official public and searchable index that aggregates descriptions of all public research data that have been published by the USGS.",
             "url":"https://data.usgs.gov/datacatalog/",
-            "identifier": "<internally-created-identifier>",
             "creator": {
                 "@type": "Organization",
                 "name": "U.S. Geological Survey",
@@ -141,7 +140,6 @@ In the example below, we used the `includedInDataCatalog` property to show that 
             "name": "The I-GUIDE Data Catalog",
             "description": "A centralized metadata catalog capable of indexing data from the diverse, distributed data required by the I-GUIDE project focus areas.",
             "url": "https://iguide.cuahsi.io/discover",
-            "identifier": "<>",
             "creator": {
                 "@type": "Organization",
                 "name": "NSF Institute for Geospatial Understanding through an Integrative Discovery Environment (I-GUIDE)",
