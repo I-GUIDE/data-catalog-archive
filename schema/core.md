@@ -23,7 +23,7 @@ for **required** and `0,1` or `0+` for **optional** in the Cardinality column of
 |[subjectOf](#subject-of)| Thing | CreativeWork | 0+ | A creative work about the record - e.g., a related metadata document describing the record |
 |[version](#version)| CreativeWork | Number \| Text | 0,1 | The version of the record |
 |[inLanguage](#language)|CreativeWork|Language \| Text|0,1| The language of the content of the record|
-|[creativeWorkStatus](#creative-work-status) | CreativeWork | DefinedTerm \| Text | 0,1 | The status of a record in terms of its stage in a lifecycle|
+|[creativeWorkStatus](#creative-work-status) | CreativeWork | DefinedTerm | 0,1 | The status of a record in terms of its stage in a lifecycle|
 |[dateModified](#dates) |	CreativeWork |Date \| DateTime | 0,1| The date on which the record was most recently modified or updated | 
 |[funding](#funding)| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the record|
 |[temporalCoverage](#temporal-coverage)|CreativeWork|DateTime| 0,1 | The period that the content of a record applies to |
@@ -128,7 +128,12 @@ A more complete example of an author will include additional fields from the
   "creator": {
     "@type": "Person",
     "name": "John Doe",
-    "email": "john.doe@email.com",
+    "email": "john.doe@noaa.gov",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "National Oceanic and Atmospheric Administration (NOAA)",
+      "url": "https://www.noaa.gov/"
+    },
     "identifier": {
       "@type": "PropertyValue",
       "@id": "https://orcid.org/0000-0000-0000-0001",
@@ -149,7 +154,12 @@ For multiple authors, the `@list` keyword is used to preserve the order of creat
       {
         "@type": "Person",
         "name": "John Doe",
-        "email": "john.doe@email.com",
+        "email": "john.doe@noaa.gov",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "National Oceanic and Atmospheric Administration (NOAA)",
+          "url": "https://www.noaa.gov/"
+        },
         "identifier": {
           "@id": "https://orcid.org/0000-0000-0000-0001",
           "@type": "PropertyValue",
@@ -299,7 +309,12 @@ Example encoding where a person is the provider:
   "provider": {
     "@type": "Person",
     "name": "John Doe",
-    "email": "jdoe@email.com"
+    "email": "jdoe@noaa.gov",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "National Oceanic and Atmospheric Administration (NOAA)",
+      "url": "https://www.noaa.gov/"
+    }
   }
 }
 ```
@@ -347,6 +362,29 @@ This linkage can be encoded as:
 }
 ```
 
+Here is an example that demonstrates the utilization of the `subjectOf` property to reference a journal paper describing a particular resource:
+
+```json
+{
+  "subjectOf": {
+    "@type": "CreativeWork",
+      "name" : "Simulating storm surge and compound flooding events with a creek-to-ocean model: Importance of baroclinic effects",
+      "identifier" : "https://doi.org/10.1016/j.ocemod.2019.101526",
+      "url": "https://www.sciencedirect.com/science/article/abs/pii/S1463500319302173?via%3Dihub",
+      "creator" : {
+        "@type" : "Person",
+        "name": "Fei Ye",
+        "email": "feiye@vims.edu",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Virginia Institute of Marine Science",
+          "url": "https://www.vims.edu"
+        }
+      }
+  }
+}
+```
+
 ### Version
 
 The [Schema:version](https://schema.org/version) is a property of `CreativeWork` that can be used to encode a formal 
@@ -379,23 +417,38 @@ used for this encoding. For most records, it is anticipated that this will be "e
 ### Creative Work Status
 
 [Schema:creativeWorkStatus](https://schema.org/creativeWorkStatus) is a property of `CreativeWork` used to capture the
-stage of a work's lifecycle. Example terms include Incomplete, Draft, Published, Obsolete, etc. Some organizations define a 
-set of terms for the stages of their publication lifecycle. This can be expressed as text or using the 
-[Schema:DefinedTerm](https://schema.org/DefinedTerm) class.
+stage of a work's lifecycle. Example terms include Incomplete, Draft, Obsolete, and Published. 
 
-``` json
-{
-  "creativeWorkStatus": "published"
-}
-```
-
-A more expressive status can be provided using the `DefinedTerm` subtype.
 ``` json
 {
   "creativeWorkStatus": {
     "@type": "DefinedTerm",
-    "name": "public",
-    "description": "a publicly accessible dataset on HydroShare.org"
+    "name": "Incomplete",
+    "description": "Data collection is ongoing or the resource is not completed."
+  }
+}
+
+{
+  "creativeWorkStatus": {
+    "@type": "DefinedTerm",
+    "name": "Draft",
+    "description": "The resource is in draft state and should not be considered final. Content and metadata may change."
+  }
+}
+
+{
+  "creativeWorkStatus": {
+    "@type": "DefinedTerm",
+    "name": "Obsolete",
+    "description": "The resource has been replaced by a newer version, or the resource is no longer considered applicable."
+  }
+}
+
+{
+  "creativeWorkStatus": {
+    "@type": "DefinedTerm",
+    "name": "published",
+    "description": "The resource has been permanently published and should be considered final and complete."
   }
 }
 ```
@@ -416,13 +469,10 @@ Here is an example of describing the National Science Foundation agency using th
     "@type": "MonetaryGrant",
     "name": "HDR Institute: Geospatial Understanding through an Integrative Discovery Environment",
     "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2118329",
+    "identifier": "2118329",
     "funder": {
        "@type": "Organization",
-       "name": "National Science Foundation",
-       "identifier":[
-        "https://ror.org/021nxhr62",
-        "https://doi.org/10.13039/100000001"
-       ]
+       "name": "National Science Foundation"
     }
   }
 }
@@ -439,11 +489,7 @@ Multiple funding sources can be expressed as a list:
     "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2118329",
     "funder": {
        "@type": "Organization",
-       "name": "National Science Foundation",
-       "identifier":[
-        "https://ror.org/021nxhr62",
-        "https://doi.org/10.13039/100000001"
-       ]
+       "name": "National Science Foundation"
     }
   },
   {
@@ -471,17 +517,13 @@ expressed using the [Schema:DateTime](https://schema.org/DateTime) subtype.
 
 ``` json
 {
-  "temporalCoverage": "2007-03-01T13:00:00Z/2008-05-11T15:30:00Z"
+  "temporalCoverage": {
+    "@type": "DateTime",
+    "startDate": "2007-03-01T13:00:00Z",
+    "endDate": "2008-05-11T15:30:00Z"
+  }
 }
 ```
-
-Open-ended date ranges can be written with ".." in place of the end date. The following example indicates a range beginning in March 2007 and with no specified final date. Note that this is tentative and might be updated in future when ISO 8601 is officially updated.
-``` json
-{
-  "temporalCoverage": "2007-03/.."
-}
-```
-
 
 ### Spatial Coverage
 
@@ -690,9 +732,14 @@ is a collection of record(s) that includes the "Great Salt Lake Bathymetry" reco
   "identifier": "https://www.hydroshare.org/resource/b6c4fcad40c64c4cb4dd7d4a25d0db6e/",
   "creator":{
     "@type": "Person",
-    "name": "David Tarboton"
+    "name": "David Tarboton",
+    "email": "david.tarboton@usu.edu",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Utah State University",
+      "url": "www.usu.edu"
+    }
   },
-  "identifier": "",
   "hasPart": {
     "@type": "CreativeWork",
     "name": "Great Salt Lake Bathymetry",
@@ -712,7 +759,13 @@ For the example above, multiple relations can be defined using a list.
   "identifier": "https://www.hydroshare.org/resource/b6c4fcad40c64c4cb4dd7d4a25d0db6e/",
   "creator":{
     "@type": "Person",
-    "name": "David Tarboton"
+    "name": "David Tarboton",
+    "email": "david.tarboton@usu.edu",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Utah State University",
+      "url": "www.usu.edu"
+    }
   },
   "hasPart": [
     {
@@ -741,7 +794,13 @@ record belongs to the "Collection of Great Salt Lake Data" creative work in the 
   "description": "Digital Elevation Model for the Great Salt Lake, lake bed bathymetry.",
   "creator": {
     "@type": "Person",
-    "name": "David Tarboton"
+    "name": "David Tarboton",
+    "email": "david.tarboton@usu.edu",
+    "affiliation": {
+      "@type": "Organization",
+      "name": "Utah State University",
+      "url": "www.usu.edu"
+    }
   },
   "identifier": "https://www.hydroshare.org/resource/582060f00f6b443bb26e896426d9f62a/",
   "isPartOf": {
@@ -800,9 +859,19 @@ the cited article are listed in this example.
     "url": "https://www.sciencedirect.com/science/article/abs/pii/S1463500319302173?via%3Dihub",
     "creator" : {
       "@type" : "Person",
-      "name": "Fei Ye"
+      "name": "Fei Ye",
+      "email": "feiye@vims.edu",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Virginia Institute of Marine Science",
+        "url": "https://www.vims.edu"
+      }
     },
-    "creativeWorkStatus" : "published",
+    "creativeWorkStatus": {
+      "@type": "DefinedTerm",
+      "name": "published",
+      "description": "The resource has been permanently published and should be considered final and complete."
+    },
     "publisher" : {
       "@type": "Organization",
       "name" : "Elsevier"
@@ -837,9 +906,19 @@ This example demonstrates the use of multiple citations, including a published a
       "url": "https://www.sciencedirect.com/science/article/abs/pii/S1463500319302173?via%3Dihub",
       "creator" : {
         "@type" : "Person",
-        "name": "Fei Ye"
+        "name": "Fei Ye",
+        "email": "feiye@vims.edu",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Virginia Institute of Marine Science",
+          "url": "https://www.vims.edu"
+        }
       },
-      "creativeWorkStatus" : "published",
+      "creativeWorkStatus": {
+        "@type": "DefinedTerm",
+        "name": "published",
+        "description": "The resource has been permanently published and should be considered final and complete."
+      },
       "publisher" : {
         "@type": "Organization",
         "name" : "Elsevier"
