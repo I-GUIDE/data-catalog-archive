@@ -421,7 +421,35 @@ stage of a work's lifecycle. Example terms include Incomplete, Draft, Obsolete, 
 
 ``` json
 {
-  "creativeWorkStatus": "published"
+  "creativeWorkStatus": {
+    "@type": "DefinedTerm",
+    "name": "Incomplete",
+    "description": "Data collection is ongoing or the resource is not completed."
+  }
+}
+
+{
+  "creativeWorkStatus": {
+    "@type": "DefinedTerm",
+    "name": "Draft",
+    "description": "The resource is in draft state and should not be considered final. Content and metadata may change."
+  }
+}
+
+{
+  "creativeWorkStatus": {
+    "@type": "DefinedTerm",
+    "name": "Obsolete",
+    "description": "The resource has been replaced by a newer version, or the resource is no longer considered applicable."
+  }
+}
+
+{
+  "creativeWorkStatus": {
+    "@type": "DefinedTerm",
+    "name": "published",
+    "description": "The resource has been permanently published and should be considered final and complete."
+  }
 }
 ```
 
@@ -441,6 +469,7 @@ Here is an example of describing the National Science Foundation agency using th
     "@type": "MonetaryGrant",
     "name": "HDR Institute: Geospatial Understanding through an Integrative Discovery Environment",
     "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2118329",
+    "identifier": "2118329",
     "funder": {
        "@type": "Organization",
        "name": "National Science Foundation"
