@@ -23,7 +23,7 @@ for **required** and `0,1` or `0+` for **optional** in the Cardinality column of
 |[subjectOf](#subject-of)| Thing | CreativeWork | 0+ | A creative work about the record - e.g., a related metadata document describing the record |
 |[version](#version)| CreativeWork | Number \| Text | 0,1 | The version of the record |
 |[inLanguage](#language)|CreativeWork|Language \| Text|0,1| The language of the content of the record|
-|[creativeWorkStatus](#creative-work-status) | CreativeWork | Text | 0,1 | The status of a record in terms of its stage in a lifecycle|
+|[creativeWorkStatus](#creative-work-status) | CreativeWork | DefinedTerm | 0,1 | The status of a record in terms of its stage in a lifecycle|
 |[dateModified](#dates) |	CreativeWork |Date \| DateTime | 0,1| The date on which the record was most recently modified or updated | 
 |[funding](#funding)| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the record|
 |[temporalCoverage](#temporal-coverage)|CreativeWork|DateTime| 0,1 | The period that the content of a record applies to |
@@ -867,7 +867,11 @@ the cited article are listed in this example.
         "url": "https://www.vims.edu"
       }
     },
-    "creativeWorkStatus" : "published",
+    "creativeWorkStatus": {
+      "@type": "DefinedTerm",
+      "name": "published",
+      "description": "The resource has been permanently published and should be considered final and complete."
+    },
     "publisher" : {
       "@type": "Organization",
       "name" : "Elsevier"
@@ -910,7 +914,11 @@ This example demonstrates the use of multiple citations, including a published a
           "url": "https://www.vims.edu"
         }
       },
-      "creativeWorkStatus" : "published",
+      "creativeWorkStatus": {
+        "@type": "DefinedTerm",
+        "name": "published",
+        "description": "The resource has been permanently published and should be considered final and complete."
+      },
       "publisher" : {
         "@type": "Organization",
         "name" : "Elsevier"
