@@ -115,7 +115,8 @@ A single organization can be represented as:
   "creator": {
     "@type": "Organization",
     "name": "National Aeronautics and Space Administration (NASA)",
-    "url": "https://www.nasa.gov/"
+    "url": "https://www.nasa.gov/",
+    "address": "300 E Street SW Washington, DC 20546-0001"
   }
 } 
 ```
@@ -132,7 +133,8 @@ A more complete example of an author will include additional fields from the
     "affiliation": {
       "@type": "Organization",
       "name": "National Oceanic and Atmospheric Administration (NOAA)",
-      "url": "https://www.noaa.gov/"
+      "url": "https://www.noaa.gov/",
+      "address": "1401 Constitution Avenue NW, Room 5128, Washington, DC 20230"
     },
     "identifier": "https://orcid.org/0000-0000-0000-0001"
   }
@@ -152,7 +154,8 @@ For multiple authors, the `@list` keyword is used to preserve the order of creat
         "affiliation": {
           "@type": "Organization",
           "name": "National Oceanic and Atmospheric Administration (NOAA)",
-          "url": "https://www.noaa.gov/"
+          "url": "https://www.noaa.gov/",
+          "address": "1401 Constitution Avenue NW, Room 5128, Washington, DC 20230"
         },
         "identifier": "https://orcid.org/0000-0000-0000-0001"
       },
@@ -163,7 +166,8 @@ For multiple authors, the `@list` keyword is used to preserve the order of creat
         "affiliation": {
           "@type": "Organization",
           "name": "National Oceanic and Atmospheric Administration (NOAA)",
-          "url": "https://www.noaa.gov/"
+          "url": "https://www.noaa.gov/",
+          "address": "1401 Constitution Avenue NW, Room 5128, Washington, DC 20230"
         },
         "identifier": "https://orcid.org/0000-0000-0000-0002"
       }
@@ -300,7 +304,8 @@ Example encoding where a person is the provider:
     "affiliation": {
       "@type": "Organization",
       "name": "National Oceanic and Atmospheric Administration (NOAA)",
-      "url": "https://www.noaa.gov/"
+      "url": "https://www.noaa.gov/",
+      "address": "1401 Constitution Avenue NW, Room 5128, Washington, DC 20230"
     }
   }
 }
@@ -365,7 +370,8 @@ Here is an example that demonstrates the utilization of the `subjectOf` property
         "affiliation": {
           "@type": "Organization",
           "name": "Virginia Institute of Marine Science",
-          "url": "https://www.vims.edu"
+          "url": "https://www.vims.edu",
+          "address": "Post Office Box 1346, 1370 Greate Road, Gloucester Point, Virginia 23062-1346"
         }
       }
   }
@@ -459,7 +465,8 @@ Here is an example of describing the National Science Foundation agency using th
     "identifier": "2118329",
     "funder": {
        "@type": "Organization",
-       "name": "National Science Foundation"
+       "name": "National Science Foundation",
+       "address": "2415 Eisenhower Avenue Alexandria, Virginia 22314"
     }
   }
 }
@@ -476,7 +483,8 @@ Multiple funding sources can be expressed as a list:
     "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2118329",
     "funder": {
        "@type": "Organization",
-       "name": "National Science Foundation"
+       "name": "National Science Foundation",
+       "address": "2415 Eisenhower Avenue Alexandria, Virginia 22314"
     }
   },
   {
@@ -486,6 +494,7 @@ Multiple funding sources can be expressed as a list:
     "funder": {
       "@type": "Organization",
       "name": "National Science Foundation",
+      "address": "2415 Eisenhower Avenue Alexandria, Virginia 22314",
       "identifier":[
         "https://ror.org/021nxhr62",
         "https://doi.org/10.13039/100000001"
