@@ -12,7 +12,7 @@ for **required** and `0,1` or `0+` for **optional** in the Cardinality column of
 |[name](#name-description-and-url)|Thing|Text|1|The name or title of the record|
 |[description](#name-description-and-url)|Thing|Text|1|The description or abstract of the record|
 |[url](#name-description-and-url)|Thing|URL|1|The url of a landing page describing the record|
-|[identifier](#identifier)|Thing|PropertyValue \| Text \| URL|1+|Any kind of identifier for the record|
+|[identifier](#identifier)|Thing| Text \| URL|1+|Any kind of identifier for the record|
 |[creator](#creator)|CreativeWork|Organization \| Person|1+|Organization or person that created the record|
 |[dateCreated](#dates) | CreativeWork | Date \| DateTime | 1 | The date on which the record was created|
 |[keywords](#keywords) | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the record|
@@ -87,7 +87,7 @@ However, it is preferred for an identifier to be expressed as a URL if possible.
   }
 }
 ```
-
+Please note that the example above describes the use of the `PropertyValue` type to represent the `identifier`. It is important to mention that our current schema does not currently include the `identifier` as a `PropertyValue` type. However, we may consider incorporating it in future updates of our schema.
 
 ### Creator 
 
@@ -134,13 +134,7 @@ A more complete example of an author will include additional fields from the
       "name": "National Oceanic and Atmospheric Administration (NOAA)",
       "url": "https://www.noaa.gov/"
     },
-    "identifier": {
-      "@type": "PropertyValue",
-      "@id": "https://orcid.org/0000-0000-0000-0001",
-      "propertyID": "https://registry.identifiers.org/registry/orcid",
-      "url": "https://orcid.org/0000-0000-0000-0001",
-      "value": "0000-0000-0000-0001"
-    }
+    "identifier": "https://orcid.org/0000-0000-0000-0001"
   }
 }
 ```
@@ -148,7 +142,7 @@ A more complete example of an author will include additional fields from the
 For multiple authors, the `@list` keyword is used to preserve the order of creators.
 
 ``` json
- {
+{
   "creator": {
     "@list":[
       {
@@ -160,29 +154,22 @@ For multiple authors, the `@list` keyword is used to preserve the order of creat
           "name": "National Oceanic and Atmospheric Administration (NOAA)",
           "url": "https://www.noaa.gov/"
         },
-        "identifier": {
-          "@id": "https://orcid.org/0000-0000-0000-0001",
-          "@type": "PropertyValue",
-          "propertyID": "https://registry.identifiers.org/registry/orcid",
-          "url": "https://orcid.org/0000-0000-0000-0001",
-          "value": "0000-0000-0000-0001"
-        }
+        "identifier": "https://orcid.org/0000-0000-0000-0001"
       },
       {
         "@type": "Person",
         "name": "Jane Doe",
         "email": "jane.doe@email.com",
-        "identifier": {
-          "@id": "https://orcid.org/0000-0000-0000-0002",
-          "@type": "PropertyValue",
-          "propertyID": "https://registry.identifiers.org/registry/orcid",
-          "url": "https://orcid.org/0000-0000-0000-0002",
-          "value": "0000-0000-0000-0002"
-        }
+        "affiliation": {
+          "@type": "Organization",
+          "name": "National Oceanic and Atmospheric Administration (NOAA)",
+          "url": "https://www.noaa.gov/"
+        },
+        "identifier": "https://orcid.org/0000-0000-0000-0002"
       }
     ]
   }
- }
+}
 ```
 
 ### Dates
