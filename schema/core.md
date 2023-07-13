@@ -580,28 +580,6 @@ A geographic bounding box is an area enclosed by a rectangle formed by two point
 }
 ```
 
-Multiple locations can be specified using a list: (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
-
-``` json
-{
-  "spatialCoverage": {
-    "@type": "Place",
-    "geo": [
-      {
-        "@type": "GeoCoordinates",
-        "latitude": -17.65,
-        "longitude": 50
-      },
-      {
-        "@type": "GeoCoordinates",
-        "latitude": -19,
-        "longitude": 51
-      }
-    ]
-  }
-}
-```
-
 ### Associated Media
 
 [Schema:associatedMedia](https://schema.org/associatedMedia), which is also a synonym for 
