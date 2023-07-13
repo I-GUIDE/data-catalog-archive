@@ -547,7 +547,7 @@ A generic location may look like this:
 
 However, a recommended practice is to use the [Schema:geo](https://schema.org/geo) that is a subtype of `Place` and 
 could be specified by using either [Schema:GeoCoordinates](https://schema.org/GeoCoordinates) for a point location or 
-[Schema:GeoShape](https://schema.org/GeoShape) for a line or area coverage extent (such as bounding box, polygon, etc.). 
+[Schema:GeoShape](https://schema.org/GeoShape) for the area coverage extent (bounding box). 
 Note that the geometry described by `GeoShape` should be expressed with a set of latitude and longitude pairs. 
 
 A geographic point location may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
@@ -560,34 +560,6 @@ A geographic point location may look like this (from [SOSO](https://github.com/E
       "@type": "GeoCoordinates",
       "latitude": 39.3280,
       "longitude": 120.1633
-    }
-  }
-}
-```
-
-A geographic vector is expressed using [Schema:line](https://schema.org/line), and it may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
-
-``` json 
-{
-  "spatialCoverage": {
-    "@type": "Place",
-    "geo": {
-      "@type": "GeoShape",
-      "line": "39.3280 120.1633 40.445 123.7878"
-    }
-  }
-}
-```
-
-A geographic polygon is described using [Schema:polygon](https://schema.org/polygon), and it may look like this (from [SOSO](https://github.com/ESIPFed/science-on-schema.org/blob/master/guides/Dataset.md#spatial-coverage)):
-
-``` json 
-{
-  "spatialCoverage": {
-    "@type": "Place",
-    "geo": {
-      "@type": "GeoShape",
-      "polygon": "39.3280 120.1633 40.445 123.7878 41 121 39.77 122.42 39.3280 120.1633"
     }
   }
 }
