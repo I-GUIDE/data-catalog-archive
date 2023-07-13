@@ -462,8 +462,7 @@ Here is an example of describing the National Science Foundation agency using th
     "@type": "MonetaryGrant",
     "name": "HDR Institute: Geospatial Understanding through an Integrative Discovery Environment",
     "description": "This project establishes the Institute for Geospatial Understanding through an Integrative Discovery Environment (I-GUIDE). In today's interconnected world, disasters such as floods and droughts are rarely isolated events, and their cascading effects are often felt far beyond their locations of origin. I-GUIDE creates an integrative discovery environment that enables the harnessing of geospatial data for understanding interconnected interactions across diverse socioeconomic-environmental systems to enhance community resilience and environmental sustainability. I-GUIDE nurtures a diverse and inclusive geospatial discovery community across many disciplines by bridging disciplinary digital data divides with broader impacts amplified through a well-trained and diverse workforce and proactive engagement of minority and underrepresented groups. The project leverages existing collaborations with its diverse member and partner organizations, representing academic, governmental, and industrial institutions, thereby extending its reach across the U.S. and the globe. The influence of I-GUIDE?s new knowledge frontiers impact solutions to real-world problems and geospatial decisions, with significance ranging from the nation?s economic development to security. I-GUIDE builds upon relationships with the museum and informal science education communities as well as libraries and news media to raise public awareness about the contributions of the geospatial data revolution to society. Globalization has intensified and extended the impacts of socioeconomic-environmental interactions across long distances, a process known as telecoupling. I-GUIDE?s integrative discovery environment is vital to transform innovative theories, concepts, methods, and tools focusing geospatial synthesis that drive novel capabilities for addressing scientific questions of how to harness geospatial data for multi-scale and telecoupling discoveries to enhance community resilience and environmental sustainability. Two substantive and convergent scientific problems are addressed: (1) Water security, to evaluate geospatial and socioeconomic impacts of hydroclimatic extremes that are related to environmental and infrastructure sustainability, and (2) Biodiversity and food security, to enhance basic understanding of biodiversity dynamics in the face of nearby and distant disasters, global changes, international trade, and dynamic land use transitions. Transformative geospatial understanding gained from solving these interrelated problems are translated into digital resources and tools made available online through an open I-GUIDE platform for a variety of educational and training activities to serve a broad and diverse audience. Through this platform, the next-generation workforce can acquire geospatial knowledge coupled with data-driven technological skills for decision-making and problem-solving experiences. This project is part of the National Science Foundation's Big Idea activities in Harnessing the Data Revolution (HDR). The award by the Office of Advanced Cyberinfrastructure is jointly supported by the Division of Behavioral and Cognitive Sciences, the Division of Social and Economic Sciences, and the Office of Multidisciplinary Activities within the Directorate for Social, Behavioral and Economic Sciences; the Division of Earth Sciences within the Directorate for Geosciences; the Division of Mathematical Sciences within the Directorate for Mathematical and Physical Sciences, and by the Division of Information and Intelligent Systems within the Directorate for Computer and Information Science and Engineering.",
-    "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2118329",
-    "identifier": "2118329",
+    "identifier": "https://nsf.gov/awardsearch/showAward?AWD_ID=2118329",
     "funder": {
        "@type": "Organization",
        "name": "National Science Foundation",
@@ -482,20 +481,22 @@ Multiple funding sources can be expressed as a list:
     "@type": "MonetaryGrant",
     "name": "HDR Institute: Geospatial Understanding through an Integrative Discovery Environment",
     "description": "This project is part of the National Science Foundation's Big Idea activities in Harnessing the Data Revolution (HDR). The award by the Office of Advanced Cyberinfrastructure is jointly supported by the Division of Behavioral and Cognitive Sciences, the Division of Social and Economic Sciences, and the Office of Multidisciplinary Activities within the Directorate for Social, Behavioral and Economic Sciences; the Division of Earth Sciences within the Directorate for Geosciences; the Division of Mathematical Sciences within the Directorate for Mathematical and Physical Sciences, and by the Division of Information and Intelligent Systems within the Directorate for Computer and Information Science and Engineering.",
-    "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2118329",
-    "identifier": "2118329",
+    "identifier": "NSF AWARD 2118329",
     "funder": {
        "@type": "Organization",
        "name": "National Science Foundation",
-       "address": "2415 Eisenhower Avenue Alexandria, Virginia 22314"
+       "address": "2415 Eisenhower Avenue Alexandria, Virginia 22314",
+       "identifier":[
+        "https://ror.org/021nxhr62",
+        "https://doi.org/10.13039/100000001"
+       ]
     }
   },
   {
     "@type": "MonetaryGrant",
     "name": "Collaborative Research: Network Hub: Enabling, Supporting, and Communicating Critical Zone Research.",
     "description": "The Critical Zone is loosely defined as the region of Earth from the top of the bedrock to the top of the treetops. This is the region that supports all terrestrial life and is constantly evolving as rock, soil, water, air, and living organisms interact to regulate the Earth?s environment. This project will establish the coordinating hub of the Critical-Zone Collaborative Network, which is designed to continue the research advances in the science of the Critical Zone that NSF has supported for the past decade. The Network Coordinating Hub will provide cyberinfrastructure, data management, and community services to support the Critical Zone Thematic Clusters, which are research collaboratiions pursuing new and practical knowledge concerning the functions of the Earth?s surface systems. The Network Coordinating Hub will: (1) enhance and integrate existing data services operated by the Consortium of Universities for the Advancement of Hydrologic Science, Inc. (CUAHSI) and EarthChem to support the Critical-Zone science community; (2) support scientific discovery through community synthesis activities and via access to community data and modeling cyberinfrastructure; (3) broaden the Critical-Zone community and the impact of Critical-Zone science through outreach and education activities; and (4) enhance collaboration among the Critical Zone Thematic Clusters through coordination, sharing, and community events.",
-    "url": "https://nsf.gov/awardsearch/showAward?AWD_ID=2012748",
-    "identifier": "2012748",
+    "identifier": "NSF AWARD 2012748",
     "funder": {
       "@type": "Organization",
       "name": "National Science Foundation",
