@@ -540,8 +540,7 @@ A generic location may look like this:
 {
   "spatialCoverage": {
     "@type": "Place",
-    "name": "CUAHSI Office",
-    "address": "1167 Massachusetts Ave Suites 418 & 419, Arlington, MA 02476"
+    "name": "Great Basins"
   }
 }
 ```
