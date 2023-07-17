@@ -685,7 +685,7 @@ is a collection of record(s) that includes the "Great Salt Lake Bathymetry" reco
     "@type": "CreativeWork",
     "name": "Great Salt Lake Bathymetry",
     "description": "Digital Elevation Model for the Great Salt Lake, lake bed bathymetry.",
-    "identifier": "https://www.hydroshare.org/resource/582060f00f6b443bb26e896426d9f62a/"
+    "url": "https://www.hydroshare.org/resource/582060f00f6b443bb26e896426d9f62a/"
   }
 }
 ```
@@ -713,13 +713,13 @@ For the example above, multiple relations can be defined using a list.
       "@type": "CreativeWork",
       "name": "Great Salt Lake Bathymetry",
       "description": "Digital Elevation Model for the Great Salt Lake, lake bed bathymetry.",
-      "identifier": "https://www.hydroshare.org/resource/582060f00f6b443bb26e896426d9f62a/"
+      "url": "https://www.hydroshare.org/resource/582060f00f6b443bb26e896426d9f62a/"
     },
     {
       "@type": "CreativeWork",
       "name": "Great Salt Lake Level and Volume",
       "description": "Time series of level, area and volume in the Great Salt Lake.",
-      "identifier": "https://www.hydroshare.org/resource/b26090299ec947c692d4ee4651815579/"
+      "url": "https://www.hydroshare.org/resource/b26090299ec947c692d4ee4651815579/"
     }
   ]
 }
@@ -748,11 +748,7 @@ record belongs to the "Collection of Great Salt Lake Data" creative work in the 
     "@type": "CreativeWork",
     "name": "Collection of Great Salt Lake Data",
     "description": "Data from the Great Salt Lake and its basin",
-    "creator": {
-      "@type": "Person",
-      "name": "David Tarboton"
-    },
-    "identifier": "https://www.hydroshare.org/resource/b6c4fcad40c64c4cb4dd7d4a25d0db6e/"
+    "url": "https://www.hydroshare.org/resource/b6c4fcad40c64c4cb4dd7d4a25d0db6e/"
   }
 }
 ```
