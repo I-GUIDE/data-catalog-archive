@@ -283,16 +283,6 @@ permanently published, **Publisher** indicates the organization or person that p
 **Provider** and **Publisher** are semantically similar and can be encoded similarly. The following 
 examples are for the **Provider** property but can also be used for **Publisher**.
 
-Simple encoding for the URL of a provider:
-
-``` json
-{
-  "provider": {
-    "@id": "https://hydroshare.org"
-  }
-}
-```
-
 Example encoding where a person is the provider:
 
 ``` json
