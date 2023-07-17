@@ -208,14 +208,14 @@ The `Date` class expects a value in [ISO 8601 date format](http://en.wikipedia.o
 
 [Schema:keywords](https://schema.org/keywords) is a property of `CreativeWork` that can be expressed using either
 the [Schema:DefinedTerm](https://schema.org/DefinedTerm), `Text`, or `URL` Schema.Org classes. Keywords are tags that describe the catalog record and are primarily used for resource discovery. The
-**Keywords** property is typically provided as a list of items, but it can also be presented by
-repeating the **Keyword** property. Several examples are listed below.
+**Keywords** property is typically provided as a list of items:
 
 ``` json
 {
   "keywords": ["keyword 1", "keyword 2", "keyword 3"]
 }
 ```
+In future versions, it can also be presented by repeating the **Keyword** property. Several examples are listed below.
 
 ``` json
 {
