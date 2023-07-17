@@ -757,110 +757,95 @@ record belongs to the "Collection of Great Salt Lake Data" creative work in the 
 
 In addition to `hasPart` and `isPartOf` that overall imply a specific collection/collected record relationship, 
 [Schema:citation](https://schema.org/citation) can be used to represent general relationships between records. 
-It can represent a citation or reference to another creative work, such as another publication, web page, scholarly article, etc. that 
-are related but not necessarily part of a collection record. Note that `citation` is NOT used to encode the citation of the record being described.
+This property can represent a citation or reference to another creative work, such as another publication, web page, scholarly article, etc. that are related but not necessarily part of a collection record. Note that `citation` is NOT used to encode the citation of the record being described.
 
-This is a simple example of using `citation` to refer to a published article that used the "NOAA National Water Model CONUS Retrospective Dataset, Version 2.1 in NetCDF Format" dataset.
-
-``` json
-{
-  "name": "NOAA National Water Model CONUS Retrospective Dataset, Version 2.1 in NetCDF Format",
-  "description": "The complete archive of NWM input forcing and model output data version 2.1 in NetCDF format.",
-  "url": "https://noaa-nwm-retrospective-2-1-pds.s3.amazonaws.com/index.html",
-  "creator": {
-    "@type" : "Organization",
-    "name": "Office of Water Prediction (OWP)",
-    "url": "https://water.noaa.gov/"
-  },
-  "citation": "https://doi.org/10.1016/j.ocemod.2019.101526"
-}
-```
-
-`citation` can also be expressed as a `creativework` to express more metadata of the item using sub-properties from `creativework`. Note that not all the authors of 
-the cited article are listed in this example. 
+This is a simple example of using `citation` to refer to and cite the datasets that were used in a research work.
 
 ``` json
 {
-  "name": "NOAA National Water Model CONUS Retrospective Dataset, Version 2.1 in NetCDF Format",
-  "description": "The complete archive of NWM input forcing and model output data version 2.1 in NetCDF format.",
-  "url": "https://noaa-nwm-retrospective-2-1-pds.s3.amazonaws.com/index.html",
-  "creator": {
-    "@type" : "Organization",
-    "name": "Office of Water Prediction (OWP)",
-    "url": "https://water.noaa.gov/"
-  },
-  "citation": {
-    "@type": "CreativeWork",
-    "name" : "Simulating storm surge and compound flooding events with a creek-to-ocean model: Importance of baroclinic effects",
-    "identifier" : "https://doi.org/10.1016/j.ocemod.2019.101526",
-    "url": "https://www.sciencedirect.com/science/article/abs/pii/S1463500319302173?via%3Dihub",
-    "creator" : {
-      "@type" : "Person",
-      "name": "Fei Ye",
-      "email": "feiye@vims.edu",
+  "name": "Data for a comparison of national water model retrospective analysis snow outputs at SNOTEL sites across the Western U.S",
+  "description": "The HydroShare resources in this collection contain the data and scripts used for: Garousi-Nejad, I. and Tarboton, D. (2022) https://doi.org/10.1002/hyp.14469.",
+  "url": "https://www.hydroshare.org/resource/7a51f56c2cf24ae78012ac6a6d4815a6/",
+  "creator": [
+    {
+      "@type": "Person",
+      "name": "Irene Garousi-Nejad",
+      "email": "igarousi@cuahsi.org",
       "affiliation": {
         "@type": "Organization",
-        "name": "Virginia Institute of Marine Science",
-        "url": "https://www.vims.edu"
+        "name": "CUAHSI",
+        "url": "www.cuahsi.com"
       }
     },
-    "creativeWorkStatus": {
-      "@type": "DefinedTerm",
-      "name": "published",
-      "description": "The resource has been permanently published and should be considered final and complete."
-    },
-    "publisher" : {
-      "@type": "Organization",
-      "name" : "Elsevier"
+    {
+      "@type": "Person",
+      "name": "David Tarboton",
+      "email": "david.tarboton@usu.edu",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Utah State University",
+        "url": "www.usu.edu"
+      }
     }
-  } 
+  ],
+  "citation": [
+    "https://console.cloud.google.com/storage/browser/national-water-model-v2?pli=1",
+    "http://www.cec.org/north-american-environmental-atlas/terrestrial-ecoregions-level-iii/"
+  ]
 }
 ```
 
-This example demonstrates the use of multiple citations, including a published article and a Jupyter notebook. Note that not all the authors of the cited article are listed in this example. 
- 
+In future versions, `citation` can also be expressed as a `creativework` to express more metadata of the item using sub-properties from `creativework`.   
+
 ``` json
 {
-  "name": "NOAA National Water Model CONUS Retrospective Dataset, Version 2.1 in NetCDF Format",
-  "description": "The complete archive of NWM input forcing and model output data version 2.1 in NetCDF format.",
-  "url": "https://noaa-nwm-retrospective-2-1-pds.s3.amazonaws.com/index.html",
-  "creator": {
-    "@type" : "Organization",
-    "name": "Office of Water Prediction (OWP)",
-    "url": "https://water.noaa.gov/"
+  "name": "Data for a comparison of national water model retrospective analysis snow outputs at SNOTEL sites across the Western U.S",
+  "description": "The HydroShare resources in this collection contain the data and scripts used for: Garousi-Nejad, I. and Tarboton, D. (2022) https://doi.org/10.1002/hyp.14469.",
+  "url": "https://www.hydroshare.org/resource/7a51f56c2cf24ae78012ac6a6d4815a6/",
+  "creator": [
+    {
+      "@type": "Person",
+      "name": "Irene Garousi-Nejad",
+      "email": "igarousi@cuahsi.org",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "CUAHSI",
+        "url": "www.cuahsi.com"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "David Tarboton",
+      "email": "david.tarboton@usu.edu",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Utah State University",
+        "url": "www.usu.edu"
+      }
+    }
+  ],
+  "subjectOf": {
+      "@type": "CreativeWork",
+      "name" : "A comparison of National Water Model retrospective analysis snow outputs at snow telemetry sites across the Western United States",
+      "description": "This resource is referenced by Garousi-Nejad, I. and Tarboton, D. (2022).",
+      "url": "https://doi.org/10.1002/hyp.14469"
   },
   "citation": [
     {
       "@type": "CreativeWork",
-      "name" : "Rich Signell",
-      "identifier" : "https://nbviewer.org/gist/rsignell-usgs/d3dfaf3cd3d8b39894a69b22127dfe38",
-      "url": "https://nbviewer.org/gist/rsignell-usgs/d3dfaf3cd3d8b39894a69b22127dfe38"
+      "name" : "NOAA National Water Model Reanalysi",
+      "description": "The content of this resource is derived from the NOAA National Water Model Reanalysis Dataset.",
+      "url": "https://console.cloud.google.com/storage/browser/national-water-model-v2?pli=1"
     },
     {
       "@type": "CreativeWork",
-      "name" : "Simulating storm surge and compound flooding events with a creek-to-ocean model: Importance of baroclinic effects",
-      "identifier" : "https://doi.org/10.1016/j.ocemod.2019.101526",
-      "url": "https://www.sciencedirect.com/science/article/abs/pii/S1463500319302173?via%3Dihub",
-      "creator" : {
-        "@type" : "Person",
-        "name": "Fei Ye",
-        "email": "feiye@vims.edu",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "Virginia Institute of Marine Science",
-          "url": "https://www.vims.edu"
-        }
-      },
-      "creativeWorkStatus": {
-        "@type": "DefinedTerm",
-        "name": "published",
-        "description": "The resource has been permanently published and should be considered final and complete."
-      },
-      "publisher" : {
-        "@type": "Organization",
-        "name" : "Elsevier"
-      }
+      "name" : "Omernik Ecoregions level III",
+      "description": "The content of this resource is derived from the Omernik Ecoregions level III (Omernik & Griffith, 2014) data available from the Commission for Environmental Corporation.",
+      "url": "http://www.cec.org/north-american-environmental-atlas/terrestrial-ecoregions-level-iii/"
     }
   ]
 }
 ```
+
+
+
