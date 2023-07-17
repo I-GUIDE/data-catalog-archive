@@ -314,7 +314,7 @@ Example encoding where a person is the provider:
 Note: for a more complete example of `Person`, see the [Creator](#creator)
 section of this document.
 
-Encoding for a formal repository with a parent organization:
+Encoding for a formal repository with a parent organization is listed belwo. Currently, we do not have `parentOrganization` as a property. However, in future versions, the attribute `parentOrganization` will be taken into consideration. 
 
 ``` json
 {
