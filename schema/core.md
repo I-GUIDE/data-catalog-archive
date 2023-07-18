@@ -278,10 +278,9 @@ can be represented as:
 [Schema:Person](https://schema.org/Person). **Provider** represents the service operator,
 service performer, or goods producer. In many cases, this is the operator of the
 repository in which the data resides, but that may not always be the case. If a record is 
-permanently published, **Publisher** indicates the organization or person that published the record.
+permanently published, **Publisher** indicates the organization that published the record.
 
-**Provider** and **Publisher** are semantically similar and can be encoded similarly. The following 
-examples are for the **Provider** property but can also be used for **Publisher**.
+In our design, **Provider** can be represented as either `Person` or `Organization`, while **Publisher** is exclusively expressed associated with an `Organization`. 
 
 Example encoding where a person is the provider:
 
@@ -297,6 +296,17 @@ Example encoding where a person is the provider:
       "url": "https://www.noaa.gov/",
       "address": "1401 Constitution Avenue NW, Room 5128, Washington, DC 20230"
     }
+  }
+}
+```
+Example encoding where an organization is the publisher:
+
+``` json
+{
+  "publisher": {
+    "@type": "Organization",
+    "name": "HydroShare",
+    "url": "https://hydroshare.org"
   }
 }
 ```
