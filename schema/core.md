@@ -339,7 +339,7 @@ This linkage can be encoded as:
     "@type": "CreativeWork",
     "name": "Dublin Core Metadata Document Describing the Dataset",
     "url": "https://www.hydroshare.org/hsapi/resource/c1be74eeea614d65a29a185a66a7552f/scimeta/",
-    "encodingFormat": "application/rdf+xml"
+    "description": "The Dublin Core, also known as the Dublin Core Metadata Element Set, is a set of fifteen 'core' elements (properties) for describing resources. This fifteen-element Dublin Core was first standardized in 1998 as IETF RFC 2413, 'Dublin Core Metadata for Resource Discovery', and subsequently published as ANSI/NISO Z39.85 and ISO 15836. Documentation for these core properties is now included as part of the larger set of DCMI Metadata Terms."
   }
 }
 ```
@@ -351,19 +351,8 @@ Here is an example that demonstrates the utilization of the `subjectOf` property
   "subjectOf": {
     "@type": "CreativeWork",
       "name" : "Simulating storm surge and compound flooding events with a creek-to-ocean model: Importance of baroclinic effects",
-      "identifier" : "https://doi.org/10.1016/j.ocemod.2019.101526",
-      "url": "https://www.sciencedirect.com/science/article/abs/pii/S1463500319302173?via%3Dihub",
-      "creator" : {
-        "@type" : "Person",
-        "name": "Fei Ye",
-        "email": "feiye@vims.edu",
-        "affiliation": {
-          "@type": "Organization",
-          "name": "Virginia Institute of Marine Science",
-          "url": "https://www.vims.edu",
-          "address": "Post Office Box 1346, 1370 Greate Road, Gloucester Point, Virginia 23062-1346"
-        }
-      }
+      "url": "https://doi.org/10.1016/j.ocemod.2019.101526",
+      "description": "This resource is referenced by Ye et al. (2019), published in the Open Modeling journal. Paper's abstract: We present a creek-to-ocean 3D baroclinic model based on unstructured grids that aims to unite traditional hydrologic and ocean models in a single modeling platform, by taking full advantage of the polymorphism (i.e. a single model grid can seamlessly morph between full 3D, 2DV, 2DH and quasi-1D configurations). Using Hurricane Irene (2011)’s impact on the Delaware Bay as an example, a seamless 2D–3D model grid is implemented to include the entire US East Coast and Gulf of Mexico with a highly resolved Delaware Bay (down to 20-m resolution). The model is forced by flows from a hydrological model (National Water Model ) at the landward boundary. We demonstrate the model’s accuracy, stability and robustness with the simulation of the storm surge and subsequent river flooding events and compound surges. Through a series of sensitivity tests, we illustrate the importance of including in the simulation the baroclinic effects, as provided by the large-scale Gulf Stream, in order to correctly capture the adjustment process following the main surge and the subsequent compound flooding events. The baroclinicity can explain up to 14% of the elevation error during the adjustment phase after the storm."
   }
 }
 ```
