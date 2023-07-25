@@ -14,17 +14,17 @@ for **required** and `0,1` or `0+` for **optional** in the Cardinality column of
 |[url](#name-description-and-url)|Thing|URL|1|The url of a landing page describing the record|
 |[identifier](#identifier)|Thing| Text \| URL|1+|Any kind of identifier for the record|
 |[creator](#creator)|CreativeWork|Organization \| Person|1+|Organization or person that created the record|
-|[dateCreated](#dates) | CreativeWork | Date \| DateTime | 1 | The date on which the record was created|
+|[dateCreated](#dates) | CreativeWork | DateTime | 1 | The date on which the record was created|
 |[keywords](#keywords) | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the record|
 |[license](#license) | CreativeWork | CreativeWork \| URL | 1 | A license document that applies to the content |
 |[provider](#provider-and-publisher) | CreativeWork | Organization \| Person | 1 | The service provider, service operator, or service performer |
 |[publisher](#provider-and-publisher)| CreativeWork | Organization \| Person | 0,1 | The publisher of the record |
-|[datePublished](#dates)| CreativeWork | Date \| DateTime | 0,1 | Date of first publication for the record |
+|[datePublished](#dates)| CreativeWork | DateTime | 0,1 | Date of first publication for the record |
 |[subjectOf](#subject-of)| Thing | CreativeWork | 0+ | A creative work about the record - e.g., a related metadata document describing the record |
 |[version](#version)| CreativeWork | Number \| Text | 0,1 | The version of the record |
 |[inLanguage](#language)|CreativeWork|Language \| Text|0,1| The language of the content of the record|
 |[creativeWorkStatus](#creative-work-status) | CreativeWork | DefinedTerm | 0,1 | The status of a record in terms of its stage in a lifecycle|
-|[dateModified](#dates) |	CreativeWork |Date \| DateTime | 0,1| The date on which the record was most recently modified or updated | 
+|[dateModified](#dates) |	CreativeWork | DateTime | 0,1| The date on which the record was most recently modified or updated | 
 |[funding](#funding)| CreativeWork | Grant | 0+ | A Grant that directly or indirectly provide funding or sponsorship for creation of the record|
 |[temporalCoverage](#temporal-coverage)|CreativeWork|DateTime| 0,1 | The period that the content of a record applies to |
 |[spatialCoverage](#spatial-coverage)|CreativeWork|Place| 0,1 | The place(s) which are the focus of the content of a record|
@@ -181,20 +181,11 @@ For multiple authors, the `@list` keyword is used to preserve the order of creat
 [Schema:dateCreated](https://schema.org/dateCreated), 
 [Schema:dateModified](https://schema.org/dateModified), and 
 [Schema:datePublished](https://schema.org/datePublished) are properties of 
-`CreativeWork` that can be expressed using either the [Schema:Date](https://schema.org/Date) 
-or [Schema:DateTime](https://schema.org/DateTime)  data types. 
+`CreativeWork` that can be expressed using the [Schema:DateTime](https://schema.org/DateTime) data type. 
 The **dateCreated** represents the date at which the dataset was initially generated. 
 The **dateModified** represents the date at which the dataset was most recently modified. 
 The **datePublished** represents the date on which the dataset was permanently published. 
-The `Date` class expects a value in [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601), whereas the `DateTime` class requires a combination of date and time of day. An example of each is provided below.
-
-``` json
-{
-  "dateCreated": "2020-10-01",
-  "dateModified": "2022-11-24",
-  "datePublished": "2023-02-02"
-}
-```
+The `DateTime` class expects a combination of date and time of day based on the [ISO 8601 date format](http://en.wikipedia.org/wiki/ISO_8601). An example of each is provided below.
 
 ``` json
 {
