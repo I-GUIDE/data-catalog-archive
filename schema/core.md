@@ -16,7 +16,7 @@ for **required** and `0,1` or `0+` for **optional** in the Cardinality column of
 |[creator](#creator)|CreativeWork|Organization \| Person|1+|Organization or person that created the record|
 |[dateCreated](#dates) | CreativeWork | DateTime | 1 | The date on which the record was created|
 |[keywords](#keywords) | CreativeWork | DefinedTerm \| Text \| URL |	1+ | Keywords or tags used to describe the record|
-|[license](#license) | CreativeWork | CreativeWork \| URL | 1 | A license document that applies to the content |
+|[license](#license) | CreativeWork | CreativeWork | 1 | A license document that applies to the content |
 |[provider](#provider-and-publisher) | CreativeWork | Organization \| Person | 1 | The service provider, service operator, or service performer |
 |[publisher](#provider-and-publisher)| CreativeWork | Organization \| Person | 0,1 | The publisher of the record |
 |[datePublished](#dates)| CreativeWork | DateTime | 0,1 | Date of first publication for the record |
@@ -241,17 +241,10 @@ In future versions, it can also be presented by repeating the **Keyword** proper
 ### License 
 
 [Schema:license](https://schema.org/license) is a property of the `CreativeWork` class and can be expressed as
-another `CreativeWork` or `URL`. A license is a document that applies to
-the content of the catalog record, for example, a software license. 
+another `CreativeWork`. A license is a document that applies to
+the content of the catalog record, for example, a software license. SOSO recommends that the license be drawn from the [SPDX license list](https://spdx.org/licenses/). 
 
-``` json
-{
-  "license": "https://creativecommons.org/licenses/by/4.0/"
-}
-```
-
-SOSO recommends that the license be drawn from the [SPDX license list](https://spdx.org/licenses/). For example, the MIT license 
-can be represented as: 
+For example, the MIT license can be represented as: 
 
 ``` json
 {
