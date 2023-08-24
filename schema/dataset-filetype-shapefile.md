@@ -47,7 +47,7 @@ The `associatedMedia` property, as described in the core metadata, can encompass
 ### Additional Property
 [Schema:additionalProperty](https://schema.org/additionalProperty) represents a property-value pairing designed to accomodate supplementary information for an entity in cases where no direct match exists within Schema.Org. We intend to use the `additionalProperty` property to denote both the count of features and fields within a shapefile. "Features" within a shapefile denote individual geographic objects, such as point, line, or polygon, and encompass both spatial geometry and associated attribute data. In the context of shapefile, the term "fields" refer to the columns present in the attribute table. The attribute table is a tabular structure where each row corresponds to a feature in the shapefile, and each column (or field) represents a different attribute or type of information associated with those features. To embody the feature and field counts, we use the `propertyID` and `value` attributes within the `additionalProperty` class. 
 
-In the following example, there is a specific shapefile that contains 7 features (polygons) and 9 fields (attributes).  
+In the following example, there is a specific shapefile that contains 7 features (polygons) and 10 fields (attributes).  
 
 ``` json
 {
@@ -237,7 +237,7 @@ Here is a complete example of a shapefile that incorporates all information expl
         {
             "@type": "PropertyValue",
             "PropertyID": "Field Count",
-            "value": 9,
+            "value": 10,
             "variableMeasured": [
                 {
                     "@type": "PropertyValue",
@@ -290,6 +290,11 @@ Here is a complete example of a shapefile that incorporates all information expl
                     "@type": "PropertyValue",
                     "propertyID": "shape_Area",
                     "value": "Real"                    
+                },
+                {
+                    "@type": "PropertyValue",
+                    "propertyID": "geometry",
+                    "value": "geometry"   
                 }
             ]
         }
