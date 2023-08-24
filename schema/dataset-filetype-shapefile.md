@@ -60,7 +60,7 @@ In the following example, there is a specific shapefile that contains 7 features
         {
             "@type": "PropertyValue",
             "PropertyID": "Field Count",
-            "value": 9
+            "value": 10
         }
     ]
 }
@@ -75,54 +75,59 @@ In the following example, there is a specific shapefile that contains 7 features
         {
             "@type": "PropertyValue",
             "propertyID": "objectid",
-            "value": "Real"                   
+            "value": "float64"                   
         },
         {
             "@type": "PropertyValue",
             "propertyID": "areaacres",
-            "value": "Real",
+            "value": "float64",
             "unitCode": "acres",
             "description":"The polygon's area"                      
         },
         {
             "@type": "PropertyValue",
             "propertyID": "areasqkm",
-            "value": "Real",
+            "value": "float64",
             "unitCode": "square kilometers",
             "description":"The polygon's area"                      
         },
         {
             "@type": "PropertyValue",
             "propertyID": "states",
-            "value": "String"                    
+            "value": "object"                    
         },
         {
             "@type": "PropertyValue",
             "propertyID": "huc12",
-            "value": "String",
+            "value": "object",
             "description": "Unique hydrologic unit code"                    
         },
         {
             "@type": "PropertyValue",
             "propertyID": "name",
-            "value": "String",
+            "value": "object",
             "description":"GNIS name for the geographic area in which the hydrologic unit is located"                    
         },
         {
             "@type": "PropertyValue",
             "propertyID": "tohuc",
-            "value": "String",
+            "value": "object",
             "description": "Code for the 12-digit hydrologic unit that is downstream from and naturally receives the majority of the flow from this unit"                    
         },
         {
             "@type": "PropertyValue",
             "propertyID": "shape_Leng",
-            "value": "Real"                    
+            "value": "float64"                    
         },
         {
             "@type": "PropertyValue",
             "propertyID": "shape_Area",
-            "value": "Real"                    
+            "value": "float64"                    
+        },
+        {
+            "@type": "PropertyValue",
+            "propertyID": "geometry",
+            "value": "geometry"   
         }
     ]
 }
@@ -153,7 +158,7 @@ In the context of the shapefile's `spatialCoverage`, we are using the `additiona
         "name": "Logan Watershed",
         "geo": {
             "@type": "GeoShape",
-            "box": "42.09 -111.47 41.71 -111.80"
+            "box": "41.70049003694901 -111.78438452093438 42.102360645589236 -111.51208495002092"
         },
         "additionalProperty": [
             {
@@ -242,54 +247,54 @@ Here is a complete example of a shapefile that incorporates all information expl
                 {
                     "@type": "PropertyValue",
                     "propertyID": "objectid",
-                    "value": "Real"                    
+                    "value": "float64"                    
                 },
                 {
                     "@type": "PropertyValue",
                     "propertyID": "areaacres",
-                    "value": "Real",
+                    "value": "float64",
                     "unitCode": "acres",
                     "description":"The polygon's area"                     
                 },
                 {
                     "@type": "PropertyValue",
                     "propertyID": "areasqkm",
-                    "value": "Real",
+                    "value": "float64",
                     "unitCode": "square kilometers",
                     "description":"The polygon's area"                    
                 },
                 {
                     "@type": "PropertyValue",
                     "propertyID": "states",
-                    "value": "String"                    
+                    "value": "object"                    
                 },
                 {
                     "@type": "PropertyValue",
                     "propertyID": "huc12",
-                    "value": "String",
+                    "value": "object",
                     "description": "Unique hydrologic unit code"                     
                 },
                 {
                     "@type": "PropertyValue",
                     "propertyID": "name",
-                    "value": "String",
+                    "value": "object",
                     "description":"GNIS name for the geographic area in which the hydrologic unit is located"                    
                 },
                 {
                     "@type": "PropertyValue",
                     "propertyID": "tohuc",
-                    "value": "String",
+                    "value": "object",
                     "description": "Code for the 12-digit hydrologic unit that is downstream from and naturally receives the majority of the flow from this unit"                    
                 },
                 {
                     "@type": "PropertyValue",
                     "propertyID": "shape_Leng",
-                    "value": "Real"                    
+                    "value": "float64"                    
                 },
                 {
                     "@type": "PropertyValue",
                     "propertyID": "shape_Area",
-                    "value": "Real"                    
+                    "value": "float64"                    
                 },
                 {
                     "@type": "PropertyValue",
@@ -304,7 +309,7 @@ Here is a complete example of a shapefile that incorporates all information expl
         "name": "Logan Watershed",
         "geo": {
             "@type": "GeoShape",
-            "box": "42.09 -111.47 41.71 -111.80"
+            "box": "41.70049003694901 -111.78438452093438 42.102360645589236 -111.51208495002092"
         },
         "additionalProperty": [
             {
