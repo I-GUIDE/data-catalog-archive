@@ -164,95 +164,95 @@ Here is a complete example of a geotiff metadata that incorporates all informati
         "contentUrl": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/data/contents/DEM-for-logan-watershed.vrt?zipped=true&aggregation=true",
         "encodingFormat": "image/tiff",
         "contentSize": "54.1 MB",
-        "name": "DEM for the logan watershed"
-    },
-    "additionalProperty": [
-        {
-            "@type": "PropertyValue",
-            "PropertyID": "Rows",
-            "value": 4981
-        },
-        {
-            "@type": "PropertyValue",
-            "PropertyID": "Columns",
-            "value": 2956
-        },
-        {
-            "@type": "PropertyValue",
-            "PropertyID": "Cell Size X Value",
-            "value": 10.0
-        },
-        {
-            "@type": "PropertyValue",
-            "PropertyID": "Cell Size Y Value",
-            "value": 10.0
-        },
-        {
-            "@type": "PropertyValue",
-            "PropertyID": "Cell Data Type",
-            "value": "Float32"
-        }
-    ],
-    "variableMeasured": [
-        {
-            "@type": "PropertyValue",
-            "propertyID": "Variable Name",
-            "value": "Elevation",
-            "unitCode": "m",
-            "minValue": "1358.2",
-            "maxValue": "3040.8",
-            "description": "Digital Elevation Model",                   
-        }
-    ],
-    "spatialCoverage":"spatialCoverage": {
-        "@type": "Place",
-        "name": "DEM-for-logan-watershed",
-        "geo": {
-            "@type": "GeoShape",
-            "box": "41.66222383075488 -111.81767526210976 42.11280014734521 -111.5693396958791"
-        },
+        "name": "DEM for the logan watershed",
         "additionalProperty": [
             {
                 "@type": "PropertyValue",
-                "propertyID": "Geographic Coordinate System",
-                "value": {
-                    "@type": "PropertyValue",
-                    "propertyID": "Coordinate System",
-                    "value": "WGS 84 EPSG:4326" 
-                }
+                "PropertyID": "Rows",
+                "value": 4981
             },
             {
                 "@type": "PropertyValue",
-                "propertyID": "Projected Coordinate System",
-                "value": [
-                    {
-                        "@type": "PropertyValue",
-                        "propertyID": "Coordinate Reference System",
-                        "value": "WGS_1984_UTM_Zone_12N" 
-                    },
-                    {
-                        "@type": "PropertyValue",
-                        "propertyID": "Datum",
-                        "value": "WGS_1984" 
-                    },
-                    {
-                        "@type": "PropertyValue",
-                        "propertyID": "Unit",
-                        "value": "Meter" 
-                    },
-                    {
-                        "@type": "PropertyValue",
-                        "propertyID": "Coordinate String",
-                        "value": "PROJCS['WGS_1984_UTM_Zone_12N',GEOGCS['WGS 84',DATUM['WGS_1984',SPHEROID['WGS 84',6378137,298.257223563,AUTHORITY['EPSG',"7030"]],AUTHORITY['EPSG','6326']],PRIMEM['Greenwich',0],UNIT['degree',0.0174532925199433],AUTHORITY['EPSG','4326']],PROJECTION['Transverse_Mercator'],PARAMETER['latitude_of_origin',0],PARAMETER['central_meridian',-111],PARAMETER['scale_factor',0.9996],PARAMETER['false_easting',500000],PARAMETER['false_northing',0],UNIT['metre',1,AUTHORITY['EPSG','9001']],AUTHORITY['EPSG','32612']]" 
-                    }
-                ]
+                "PropertyID": "Columns",
+                "value": 2956
+            },
+            {
+                "@type": "PropertyValue",
+                "PropertyID": "Cell Size X Value",
+                "value": 10.0
+            },
+            {
+                "@type": "PropertyValue",
+                "PropertyID": "Cell Size Y Value",
+                "value": 10.0
+            },
+            {
+                "@type": "PropertyValue",
+                "PropertyID": "Cell Data Type",
+                "value": "Float32"
             }
-        ]
-    },
-    "sourceOrganization": {
-        "@type": "Organization",
-        "name": "The US Geological Survey (USGS)",
-        "url": "https://www.usgs.gov/3d-elevation-program"
+        ],
+        "variableMeasured": [
+            {
+                "@type": "PropertyValue",
+                "propertyID": "Variable Name",
+                "value": "Elevation",
+                "unitCode": "m",
+                "minValue": "1358.2",
+                "maxValue": "3040.8",
+                "description": "Digital Elevation Model"                   
+            }
+        ],
+        "spatialCoverage": {
+            "@type": "Place",
+            "name": "DEM-for-logan-watershed",
+            "geo": {
+                "@type": "GeoShape",
+                "box": "41.66222383075488 -111.81767526210976 42.11280014734521 -111.5693396958791"
+            },
+            "additionalProperty": [
+                {
+                    "@type": "PropertyValue",
+                    "propertyID": "Geographic Coordinate System",
+                    "value": {
+                        "@type": "PropertyValue",
+                        "propertyID": "Coordinate System",
+                        "value": "WGS 84 EPSG:4326" 
+                    }
+                },
+                {
+                    "@type": "PropertyValue",
+                    "propertyID": "Projected Coordinate System",
+                    "value": [
+                        {
+                            "@type": "PropertyValue",
+                            "propertyID": "Coordinate Reference System",
+                            "value": "WGS_1984_UTM_Zone_12N" 
+                        },
+                        {
+                            "@type": "PropertyValue",
+                            "propertyID": "Datum",
+                            "value": "WGS_1984" 
+                        },
+                        {
+                            "@type": "PropertyValue",
+                            "propertyID": "Unit",
+                            "value": "Meter" 
+                        },
+                        {
+                            "@type": "PropertyValue",
+                            "propertyID": "Coordinate String",
+                            "value": "PROJCS['WGS_1984_UTM_Zone_12N',GEOGCS['WGS 84',DATUM['WGS_1984',SPHEROID['WGS 84',6378137,298.257223563,AUTHORITY['EPSG','7030']],AUTHORITY['EPSG','6326']],PRIMEM['Greenwich',0],UNIT['degree',0.0174532925199433],AUTHORITY['EPSG','4326']],PROJECTION['Transverse_Mercator'],PARAMETER['latitude_of_origin',0],PARAMETER['central_meridian',-111],PARAMETER['scale_factor',0.9996],PARAMETER['false_easting',500000],PARAMETER['false_northing',0],UNIT['metre',1,AUTHORITY['EPSG','9001']],AUTHORITY['EPSG','32612']]" 
+                        }
+                    ]
+                }
+            ]
+        },
+        "sourceOrganization": {
+            "@type": "Organization",
+            "name": "The US Geological Survey (USGS)",
+            "url": "https://www.usgs.gov/3d-elevation-program"
+        }
     }
 }
 ```
