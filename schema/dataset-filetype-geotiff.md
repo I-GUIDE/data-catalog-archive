@@ -18,6 +18,7 @@ The `associatedMedia` property, as described in the core metadata, can encompass
         {
             "@type": "DataDownload",
             "contentUrl": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/data/contents/DEM-for-logan-watershed.vrt?zipped=true&aggregation=true",
+            "sha256": "149afe3b0c44298fc1cbf4c8996fb92427ae41e4649b934ca495991b7852b855",
             "encodingFormat": "image/tiff",
             "contentSize": "52.1 MB"
         }
@@ -163,6 +164,7 @@ Here is a complete example of a geotiff metadata that incorporates all informati
         "@type": "DataDownload",
         "contentUrl": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/data/contents/DEM-for-logan-watershed.vrt?zipped=true&aggregation=true",
         "encodingFormat": "image/tiff",
+        "sha256": "4c8996fb92427ae41e4649b934ca495991b7852b855149afe3b0c44298fc1cbf",
         "contentSize": "54.1 MB",
         "name": "DEM for the logan watershed",
         "additionalProperty": [

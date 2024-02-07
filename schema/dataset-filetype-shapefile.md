@@ -19,24 +19,28 @@ The `associatedMedia` property, as described in the core metadata, can encompass
         {
             "@type": "DataDownload",
             "contentUrl": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/data/contents/logan-watershed.dbf",
+            "sha256": "afe3b0fc1ae41e4649b932b855b92c44298149cbf4c8996f4274ca495991b785",
             "encodingFormat": "x-gis/x-shapefile",
             "contentSize": "7.98 KB"
         },
         {
             "@type": "DataDownload",
             "contentUrl": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/data/contents/logan-watershed.prj",
+            "sha256": "ae41e4649b932b855b92c44298149afe3b0fc1cbf4c8996f4274ca495991b785",
             "encodingFormat": "x-gis/x-shapefile",
             "contentSize": "167 bytes"
         }, 
         {
             "@type": "DataDownload",
             "contentUrl": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/data/contents/logan-watershed.shp",
+            "sha256": "2b855b92c44298149afe3b0fc1cbf4c8996f427ae41e4649b934ca495991b785",
             "encodingFormat": "x-gis/x-shapefile",
             "contentSize": "143 KB"
         }, 
         {
             "@type": "DataDownload",
             "contentUrl": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/data/contents/logan-watershed.shx",
+            "sha256": "b92c44298149afe3b0fc1cbf4c8996f427ae41e4649b934ca495991b7852b855",
             "encodingFormat": "x-gis/x-shapefile",
             "contentSize": "156 bytes"
         }
@@ -211,24 +215,29 @@ Here is a complete example of a shapefile that incorporates all information expl
     {
         "@type": "DataDownload",
         "contentUrl": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/data/contents/logan-watershed.dbf",
+        "sha256": "c44298149afe3b0fc1cbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sha256": "ca495991b785b92cafe3b0fc1ae41e4649b932b85544298149cbf4c8996f4274",
         "encodingFormat": "x-gis/x-shapefile",
         "contentSize": "7.98 KB"
     },
     {
         "@type": "DataDownload",
         "contentUrl": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/data/contents/logan-watershed.prj",
+        "sha256": "932b8b92cafe3b0fc1ae41e4649b5544298149cbf4c8996f4274ca495991b785",
         "encodingFormat": "x-gis/x-shapefile",
         "contentSize": "167 bytes"
     }, 
     {
         "@type": "DataDownload",
         "contentUrl": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/data/contents/logan-watershed.shp",
+        "sha256": "4298149cbf4c8996f4274b92cafe3b0fc1ae41e4649b932b8554ca495991b785",
         "encodingFormat": "x-gis/x-shapefile",
         "contentSize": "143 KB"
     }, 
     {
         "@type": "DataDownload",
         "contentUrl": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/data/contents/logan-watershed.shx",
+        "sha256": "b92cafe3b0fc1ae41e4649b932b85544298149cbf4c8996f4274ca495991b785",
         "encodingFormat": "x-gis/x-shapefile",
         "contentSize": "156 bytes"
     }

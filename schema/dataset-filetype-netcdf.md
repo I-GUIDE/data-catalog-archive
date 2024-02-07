@@ -19,6 +19,7 @@ The `associatedMedia` property, as described in the core metadata, can encompass
         {
             "@type": "DataDownload",
             "contentUrl": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/data/contents/201001010000.v1.1.nc?zipped=true&aggregation=true",
+            "sha256": "4ca495991b785afe3b0fc1ae41e4649b932b855b92c44298149cbf4c8996f427",
             "encodingFormat": "application/netcdf",
             "contentSize": "6.55 MB",
             "name": "201001010000.v1.1.nc",
@@ -253,6 +254,7 @@ Here is a complete example of a NetCDF metadata that incorporates all informatio
     "associatedMedia": {
         "@type": "DataDownload",
         "contentUrl": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/data/contents/DEM-for-logan-watershed.vrt?zipped=true&aggregation=true",
+        "sha256": "32b855b92c442981494ca495991b785afe3b0fc1ae41e4649b9cbf4c8996f427",
         "encodingFormat": "image/tiff",
         "contentSize": "54.1 MB",
         "name": "DEM for the logan watershed",
