@@ -20,7 +20,7 @@ for **required** and `0,1` or `0+` for **optional** in the Cardinality column of
 |[provider](#provider-and-publisher) | CreativeWork | Organization \| Person | 1 | The service provider, service operator, or service performer |
 |[publisher](#provider-and-publisher)| CreativeWork | Organization \| Person | 0,1 | The publisher of the record |
 |[datePublished](#dates)| CreativeWork | DateTime | 0,1 | Date of first publication for the record |
-|[subjectOf](#subject-of)| Thing | CreativeWork | 0+ | A creative work about the record - e.g., a related metadata document describing the record |
+|[subjectOf](#subject-of)| Thing | CreativeWork | 0+ | A creative work about the record - e.g., a related article describing the record |
 |[version](#version)| CreativeWork | Number \| Text | 0,1 | The version of the record |
 |[inLanguage](#language)|CreativeWork|Language \| Text|0,1| The language of the content of the record|
 |[creativeWorkStatus](#creative-work-status) | CreativeWork | DefinedTerm | 0,1 | The status of a record in terms of its stage in a lifecycle|
@@ -319,26 +319,7 @@ Encoding for a formal repository with a parent organization is listed belwo. Cur
 ### Subject Of
 
 [Schema:subjectOf](https://schema.org/subjectOf) is a property of `CreativeWork` and can be used to encode a linkage
-to a separate `CreativeWork` that describes or is about the record. An example would 
-be a formal metadata document encoded using some metadata standard that fully describes
-the record. More specifically, this could be a metadata document accompanying a
-geospatial dataset, or a formal metadata document accompanying a HydroShare resource. 
-The document describing the record can be available anywhere on the Internet.
-The encodingFormat property should indicate the format of the related `CreativeWork`. 
-This linkage can be encoded as:
-
-``` json
-{
-  "subjectOf": {
-    "@type": "CreativeWork",
-    "name": "Dublin Core Metadata Document Describing the Dataset",
-    "url": "https://www.hydroshare.org/hsapi/resource/c1be74eeea614d65a29a185a66a7552f/scimeta/",
-    "description": "The Dublin Core, also known as the Dublin Core Metadata Element Set, is a set of fifteen 'core' elements (properties) for describing resources. This fifteen-element Dublin Core was first standardized in 1998 as IETF RFC 2413, 'Dublin Core Metadata for Resource Discovery', and subsequently published as ANSI/NISO Z39.85 and ISO 15836. Documentation for these core properties is now included as part of the larger set of DCMI Metadata Terms."
-  }
-}
-```
-
-Here is an example that demonstrates the utilization of the `subjectOf` property to reference a journal paper describing a particular resource:
+to a **separate** `CreativeWork` that describes or is about the record. The document describing the record can be available anywhere on the Internet. An example would be an article describing the record. This linkage can be encoded as:
 
 ```json
 {
