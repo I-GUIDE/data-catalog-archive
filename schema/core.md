@@ -621,7 +621,9 @@ information about `identifier`, see the [Identifier](#identifier)
 
 **Has Part** describes a record or work that is part of the current
 record. For example, a body of work may consist of multiple related datasets that
-are used for a particular study.
+are used for a particular study. Another example would be a formal **metadata** document encoded using some metadata standard that fully describes
+the record. More specifically, this could be a metadata document accompanying a
+geospatial dataset, or a formal metadata document accompanying a HydroShare resource. 
 
 Note: `hasPart` and `isPartOf` are generally used to link records that are grouped
 together or those that belong to other groupings. For example, `hasPart` may
@@ -694,6 +696,51 @@ For the example above, multiple relations can be defined using a list.
 }
 ```
 
+The following example shows the use of **hasPart** to reference formal **metadata** documents describing the contents of each file within the record. In this example, the resource contains three distinct files: two Geotif files and one shapefile. Each file has its own specific metadata detailing its contents. The entire resource is then described with a singular metadata, named "resourcemetadata," which comprehensively describes the entire resource, including both resource-level and file-level metadata.
+
+``` json
+{
+  "@type": "CreativeWork",
+  "name": "Samples for different file types used for designing the IGUIDE data catalog schemas",
+  "description": "This resource contains several different file types to help identify appropriate properties for each file type when designing the metadata schema based on Schema.org.",
+  "identifier": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/",
+  "creator":{
+    "@type": "Person",
+    "name": "Irene Garousi-Nejad"
+  },
+  "hasPart": [
+    {
+      "@type": "CreativeWork",
+      "name": "resource metadata",
+      "description": "Schema.Org-based metadata document describing the entire resource.",
+      "encodingFormat": "application/rdf+xml",
+      "url": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/hs/resourcemeta.xml"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "logan-watershed metadata",
+      "description": "Schema.Org-based metadata document describing logan-watershed.shp file.",
+      "encodingFormat": "application/rdf+xml",
+      "url": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/hs/logan-watershed-contentmeta.xml"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "nlcd-2021-landcover-for-jordanprovo metadata",
+      "description": "Schema.Org-based metadata document describing nlcd-2021-landcover-for-jordanprovo.tif file.",
+      "encodingFormat": "application/rdf+xml",
+      "url": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/hs/nlcd-2021-landcover-for-jordanprovo-contentmeta.xml"
+    },
+    {
+      "@type": "CreativeWork",
+      "name": "DEM-for-logan-watershed metadata",
+      "description": "Schema.Org-based metadata document describing DEM-for-logan-watershed.tif file.",
+      "encodingFormat": "application/rdf+xml",
+      "url": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/hs/DEM-for-logan-watershed-contentmeta.xml"
+    }
+  ]
+}
+```
+
 **isPartOf** is the inverse property of **hasPart** and may be used to indicate
 that a work is part of another collection of works. This can be read as: the "Great Salt Lake Bathymetry" 
 record belongs to the "Collection of Great Salt Lake Data" creative work in the catalog.  
@@ -718,6 +765,47 @@ record belongs to the "Collection of Great Salt Lake Data" creative work in the 
     "name": "Collection of Great Salt Lake Data",
     "description": "Data from the Great Salt Lake and its basin",
     "url": "https://www.hydroshare.org/resource/b6c4fcad40c64c4cb4dd7d4a25d0db6e/"
+  }
+}
+```
+
+The following example shows the use of **isPartOf** to create a link between file-level metadata with the resource-level metadata. This example shows the file-level content metadata for a geotif file. It uses **hasPart** to reference to the file-level metadata and then uses **isPartOf** to link this content metadata to the resource-level metadata. This example can be read as follows: The file-level metadata, denoted as DEM-for-logan-watershed-contentmeta.xml, contains content details about the DEM-for-logan-watershed.tif file. This is integral to the resoruce-level metadata, identified as resourcemeta.xml. Collectively, these metadata components describe the entire resource. 
+
+```json
+{  
+  "associatedMedia": {
+    "@type": "DataDownload",
+    "contentUrl": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/data/contents/DEM-for-logan-watershed.vrt?zipped=true&aggregation=true",
+    "sha256": "149afe3b0c44298fc1cbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "encodingFormat": "image/tiff",
+    "name": "DEM for the logan watershed",
+    "description": "This is the digital elevation model data for the Logan River watershed.",
+    "contentSize": "52.1 MB",
+    "variableMeasured": [
+      {
+        "@type": "PropertyValue",
+        "propertyID": "Variable Name",
+        "value": "Elevation",
+        "unitCode": "m",
+        "minValue": "1358.2",
+        "maxValue": "3040.8",
+        "description": "Digital Elevation Model"                   
+      }
+    ],
+  },
+  "hasPart":{
+    "@type": "CreativeWork",
+    "name": "DEM-for-logan-watershed metadata",
+    "description": "Schema.Org-based metadata document describing DEM-for-logan-watershed.tif file.",
+    "encodingFormat": "application/rdf+xml",
+    "url": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/hs/DEM-for-logan-watershed-contentmeta.xml"
+  },      
+  "isPartOf": {
+    "@type": "CreativeWork",
+    "name": "resource metadata",
+    "description": "Schema.Org-based metadata document describing the entire resource.",
+    "encodingFormat": "application/rdf+xml",
+    "url": "https://www.hydroshare.org/resource/fed970c19b9c41928f2591adf5b64dd1/hs/resourcemeta.xml"
   }
 }
 ```
