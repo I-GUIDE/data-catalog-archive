@@ -9,14 +9,11 @@ Schema.org classes (also often called Types), Schema.org DataTypes, and Schema.o
 
 Provide efficient discoverablity and access.
 
-## Terminology
+## Definitions
 
-- record - a unique entry in the catalog. This can be a scientific dataset,
-  software code, a landing page to a trusted repository, etc. The I-GUIDE
-  data catalog consists of records. 
-
-- schema - a conceptual representation of the structured metadata necessary to describe
-  catalog records. Schemas are composed of a set of Types, each associated with a set of Properties and DataTypes that altogether represent the metadata of a record. 
+- `Record` : is a representation of 'metadata+data' necessary to describe scientific work. `Records` can be grouped together and/or nested to represent complex relationships between scientific data, e.g. GIS files, timeseries, research studies, collections of data, etc.
+  
+- `Schema`: is the metadata strucure used to describe 'metadata+data' using the Schema.org vocabulary. A schema is composed of a Schema.Org Types, each of which is associated with a set of Schema.org Properties and DataTypes.
 
 - Schema.org ${\color{salmon}Type}$ (also called class) - a specific vocabulary that applies to a specific piece of data.
 
@@ -26,32 +23,24 @@ Provide efficient discoverablity and access.
 
 ## What is a Record?
 
-todo
+A record is a representation of metadata and data files using the Schema.Org vocabulary. Records must be described by Schema.Org CreativeWork (or subtypes of CreativeWork), and may consist of scientific data such as datasets, software code, a landing page to a trusted repository, etc. 
 
-## What is NOT a Record?
-
-todo
-
-## Catalog Record Structure
-
-Every I-GUIDE catalog record consists of one or more schema definitions. Each
-schema definition contains a set of properties for describing the catalog record. All
-catalog records must be described using the **Core schema**. The Core schema is a 
-set of properties that all catalog records share. These properties are
+Every I-GUIDE catalog record consists of 'metadata+data' described using one or more schema definitions. Each
+schema definition contains a set of properties. All
+catalog records must be described using the **Core schema** defintion outlined below. The Core schema properties are
 inherited from two Schema.org Types (classes): *Thing* and *CreativeWork*. There are
-many properties that belong to these types, and all of them may be used. Since
-many of these properties may not be relevant to the I-GUIDE catalog records, we've
-identified the required properties and provided recommendations for recommended
-properties to include, if possible, in the [Core Schema](core.md) document. 
+many properties that belong to these types and all of them may be used. Since
+many of these properties are not relevant to the I-GUIDE catalog, we've
+identified the required and optional properties in the [Core Schema](core.md) document. 
 
-The core schema may then be extended by adding more schema definitions from the CreativeWork
-subclasses. Each subclass is either a Type with associated Properties or a Property. For example, the Dataset Type contains additional types and properties that
-are useful when describing scientific datasets. We provide an overview of
+Depending on the type of scientific work that is being described, subclasses of the CreativeWork schema may be desirable.
+For example, the Dataset Type contains additional properties that
+are useful when describing scientific datasets, e.g. earth observation data. We provide an overview of
 required and recommended properties for several CreativeWork subclasses that are relevant to
 the I-GUIDE catalog. Moreover, we provide examples of several common records
 that use these schemas.
 
-The following are references to common Schema.org Types and their associated required and recommended Schema.org Properties for common schemas used in the I-GUIDE catalog:
+The following documents describe the schemas that can be used to create I-GUIDE catalog records:
 
 - [Core](core.md)
   - [Dataset](dataset.md)
