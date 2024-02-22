@@ -1,0 +1,308 @@
+{
+  "@id":"Record 1 (CreativeWork)",
+  "@context": "https://schema.org/",
+  "@type": "CreativeWork",
+  "name": "",
+  "description": "",
+  "url": "https://www.my-url.com/identifier-1",
+  "identifier": "identifier-1/",
+  "creator": {
+    "@id": "John Doe",
+    "@type": "Person",
+    "identifier": {
+      "@type": "PropertyValue"
+    }
+  },
+  "dateCreated": "",
+  "keywords": [],
+  "license": "",
+  "provider": {
+    "@type": "Organization",
+      "@id": "ScienceRepository",
+      "parentOrganization": {
+        "@id": "CUAHSI",
+        "@type": "Organization"
+    }
+  },
+  "hasPart": [
+  {
+    "@id":"Record 2 (Dataset)",
+    "@type": "Dataset",
+    "creator":{
+      "@id": "John Doe",
+      "@type": "Person",
+      "affiliation": {
+        "@type": "Organization"
+      },
+      "identifier": {
+        "@type": "PropertyValue"
+      }
+    },
+    "dateCreated": "",
+    "keywords": [],
+    "license": "",
+    "provider": {
+      "@type": "Organization",
+      "@id": "ScienceRepository",
+      "parentOrganization": {
+        "@id": "CUAHSI",
+        "@type": "Organization"
+      }
+    },
+    "identifier": "identifier-2",
+    "associatedMedia": [
+      {
+        "@id": "CSV File", 
+        "@type": "DataDownload",
+        "encodingFormat": "text/csv"
+      }
+    ],
+    "variableMeasured": [
+    {
+      "@id": "Air Temperature",
+      "@type": "PropertyValue"
+    },
+    {
+      "@id": "Wind Speed",
+      "@type": "PropertyValue"
+    }
+  ],
+    "includedInDataCatalog": [
+    {
+        "@id": "I-GUIDE",
+        "@type" :"DataCatalog",
+        "creator": {
+            "@type": "Organization"
+        }
+    },
+    {
+        "@id": "ScienceRepository", 
+        "@type" :"DataCatalog",
+        "creator": {
+            "@type": "Organization"
+        }
+    }
+    ],
+    "isPartOf": {
+      "@id": "Record 1",
+      "@type": "CreativeWork",
+      "identifier": "identifier-1"
+    } 
+},
+  {
+    "@id":"Record 3 (Dataset)",
+    "@type": "Dataset",
+    "creator":{
+      "@id": "Jane Doe",
+      "@type": "Person",
+      "affiliation": {
+        "@type": "Organization"
+      },
+      "identifier": {
+        "@type": "PropertyValue"
+      }
+    },
+    "dateCreated": "",
+    "keywords": [],
+    "license": "",
+    "provider": {
+      "@id": "ScienceRepository",
+      "@type": "Organization",
+      "parentOrganization": {
+        "@id": "CUAHSI",
+        "@type": "Organization"
+      }
+    },
+    "identifier": "identifier-3",
+    "associatedMedia": [
+    {
+      "@id": "Shapefile [1 of 8]",
+      "@type": "DataDownload",
+      "encodingFormat": "application/fgdc+xml"
+    },
+    {
+      "@id": "Shapefile [2 of 8]",
+      "@type": "DataDownload",
+      "encodingFormat": "x-gis/x-shapefile"
+   },
+   {
+    "@id": "Shapefile [3 of 8]",
+     "@type": "DataDownload",
+     "encodingFormat": "x-gis/x-shapefile"
+    },
+    {
+      "@id": "Shapefile [4 of 8]",
+       "@type": "DataDownload",
+       "encodingFormat": "x-gis/x-shapefile"
+    },
+    {
+      "@id": "Shapefile [5 of 8]",
+       "@type": "DataDownload",
+       "encodingFormat": "x-gis/x-shapefile"
+    },
+    {
+      "@id": "Shapefile [6 of 8]",
+       "@type": "DataDownload",
+       "encodingFormat": "application/text"
+    },
+    {
+      "@id": "Shapefile [7 of 8]",
+       "@type": "DataDownload",
+       "encodingFormat": "application/octet-stream"
+    },
+    {
+      "@id": "Shapefile [8 of 8]",
+       "@type": "DataDownload",
+       "encodingFormat": "x-gis/x-shapefile"
+    }
+  ],
+    "additionalProperty": [
+    {
+        "@id": "Feature Count",
+        "@type": "PropertyValue"
+    },
+    {
+        "@id": "Field Count",
+        "@type": "PropertyValue"
+    }
+    ],
+    "variableMeasured": [
+    {
+       "@id": "objectid",
+       "@type": "PropertyValue" 
+    },
+    {
+      "@id": "geometry",
+      "@type": "PropertyValue"
+    },
+    {
+      "@id": "name",
+      "@type": "PropertyValue" 
+    }
+  ],
+    "includedInDataCatalog": [
+    {
+        "@id": "I-GUIDE",
+        "@type" :"DataCatalog",
+        "creator": {
+            "@type": "Organization"
+        }
+    },
+    {
+        "@id": "ScienceRepository",
+        "@type" :"DataCatalog",
+        "creator": {
+            "@type": "Organization"
+        }
+    }
+    ],
+    "isPartOf": {
+      "@id": "Record 1",
+      "@type": "Dataset",
+      "identifier": "identifier-1"
+    }  
+}
+],
+  "associatedMedia": [
+    { 
+    "@id": "Ascii (Record 1)",
+    "@type": "DataDownload",
+    "encodingFormat": "text/ascii",
+    "isPartOf": {
+      "@id": "Record 1",
+      "@type": "Dataset",
+      "identifier": "identifier-1"
+      }
+    },
+    { 
+    "@id": "CSV (Record 2)",
+    "@type": "DataDownload",
+    "encodingFormat": "text/csv",
+    "isPartOf": {
+      "@id": "Record 2",
+      "@type": "Dataset",
+      "identifier": "identifier-2"
+      }
+    },
+    {
+      "@id": "Shapefile [1 of 8] (Record 3)",
+      "@type": "DataDownload",
+      "encodingFormat": "application/fgdc+xml",
+      "isPartOf": {
+        "@id": "Record 3",
+        "@type": "Dataset",
+        "identifier": "identifier-3"
+      }
+    },
+    {
+      "@id": "Shapefile [2 of 8] (Record 3)",
+      "@type": "DataDownload",
+      "encodingFormat": "x-gis/x-shapefile",
+      "isPartOf": {
+        "@id": "Record 3",
+        "@type": "Dataset",
+        "identifier": "identifier-3"
+      }
+    },
+    {
+      "@id": "Shapefile [3 of 8] (Record 3)",
+     "@type": "DataDownload",
+     "encodingFormat": "x-gis/x-shapefile",
+     "isPartOf": {
+        "@id": "Record 3",
+        "@type": "Dataset",
+        "identifier": "identifier-3"
+      }
+    },
+    {
+      "@id": "Shapefile [4 of 8] (Record 3)",
+       "@type": "DataDownload",
+       "encodingFormat": "x-gis/x-shapefile",
+       "isPartOf": {
+        "@id": "Record 3",
+        "@type": "Dataset",
+        "identifier": "identifier-3"
+      }
+    },
+    {
+      "@id": "Shapefile [5 of 8] (Record 3)",
+       "@type": "DataDownload",
+       "encodingFormat": "x-gis/x-shapefile",
+       "isPartOf": {
+        "@id": "Record 3",
+        "@type": "Dataset",
+        "identifier": "identifier-3"
+      }
+    },
+    {
+      "@id": "Shapefile [6 of 8] (Record 3)",
+       "@type": "DataDownload",
+       "encodingFormat": "application/text",
+       "isPartOf": {
+        "@id": "Record 3",
+        "@type": "Dataset",
+        "identifier": "identifier-3"
+      }
+    },
+    {
+      "@id": "Shapefile [7 of 8]  (Record 3)",
+       "@type": "DataDownload",
+       "encodingFormat": "application/octet-stream",
+       "isPartOf": {
+        "@id": "Record 3",
+        "@type": "Dataset",
+        "identifier": "identifier-3"
+      }
+    },
+    {
+      "@id": "Shapefile [8 of 8] (Record 3)",
+       "@type": "DataDownload",
+       "encodingFormat": "x-gis/x-shapefile",
+       "isPartOf": {
+        "@id": "Record 3",
+        "@type": "Dataset",
+        "identifier": "identifier-3"
+      }
+    }
+  ]
+}

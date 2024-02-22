@@ -23,7 +23,13 @@ Provide efficient discoverablity and access.
 
 ## What is a Record?
 
+![record-example-graph](record-example-visualization.png)
+
+**Figure 1**: *An example of a record described using CreativeWork and Dataset
+Schemas ([code example](record-example-schema.json)).*
+
 A record is a representation of metadata and data files using the Schema.Org vocabulary. Records must be described by Schema.Org CreativeWork (or subtypes of CreativeWork), and may consist of scientific data such as datasets, software code, a landing page to a trusted repository, etc. 
+
 
 Every I-GUIDE catalog record consists of 'metadata+data' described using one or more schema definitions. Each
 schema definition contains a set of properties. All
@@ -39,6 +45,7 @@ are useful when describing scientific datasets, e.g. earth observation data. We 
 required and recommended properties for several CreativeWork subclasses that are relevant to
 the I-GUIDE catalog. Moreover, we provide examples of several common records
 that use these schemas.
+
 
 The following documents describe the schemas that can be used to create I-GUIDE catalog records:
 
